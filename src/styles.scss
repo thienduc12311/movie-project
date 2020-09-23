@@ -1,0 +1,12 @@
+@import "./components/InputField/styles.scss";
+@import "./components/NotificationDialog/styles.scss";
+@import "./containers/SignUp/styles.scss";
+
+button {
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+}
