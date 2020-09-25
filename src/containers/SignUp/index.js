@@ -1,11 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useForm } from "react-hook-form";
 import { Row, Col, Select } from 'antd';
-import { post, get } from '../../utils/ApiCaller';
+import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
+import './styles.scss';
 import 'antd/dist/antd.css';
 
 const { Options } = Select;
@@ -114,6 +115,15 @@ const SignUp = () => {
 
     const onSubmit = async (data) => {
         setUser({ ...data, maNhom: groupID });
+        try {
+            const res = await post('/api/QuanLyNguoiDung/DangKy', { ...data, maNhom: groupID });
+            text = 'Sign Up Successfully';
+            setIsDialogOpened(true);
+            saveUserToLocalStorage();
+        } catch {
+            text = 'Registration Failed';
+            setIsDialogOpened(true);
+        }
     };
 
     const handleSelectGroup = (value) => {
@@ -126,21 +136,6 @@ const SignUp = () => {
                 LocalStorageUtils.setItem('user', res.data);
             })
     };
-
-    useEffect(() => {
-        if (user) {
-            post('/api/QuanLyNguoiDung/DangKy', user)
-                .then(() => {
-                    text = 'Sign Up Successfully';
-                    setIsDialogOpened(true);
-                    saveUserToLocalStorage();
-                })
-                .catch(() => {
-                    text = 'Registration Failed';
-                    setIsDialogOpened(true);
-                })
-        }
-    }, [user]);
 
     return (
         <Fragment>

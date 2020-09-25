@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useForm } from "react-hook-form";
 import { Row, Col, Select } from 'antd';
 import { post, get } from '../../utils/ApiCaller';
@@ -6,31 +6,24 @@ import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
+import './styles.scss';
 import 'antd/dist/antd.css';
 
 let text;
 const options = [{ label: 'OK' }];
 
 const SignUp = () => {
-    const [user, setUser] = useState(null);
     const [isDialogOpened, setIsDialogOpened] = useState(false);
     const { handleSubmit, errors, register } = useForm();
 
-    const onSubmit = (data) => {
-        setUser(data);
-    };
-
-    useEffect(() => {
-        if (user) {
-            post('/api/QuanLyNguoiDung/DangNhap', user)
-                .then((res) => {
-                    LocalStorageUtils.setItem('user', res.data);
-                })
-                .catch(() => {
-                    setIsDialogOpened(true);
-                })
+    const onSubmit = async (data) => {
+        try {
+            const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
+            LocalStorageUtils.setItem('user', res.data);
+        } catch{
+            setIsDialogOpened(true);
         }
-    }, [user]);
+    };
 
     return (
         <Fragment>
