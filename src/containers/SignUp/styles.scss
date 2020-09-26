@@ -1,6 +1,6 @@
 @import "../../components/InputField/styles";
 @import "../../components/NotificationDialog/styles";
-$bg-image: "../../assets/img/bg_signup.png";
+$bg-image: "../../assets/img/bg_signup.jpg";
 
 .signup-container {
     display: flex;
@@ -13,8 +13,6 @@ $bg-image: "../../assets/img/bg_signup.png";
     background-repeat: no-repeat;
 
     .signup-content {
-        max-width: 30%;
-        min-width: 300px;
         margin: auto;
         border-radius: 30px;
         background-color: #ffffff;

@@ -138,7 +138,6 @@ const SignUp = () => {
     return (
         <Fragment>
             <div className="signup-container">
-                {/* <img src={background} /> */}
                 <div className="signup-content">
                     <div className="signup-heading">Creat Account</div>
                     <div className="form-wrapper">
