@@ -1,12 +1,13 @@
 @import "../../components/InputField/styles";
 @import "../../components/NotificationDialog/styles";
+$bg-image: "../../assets/img/bg_signup.png";
 
 .signup-container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url("https://www.esa.int/extension/pillars/design/pillars/images/nebula.jpg");
+    background-image: url($bg-image);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

@@ -10,7 +10,6 @@ import './styles.scss';
 import 'antd/dist/antd.css';
 
 let text;
-const options = [{ label: 'OK' }];
 
 const SignUp = () => {
     const [isDialogOpened, setIsDialogOpened] = useState(false);
@@ -20,7 +19,8 @@ const SignUp = () => {
         try {
             const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
             LocalStorageUtils.setItem('user', res.data);
-        } catch{
+        } catch (err) {
+            text = err.response.data;
             setIsDialogOpened(true);
         }
     };
@@ -63,7 +63,7 @@ const SignUp = () => {
             <NotificationDialog
                 isOpened={isDialogOpened}
                 setIsOpened={setIsDialogOpened}
-                text={"Login Failed"}
+                text
                 options={[{ label: 'OK' }]}
             />
         </Fragment>

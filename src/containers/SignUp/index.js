@@ -25,7 +25,6 @@ const optionSelectors = [
 ];
 
 let text;
-const options = [{ label: 'OK' }];
 
 const SignUp = () => {
     const [groupID, setGroupID] = useState('GP01');
@@ -118,8 +117,9 @@ const SignUp = () => {
             text = 'Sign Up Successfully';
             setIsDialogOpened(true);
             saveUserToLocalStorage({ ...data, maNhom: groupID });
-        } catch {
-            text = 'Registration Failed';
+            console.log(res.status)
+        } catch (err) {
+            text = err.response.data;
             setIsDialogOpened(true);
         }
     };
@@ -138,6 +138,7 @@ const SignUp = () => {
     return (
         <Fragment>
             <div className="signup-container">
+                {/* <img src={background} /> */}
                 <div className="signup-content">
                     <div className="signup-heading">Creat Account</div>
                     <div className="form-wrapper">
@@ -183,7 +184,7 @@ const SignUp = () => {
                 isOpened={isDialogOpened}
                 setIsOpened={setIsDialogOpened}
                 text={text}
-                options={options}
+                options={[{ label: 'OK' }]}
             />
         </Fragment>
     );
