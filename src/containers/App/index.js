@@ -4,8 +4,8 @@ import SignIn from '../SignIn';
 
 export const App = () => {
   return (
-    // <SignUp />
-    <SignIn />
+    <SignUp />
+    // <SignIn />
   );
 };
 export default App;

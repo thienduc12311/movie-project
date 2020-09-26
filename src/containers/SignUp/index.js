@@ -28,7 +28,6 @@ let text;
 const options = [{ label: 'OK' }];
 
 const SignUp = () => {
-    const [user, setUser] = useState(null);
     const [groupID, setGroupID] = useState('GP01');
     const [isDialogOpened, setIsDialogOpened] = useState(false);
     const { handleSubmit, errors, register, watch } = useForm();
@@ -114,12 +113,11 @@ const SignUp = () => {
     ];
 
     const onSubmit = async (data) => {
-        setUser({ ...data, maNhom: groupID });
         try {
             const res = await post('/api/QuanLyNguoiDung/DangKy', { ...data, maNhom: groupID });
             text = 'Sign Up Successfully';
             setIsDialogOpened(true);
-            saveUserToLocalStorage();
+            saveUserToLocalStorage({ ...data, maNhom: groupID });
         } catch {
             text = 'Registration Failed';
             setIsDialogOpened(true);
@@ -130,7 +128,7 @@ const SignUp = () => {
         setGroupID(value);
     };
 
-    const saveUserToLocalStorage = () => {
+    const saveUserToLocalStorage = (user) => {
         post('/api/QuanLyNguoiDung/DangNhap', user)
             .then((res) => {
                 LocalStorageUtils.setItem('user', res.data);
