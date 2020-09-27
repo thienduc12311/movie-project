@@ -1,0 +1,39 @@
+.carousel {
+    .carousel-slider {
+        color: white;
+        height: 80vh;
+    }
+
+    .slick-slider {
+        .slick-dots {
+            bottom: 10%;
+            li {
+                width: 25px;
+                height: 25px;
+                button {
+                    &:before {
+                        font-size: 20px;
+                        line-height: 25px;
+                    }
+                }
+            }
+        }
+
+        .slick-prev {
+            left: 3%;
+            z-index: 1;
+
+            &:before {
+                font-size: 30px;
+            }
+        }
+
+        .slick-next {
+            right: 3%;
+
+            &:before {
+                font-size: 30px;
+            }
+        }
+    }
+}
