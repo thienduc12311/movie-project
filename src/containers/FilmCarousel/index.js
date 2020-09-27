@@ -45,9 +45,12 @@ const FilmCarousel = () => {
                         <div
                             key={index}
                             className="carousel-slider"
-                            onClick={() => handleClick(index + 1)}
                         >
-                            <FilmSlider film={film} />
+                            <FilmSlider 
+                                film={film} 
+                                index={index}
+                                handleClick={handleClick}
+                            />
                         </div>
                     )
                 })}
