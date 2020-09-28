@@ -3,6 +3,8 @@ import { get } from '../../utils/ApiCaller';
 import SearchBar from '../../components/SearchBar';
 import moment from 'moment';
 
+import './styles.scss';
+
 const initialValue = {
     movie: null,
     cinemaSystem: null,
@@ -12,7 +14,6 @@ const initialValue = {
 };
 
 const FilmSearchBox = () => {
-    const [showtimeInfo, setShowtimeInfo] = useState(null);
     const [valueSelected, setValueSelected] = useState(initialValue);
     const [movieOptions, setMovieOptions] = useState(null);
     const [cinemaSystemOptions, setCinemaSystemOptions] = useState(null);
@@ -20,14 +21,14 @@ const FilmSearchBox = () => {
     const [dateOptions, setDateOptions] = useState(null);
     const [timeOptions, setTimeOptions] = useState(null);
 
-    const handleSelectMovie = (idFilm) => {
+    const handleSelectMovie = (idMovie) => {
         const fetchData = async () => {
             try {
-                const res = await get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idFilm}`)
+                const res = await get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`)
                 setCinemaSystemOptions(res.data.heThongRapChieu);
             } catch{ }
         }
-        const indexFilm = movieOptions.findIndex(film => film.maPhim === idFilm);
+        const indexFilm = movieOptions.findIndex(film => film.maPhim === idMovie);
         if (movieOptions[indexFilm].tenPhim !== valueSelected.movie) {
             fetchData();
             setValueSelected({ ...initialValue, movie: movieOptions[indexFilm].tenPhim });
@@ -150,6 +151,7 @@ const FilmSearchBox = () => {
             />
             <button
                 onClick={handBookTicket}
+                className="search-box-submit"
                 disabled={valueSelected.time ? false : true}
             >
                 Book Now

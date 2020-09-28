@@ -35,7 +35,7 @@ const SearchBar = ({ placeholder, currentValue, options, valueKey, optionKey, ha
     return (
         <Select
             showSearch
-            style={{ width: '20%' }}
+            style={{ width: '18%' }}
             placeholder={placeholder}
             optionFilterProp="children"
             onChange={onChange}
