@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 const FilmTab = ({ film }) => {
     return (
         <Fragment>
-            <img className="flm-avatar" src={film.hinhAnh} />
+            <img className="film-avatar" src={film.hinhAnh} />
             <h3>{film.tenPhim}</h3>
             <Row gutter={[16, 16]}>
                 {film.lstLichChieuTheoPhim.map((showtime, index) => {
