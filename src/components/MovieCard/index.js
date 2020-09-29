@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -10,20 +11,21 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
                 <img src={card.hinhAnh} />
             </div>
             <div className="card-body">
-                <div className="card-header">
+                <div className="card-text">
                     {card.tenPhim}
                 </div>
             </div>
-            <div className="card-overlay">
-                <div className="card-play-icon" onClick={() => { handleOpenTrailer(index) }}>
-                    <PlayArrowIcon />
-                </div>
+            <NavLink to={`/movie/id=${card.maPhim}`}>
+                <div className="card-overlay"></div>
+            </NavLink>
+            <div className="card-play-icon" onClick={() => { handleOpenTrailer(index) }}>
+                <PlayArrowIcon />
             </div>
-            <div className="card-button">
-                <div className="card-submit">
-                    Book
+            <NavLink to={`/movie/id=${card.maPhim}`}>
+                <div className="card-button">
+                    <div className="card-submit">Book</div>
                 </div>
-            </div>
+            </NavLink>
         </div>
     )
 }

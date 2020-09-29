@@ -8,21 +8,12 @@ const { Option } = Select;
 const SearchBar = ({ placeholder, currentValue, options, valueKey, optionKey, handleChange, isLoading, isDisabled }) => {
     const renderOptions = () => {
         return options?.map(option => {
-            if (valueKey && optionKey)
-                return (
-                    <Option
-                        key={option[valueKey]}
-                        value={option[valueKey]}
-                    >
-                        {option[optionKey]}
-                    </Option>
-                )
             return (
                 <Option
-                    key={option}
-                    value={option}
+                    key={valueKey ? option[valueKey] : option}
+                    value={valueKey ? option[valueKey] : option}
                 >
-                    {option}
+                    {optionKey ? option[optionKey] : option}
                 </Option>
             )
         })

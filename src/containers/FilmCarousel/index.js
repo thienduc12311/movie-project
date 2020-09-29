@@ -3,16 +3,18 @@ import Slider from "react-slick";
 import { get } from '../../utils/ApiCaller';
 import FilmSlider from '../../components/FilmSlider';
 import ModalVideo from 'react-modal-video';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 import './styles.scss';
 import 'react-modal-video/scss/modal-video.scss';
 
 const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    prevArrow: <LeftOutlined />,
+    nextArrow: <RightOutlined />
 };
 
 const FilmCarousel = () => {
@@ -37,17 +39,16 @@ const FilmCarousel = () => {
     }, [])
 
     return (
-        filmList &&
         <div className="carousel">
             <Slider {...settings}>
-                {filmList.slice(1, 6).map((film, index) => {
+                {filmList?.slice(1, 6).map((film, index) => {
                     return (
                         <div
                             key={index}
                             className="carousel-slider"
                         >
-                            <FilmSlider 
-                                film={film} 
+                            <FilmSlider
+                                film={film}
                                 index={index}
                                 handleClick={handleClick}
                             />

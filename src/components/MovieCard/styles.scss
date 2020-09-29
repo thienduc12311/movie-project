@@ -5,8 +5,11 @@
 
     &:hover {
         .card-overlay,
-        .card-button {
+        .card-button,
+        .card-play-icon {
             display: block;
+            animation-name: fade-on-hover;
+            animation-duration: 1s;
         }
         .card-body {
             display: none;
@@ -42,37 +45,49 @@
     }
 
     .card-body {
-        .card-header {
-            font-size: 20px;
+        padding-top: 5px;
+
+        .card-text {
+            font-size: 17px;
+            text-align: center;
+            font-weight: 500;
         }
     }
 
     .card-overlay {
         display: none;
         background-color: rgba(0, 0, 0, 0.4);
+    }
 
-        .card-play-icon {
-            border: 2px solid white;
-            border-radius: 100%;
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
+    .card-play-icon {
+        display: none;
+        border: 2px solid white;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
 
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.6);
             svg {
-                color: white;
-                width: 100%;
-                height: 100%;
+                color: rgba(255, 255, 255, 0.6);
             }
+        }
+
+        svg {
+            color: white;
+            width: 100%;
+            height: 100%;
         }
     }
 
     .card-button {
         display: none;
-        padding: 10px;
+        padding-top: 5px;
 
         .card-submit {
             cursor: pointer;
@@ -85,7 +100,18 @@
             background-color: #fb4226;
             border-radius: 20px;
             text-align: center;
-            vertical-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
+    }
+}
+
+@keyframes fade-on-hover {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

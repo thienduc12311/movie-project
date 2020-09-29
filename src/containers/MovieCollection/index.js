@@ -46,7 +46,6 @@ var settings = {
     ]
 };
 
-
 const MovieCollection = () => {
     const [movieCollection, setMovieCollection] = useState(null);
     const [isVideoOpened, setIsVideoOpened] = useState(false);
@@ -61,9 +60,8 @@ const MovieCollection = () => {
     const renderMovieCard = () => {
         return movieCollection?.map((card, index) => {
             return (
-                <div className="card-container">
+                <div key={index} className="card-container">
                     <MovieCard
-                        key={index}
                         card={card}
                         handleOpenTrailer={handleOpenTrailer}
                         index={index}

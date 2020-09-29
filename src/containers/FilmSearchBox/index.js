@@ -2,8 +2,11 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { get } from '../../utils/ApiCaller';
 import SearchBar from '../../components/SearchBar';
 import moment from 'moment';
+import { Button } from 'antd';
+import { SendOutlined } from '@ant-design/icons';
 
 import './styles.scss';
+import 'antd/dist/antd.css';
 
 const initialValue = {
     movie: null,
@@ -46,8 +49,8 @@ const FilmSearchBox = () => {
     const handleFilterDateOptions = (dateTimeArray) => {
         let dateArray = [];
         dateTimeArray.forEach(item => {
-            let currentDate = moment(item.ngayChieuGioChieu).format('DD-MM-YYYY');
-            if (dateArray === 0)
+            let currentDate = moment(item.ngayChieuGioChieu).format('ll');
+            if (dateArray.length === 0)
                 dateArray.push(currentDate);
             else {
                 let index = dateArray.findIndex(date => date === currentDate)
@@ -55,6 +58,7 @@ const FilmSearchBox = () => {
                     dateArray.push(currentDate);
             }
         })
+        dateArray = dateArray.filter(date => date.slice(-4) === "2020");
         return dateArray;
     }
 
@@ -68,8 +72,8 @@ const FilmSearchBox = () => {
     }
 
     const handleFilterTimeOptions = (dateTimeArray, date) => {
-        let rawArray = dateTimeArray.filter(item => moment(item.ngayChieuGioChieu).format('DD-MM-YYYY') === date);
-        let timeArray = rawArray.map(item => moment(item.ngayChieuGioChieu).format('LT'));
+        const rawArray = dateTimeArray.filter(item => moment(item.ngayChieuGioChieu).format('ll') === date);
+        const timeArray = rawArray.map(item => moment(item.ngayChieuGioChieu).format('LT'));
         return timeArray;
     }
 
@@ -88,7 +92,9 @@ const FilmSearchBox = () => {
 
     const handBookTicket = () => {
         const dateTimeArray = cinemaOptions.find(item => item.maCumRap = valueSelected.cinema);
-        const showtimeInfo = dateTimeArray.lichChieuPhim.find(item => moment(item.ngayChieuGioChieu).format('DD-MM-YYYY') === valueSelected.date && moment(item.ngayChieuGioChieu).format('LT') === valueSelected.time);
+        const showtimeInfo = dateTimeArray.lichChieuPhim.find(item =>
+            moment(item.ngayChieuGioChieu).format('ll') === valueSelected.date && moment(item.ngayChieuGioChieu).format('LT') === valueSelected.time
+        );
         console.log(showtimeInfo);
     }
 
@@ -149,13 +155,15 @@ const FilmSearchBox = () => {
                 isDisabled={valueSelected.date ? false : true}
                 isLoading={(!valueSelected.date || (valueSelected.date && timeOptions)) ? false : true}
             />
-            <button
+            <Button
                 onClick={handBookTicket}
                 className="search-box-submit"
                 disabled={valueSelected.time ? false : true}
+                type="primary"
+                icon={<SendOutlined />}
             >
-                Book Now
-            </button>
+                Book
+            </Button>
         </Fragment>
     )
 }

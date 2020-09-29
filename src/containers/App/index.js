@@ -1,21 +1,32 @@
-import React from 'react';
-import SignUp from '../SignUp';
-import SignIn from '../SignIn';
-import FilmCarousel from '../FilmCarousel';
-import MovieCollection from '../MovieCollection';
-import MovieNav from '../MovieNav';
-import FilmSearchBox from '../FilmSearchBox';
+import React, { Fragment } from 'react';
+import moment from 'moment';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { routesUser } from '../../routes';
 
 export const App = () => {
+  moment.locale('en-gb');
+
+  const renderUserRouter = (routes) => {
+    return routes.map((route, index) => {
+      return (
+        <Route
+          key={index}
+          exact={route.exact}
+          path={route.path}
+          component={route.component}
+        />
+      )
+    })
+  }
+
   return (
-    // <SignUp />
-    // <SignIn />
-    <div className="movie-collection">
-      <MovieCollection />
-    </div>
-    // <FilmCarousel />
-    // <MovieNav />
-    // <FilmSearchBox />
+    <Fragment>
+      <BrowserRouter>
+        <Switch>
+          {renderUserRouter(routesUser)}
+        </Switch>
+      </BrowserRouter>
+    </Fragment>
   );
 };
 export default App;

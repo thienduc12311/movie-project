@@ -1,0 +1,14 @@
+.search-box,
+.collection,
+.nav-tab {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.search-box {
+    padding: 20px 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%);
+}

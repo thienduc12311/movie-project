@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TimeStarting = ({ showtime }) => {
+const TimeStarting = ({ time }) => {
     return (
-        <button>{showtime.ngayChieuGioChieu}</button>
+        <button>{time}</button>
     )
 }
 
