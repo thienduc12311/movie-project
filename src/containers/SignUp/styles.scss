@@ -1,0 +1,84 @@
+@import "../../components/InputField/styles";
+@import "../../components/NotificationDialog/styles";
+$bg-image: "../../assets/img/bg_signup.jpg";
+
+.signup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url($bg-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .signup-content {
+        margin: auto;
+        border-radius: 30px;
+        background-color: #ffffff;
+
+        .signup-heading {
+            background-color: purple;
+            border-radius: 30px 30px 0 0;
+            color: white;
+            font-weight: 600;
+            font-size: 30px;
+            word-spacing: 1px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-wrapper {
+            padding: 50px 30px 50px 30px;
+
+            .signup-group-selector {
+                width: 100%;
+                padding: 16px;
+
+                .ant-select {
+                    width: 100%;
+                    font-size: inherit;
+                    color: inherit;
+                }
+
+                .ant-select-selector {
+                    border-color: #999;
+                    border-radius: 10px;
+
+                    &::placeholder {
+                        color: #999;
+                    }
+
+                    &:hover {
+                        border-color: purple;
+                    }
+                }
+            }
+
+            .submit-container {
+                width: 100%;
+                margin-top: 16px;
+
+                .btn-form-submit {
+                    width: 100%;
+                    border-radius: 10px;
+                    padding: 5px 20px;
+                    font-weight: 500;
+                    letter-spacing: 1px;
+                    color: white;
+                    background-color: purple;
+
+                    &:hover {
+                        background-color: rgba(128, 0, 128, 0.8);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .signup-container {
+        padding: 50px 0;
+    }
+}

@@ -1,5 +1,11 @@
 import React from 'react';
+import SignUp from '../SignUp';
+import SignIn from '../SignIn';
+
 export const App = () => {
-  return <div>hihihi</div>;
+  return (
+    <SignUp />
+    // <SignIn />
+  );
 };
 export default App;
