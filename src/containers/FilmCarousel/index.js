@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
-import { get } from '../../utils/ApiCaller';
 import FilmSlider from '../../components/FilmSlider';
 import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 
 import './styles.scss';
 import 'react-modal-video/scss/modal-video.scss';
@@ -17,31 +17,20 @@ const settings = {
     nextArrow: <RightOutlined />
 };
 
-const FilmCarousel = () => {
-    const [filmList, setFilmList] = useState(null);
+const FilmCarousel = ({ movieList }) => {
     const [isVideoOpened, setIsVideoOpened] = useState(false);
     const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
     const handleClick = (indexOfFilm) => {
-        const id = filmList[indexOfFilm].trailer.slice(29);
+        const id = movieList[indexOfFilm].trailer.slice(29);
         setIdOfCurrentVideo(id);
         setIsVideoOpened(true);
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01');
-                setFilmList(res.data)
-            } catch{ }
-        }
-        fetchData();
-    }, [])
-
     return (
         <div className="carousel">
             <Slider {...settings}>
-                {filmList?.slice(1, 6).map((film, index) => {
+                {movieList?.slice(1, 6).map((film, index) => {
                     return (
                         <div
                             key={index}
@@ -66,4 +55,10 @@ const FilmCarousel = () => {
     )
 }
 
-export default FilmCarousel;
+const mapStateToProps = state => {
+    return {
+        movieList: state.movieReducer.movieList
+    }
+}
+
+export default connect(mapStateToProps)(FilmCarousel);

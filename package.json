@@ -58,6 +58,7 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.8.4",
     "react-modal-video": "^1.2.6",
+    "react-redux": "^7.2.1",
     "react-responsive-carousel": "^3.2.10",
     "react-router-dom": "^5.2.0",
     "react-slick": "^0.27.11",

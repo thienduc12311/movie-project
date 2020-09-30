@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 const initialValue = {
     movie: null,
-    cinemaSystem: null,
+    cinemaComplex: null,
     cinema: null,
     date: null,
     time: null,
@@ -19,7 +19,7 @@ const initialValue = {
 const FilmSearchBox = () => {
     const [valueSelected, setValueSelected] = useState(initialValue);
     const [movieOptions, setMovieOptions] = useState(null);
-    const [cinemaSystemOptions, setCinemaSystemOptions] = useState(null);
+    const [cinemaComplexOptions, setCinemaComplexOptions] = useState(null);
     const [cinemaOptions, setCinemaOptions] = useState(null);
     const [dateOptions, setDateOptions] = useState(null);
     const [timeOptions, setTimeOptions] = useState(null);
@@ -28,7 +28,7 @@ const FilmSearchBox = () => {
         const fetchData = async () => {
             try {
                 const res = await get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`)
-                setCinemaSystemOptions(res.data.heThongRapChieu);
+                setCinemaComplexOptions(res.data.heThongRapChieu);
             } catch{ }
         }
         const indexFilm = movieOptions.findIndex(film => film.maPhim === idMovie);
@@ -38,11 +38,11 @@ const FilmSearchBox = () => {
         }
     }
 
-    const handleSelectCinemaSystem = (cinemaSystem) => {
-        const cinemaArray = cinemaSystemOptions.find(item => item.maHeThongRap === cinemaSystem);
-        if (cinemaSystem !== valueSelected.cinemaSystem) {
+    const handleSelectCinemaComplex = (cinemaComplex) => {
+        const cinemaArray = cinemaComplexOptions.find(item => item.maHeThongRap === cinemaComplex);
+        if (cinemaComplex !== valueSelected.cinemaComplex) {
             setCinemaOptions(cinemaArray.cumRapChieu);
-            setValueSelected({ ...valueSelected, cinemaSystem, cinema: null, date: null, time: null });
+            setValueSelected({ ...valueSelected, cinemaComplex: cinemaComplex, cinema: null, date: null, time: null });
         }
     }
 
@@ -117,17 +117,21 @@ const FilmSearchBox = () => {
                 valueKey='maPhim'
                 optionKey='tenPhim'
                 handleChange={handleSelectMovie}
-                isLoading={movieOptions ? false : true}
+                isLoading={
+                    movieOptions ? false : true
+                }
             />
             <SearchBar
-                placeholder="Cinema System"
-                currentValue={valueSelected.cinemaSystem}
-                options={cinemaSystemOptions}
+                placeholder="Cinema Complex"
+                currentValue={valueSelected.cinemaComplex}
+                options={cinemaComplexOptions}
                 valueKey='maHeThongRap'
                 optionKey='tenHeThongRap'
-                handleChange={handleSelectCinemaSystem}
+                handleChange={handleSelectCinemaComplex}
                 isDisabled={valueSelected.movie ? false : true}
-                isLoading={(!valueSelected.movie || (valueSelected.movie && cinemaSystemOptions)) ? false : true}
+                isLoading={
+                    (!valueSelected.movie || (valueSelected.movie && cinemaComplexOptions)) ? false : true
+                }
             />
             <SearchBar
                 placeholder="Cinema"
@@ -136,8 +140,10 @@ const FilmSearchBox = () => {
                 valueKey='maCumRap'
                 optionKey='tenCumRap'
                 handleChange={handleSelectCinema}
-                isDisabled={valueSelected.cinemaSystem ? false : true}
-                isLoading={(!valueSelected.cinemaSystem || (valueSelected.cinemaSystem && cinemaOptions)) ? false : true}
+                isDisabled={valueSelected.cinemaComplex ? false : true}
+                isLoading={
+                    (!valueSelected.cinemaComplex || (valueSelected.cinemaComplex && cinemaOptions)) ? false : true
+                }
             />
             <SearchBar
                 placeholder="Date"
@@ -145,7 +151,9 @@ const FilmSearchBox = () => {
                 options={dateOptions}
                 handleChange={handleSelectDate}
                 isDisabled={valueSelected.cinema ? false : true}
-                isLoading={(!valueSelected.cinema || (valueSelected.cinema && dateOptions)) ? false : true}
+                isLoading={
+                    (!valueSelected.cinema || (valueSelected.cinema && dateOptions)) ? false : true
+                }
             />
             <SearchBar
                 placeholder="Time"
@@ -153,7 +161,9 @@ const FilmSearchBox = () => {
                 options={timeOptions}
                 handleChange={handleSelectTime}
                 isDisabled={valueSelected.date ? false : true}
-                isLoading={(!valueSelected.date || (valueSelected.date && timeOptions)) ? false : true}
+                isLoading={
+                    (!valueSelected.date || (valueSelected.date && timeOptions)) ? false : true
+                }
             />
             <Button
                 onClick={handBookTicket}

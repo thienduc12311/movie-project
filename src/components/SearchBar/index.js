@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 
+import './styles.scss';
 import 'antd/dist/antd.css';
 
 const { Option } = Select;

@@ -1,31 +1,30 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import Slider from "react-slick";
-import { get } from '../../utils/ApiCaller';
 import MovieCard from '../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
+import { connect } from 'react-redux';
 
 import './styles.scss';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-modal-video/scss/modal-video.scss';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 var settings = {
-    dots: true,
     speed: 500,
     rows: 2,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
     infinite: true,
-    arrows: false,
+    prevArrow: <LeftOutlined />,
+    nextArrow: <RightOutlined />,
     responsive: [
         {
             breakpoint: 1024,
             settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
-                infinite: true,
-                dots: true
             }
         },
         {
@@ -33,32 +32,33 @@ var settings = {
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                arrows: false
             }
         },
         {
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                arrows: false
             }
         }
     ]
 };
 
-const MovieCollection = () => {
-    const [movieCollection, setMovieCollection] = useState(null);
+const MovieCollection = ({ movieList }) => {
     const [isVideoOpened, setIsVideoOpened] = useState(false);
     const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
     const handleOpenTrailer = (indexOfFilm) => {
-        const id = movieCollection[indexOfFilm].trailer.slice(29);
+        const id = movieList[indexOfFilm].trailer.slice(29);
         setIdOfCurrentVideo(id);
         setIsVideoOpened(true);
     }
 
     const renderMovieCard = () => {
-        return movieCollection?.map((card, index) => {
+        return movieList?.map((card, index) => {
             return (
                 <div key={index} className="card-container">
                     <MovieCard
@@ -71,15 +71,6 @@ const MovieCollection = () => {
         })
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await get('/api/QuanLyPhim/LayDanhSachPhim');
-                await setMovieCollection(res.data)
-            } catch{ }
-        }
-        fetchData();
-    }, []);
     return (
         <Fragment>
             <Slider {...settings}>
@@ -93,7 +84,12 @@ const MovieCollection = () => {
             />
         </Fragment>
     );
-
 };
 
-export default MovieCollection;
+const mapStateToProps = state => {
+    return {
+        movieList: state.movieReducer.movieList
+    }
+}
+
+export default connect(mapStateToProps)(MovieCollection);
