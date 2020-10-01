@@ -1,4 +1,4 @@
-import { setMovieList } from '../constants/movieConstants';
+import { SET_MOVIE_LIST } from '../constants/movieConstants';
 
 const initialState = {
     movieList: null,
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case setMovieList:
+        case SET_MOVIE_LIST:
             return {
                 ...state, movieList: [...action.movieList]
             }

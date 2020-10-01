@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import moment from 'moment';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { customerRoutes } from '../../routes';
+import Navbar from '../NavBar';
 
 export const App = () => {
   moment.locale('en-gb');
@@ -20,13 +21,14 @@ export const App = () => {
   }
 
   return (
-    <Fragment>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Fragment>
+        <Navbar />
         <Switch>
           {renderUserRouter(customerRoutes)}
         </Switch>
-      </BrowserRouter>
-    </Fragment>
+      </Fragment>
+    </BrowserRouter>
   );
 };
 export default App;

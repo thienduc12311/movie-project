@@ -1,20 +1,26 @@
 import React, { useEffect, Fragment } from 'react';
 import { get } from '../../utils/ApiCaller';
-import { connect } from 'react-redux';
-import { setMovieList } from '../../redux/constants/movieConstants';
+import { SET_MOVIE_LIST } from '../../redux/constants/movieConstants';
 import FilmCarousel from '../FilmCarousel';
 import FilmSearchBox from '../FilmSearchBox';
 import MovieCollection from '../MovieCollection';
 import MovieNav from '../MovieNav';
+import { useDispatch } from 'react-redux';
 
 import './styles.scss';
 
-const HomeLayout = ({ setMovieList }) => {
+const HomeLayout = () => {
+    const setMovieList = useDispatch();
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01');
-                setMovieList(res.data);
+                setMovieList({
+                    type: SET_MOVIE_LIST,
+                    movieList: res.data
+                });
+
             } catch{ }
         }
         fetchData();
@@ -39,15 +45,4 @@ const HomeLayout = ({ setMovieList }) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setMovieList: (movieList) => {
-            dispatch({
-                type: setMovieList,
-                movieList: movieList
-            })
-        }
-    }
-}
-
-export default connect(null, mapDispatchToProps)(HomeLayout);
+export default HomeLayout;

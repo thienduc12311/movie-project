@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import Slider from "react-slick";
 import MovieCard from '../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './styles.scss';
 import "slick-carousel/slick/slick.css";
@@ -47,7 +47,9 @@ var settings = {
     ]
 };
 
-const MovieCollection = ({ movieList }) => {
+const MovieCollection = () => {
+    const movieList = useSelector(state => state.movieReducer.movieList);
+
     const [isVideoOpened, setIsVideoOpened] = useState(false);
     const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
@@ -86,10 +88,4 @@ const MovieCollection = ({ movieList }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        movieList: state.movieReducer.movieList
-    }
-}
-
-export default connect(mapStateToProps)(MovieCollection);
+export default MovieCollection;
