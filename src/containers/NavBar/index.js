@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UnorderedListOutlined, CloseOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 import './styles.scss';
 
@@ -25,15 +27,26 @@ const Navbar = () => {
                     className={isDropdownOpened ? "nav-overlay" : "nav-overlay-hidden"}
                     onClick={() => setIsDropdownOpened(false)}
                 >
-                    <div className="nav-overlay-container">
-                        <div
-                            className={isDropdownOpened ? "overlay-content" : "overlay-content-hidden"}
-                        >
-                            <CloseOutlined
-                                className="icon close-icon"
-                                onClick={() => setIsDropdownOpened(false)}
-                            />
+                </div>
+                <div className={isDropdownOpened ? "overlay-menu" : "overlay-menu-hidden"}>
+                    <CloseOutlined
+                        className="icon close-icon"
+                        onClick={() => setIsDropdownOpened(false)}
+                    />
+                    <div className="overlay-content">
+                        <div className="overlay-header">
+                            <span className="overlay-avatar">
+                                <Avatar size={40}>
+                                    U
+                                </Avatar>
+                            </span>
+                            <span className="overlay-title">hah</span>
                         </div>
+                        <ul className="overlay-body">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
                     </div>
                 </div>
             </div>

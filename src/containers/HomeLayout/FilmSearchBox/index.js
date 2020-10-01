@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { get } from '../../utils/ApiCaller';
-import SearchBar from '../../components/SearchBar';
+import { get } from '../../../utils/ApiCaller';
+import SearchBar from '../../../components/SearchBar';
 import moment from 'moment';
 import { Button } from 'antd';
 import { SendOutlined } from '@ant-design/icons';

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Slider from "react-slick";
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
 import { useSelector } from 'react-redux';
 

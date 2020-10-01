@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Slider from "react-slick";
-import FilmSlider from '../../components/FilmSlider';
+import FilmSlider from '../../../components/FilmSlider';
 import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';

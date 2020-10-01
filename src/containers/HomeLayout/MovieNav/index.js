@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { get } from '../../utils/ApiCaller';
+import { get } from '../../../utils/ApiCaller';
 import { Tabs } from 'antd';
-import TheaterTab from '../../components/TheaterTab';
-import FilmTab from '../../components/FilmTab';
+import TheaterTab from '../../../components/TheaterTab';
+import FilmTab from '../../../components/FilmTab';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-import defaultCurrentTheater from '../../assets/data/defaul-theater-data.json';
+import defaultCurrentTheater from '../../../assets/data/defaul-theater-data.json';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
