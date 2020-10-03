@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { get } from '../../../utils/ApiCaller';
 import SearchBar from '../../../components/SearchBar';
 import moment from 'moment';
 import { Button } from 'antd';
