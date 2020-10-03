@@ -6,23 +6,17 @@ import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';
 import MovieNav from './MovieNav';
 import { useDispatch } from 'react-redux';
+import { getMovieList } from '../../redux/actions/movieAction';
 
 import './styles.scss';
 
 const HomeLayout = () => {
-    const setMovieList = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01');
-                setMovieList({
-                    type: SET_MOVIE_LIST,
-                    movieList: res.data
-                });
-            } catch{ }
-        }
-        fetchData();
+        dispatch(
+            getMovieList()
+        );
     }, [])
 
     return (

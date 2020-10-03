@@ -4,12 +4,14 @@ import 'regenerator-runtime/runtime.js';
 import App from './containers/App';
 import './styles.scss';
 import 'font-awesome/css/font-awesome.css';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers/rootReducers';
+import thunkMiddleware from 'redux-thunk'
 
 const store = createStore(
-    rootReducer
+    rootReducer,
+    applyMiddleware(thunkMiddleware)
 );
 
 ReactDOM.render(

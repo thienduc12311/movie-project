@@ -6,11 +6,11 @@ import { Button } from 'antd';
 import { SendOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    SET_CINEMA_COMPLEX_OPTIONS,
-    SET_CINEMA_OPTIONS,
-    SET_DATE_OPTIONS,
-    SET_TIME_OPTIONS
-} from '../../../redux/constants/movieConstants';
+    getCinemaComplexOptions,
+    getCinemaOptions,
+    getDateOptions,
+    getTimeOptions
+} from '../../../redux/actions/movieAction';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -30,10 +30,9 @@ const MovieSearchBox = () => {
 
     const handleSelectMovie = (idMovie) => {
         if (idMovie !== valueSelected.movie) {
-            dispatch({
-                type: SET_CINEMA_COMPLEX_OPTIONS,
-                idMovie
-            })
+            dispatch(
+                getCinemaComplexOptions(idMovie)
+            );
             setValueSelected({
                 ...initialValue,
                 movie: idMovie
@@ -42,12 +41,10 @@ const MovieSearchBox = () => {
     }
 
     const handleSelectCinemaComplex = (cinemaComplex) => {
-        console.log(cinemaComplex, valueSelected.cinemaComplex)
         if (cinemaComplex !== valueSelected.cinemaComplex) {
-            dispatch({
-                type: SET_CINEMA_OPTIONS,
-                cinemaComplex
-            })
+            dispatch(
+                getCinemaOptions(options.cinemaComplexOptions, cinemaComplex)
+            );
             setValueSelected({
                 ...valueSelected,
                 cinemaComplex,
@@ -60,10 +57,9 @@ const MovieSearchBox = () => {
 
     const handleSelectCinema = (cinema) => {
         if (cinema !== valueSelected.cinema) {
-            dispatch({
-                type: SET_DATE_OPTIONS,
-                cinema
-            })
+            dispatch(
+                getDateOptions(options.cinemaOptions, cinema)
+            );
             setValueSelected({
                 ...valueSelected,
                 cinema,
@@ -75,11 +71,9 @@ const MovieSearchBox = () => {
 
     const handleSelectDate = (date) => {
         if (date !== valueSelected.date) {
-            dispatch({
-                type: SET_TIME_OPTIONS,
-                date,
-                cinema: valueSelected.cinema
-            })
+            dispatch(
+                getTimeOptions(options.cinemaOptions, valueSelected.cinema, date)
+            );
             setValueSelected({
                 ...valueSelected,
                 date,
