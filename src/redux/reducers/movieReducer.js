@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
     SET_MOVIE_LIST,
     SET_CINEMA_COMPLEX_OPTIONS,
@@ -20,7 +19,7 @@ const initialState = {
     }
 };
 
-const haha = (state = initialState, action) => {
+export default (state = initialState, action) => {
     switch (action.type) {
         case SET_MOVIE_LIST:
             return {
@@ -104,5 +103,3 @@ const haha = (state = initialState, action) => {
             return state;
     }
 }
-
-export default haha;
