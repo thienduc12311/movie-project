@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { useForm } from "react-hook-form";
 import { Row, Col, Select } from 'antd';
-import { post, get } from '../../utils/ApiCaller';
+import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';

@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { get } from '../../../utils/ApiCaller';
 import { Tabs } from 'antd';
 import TheaterTab from '../../../components/TheaterTab';
-import FilmTab from '../../../components/FilmTab';
+import MovieTab from '../../../components/MovieTab';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -53,7 +53,7 @@ const MovieNavTab = () => {
                                             return (
                                                 <TableRow key={index}>
                                                     <TableCell>
-                                                        <FilmTab film={film} />
+                                                        <MovieTab film={film} />
                                                     </TableCell>
                                                 </TableRow>
                                             )

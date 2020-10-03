@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
-const FilmSlider = ({ film, index, handleClick }) => {
+const MovieSlider = ({ film, index, handleClick }) => {
     return (
         <div className="slider" >
             <img className="slider-img" src={film.hinhAnh} />
@@ -21,4 +21,4 @@ const FilmSlider = ({ film, index, handleClick }) => {
     )
 }
 
-export default FilmSlider;
+export default MovieSlider;

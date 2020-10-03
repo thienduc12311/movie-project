@@ -1,8 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import { get } from '../../utils/ApiCaller';
 import { SET_MOVIE_LIST } from '../../redux/constants/movieConstants';
-import FilmCarousel from './FilmCarousel';
-import FilmSearchBox from './FilmSearchBox';
+import MovieCarousel from './MovieCarousel';
+import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';
 import MovieNav from './MovieNav';
 import { useDispatch } from 'react-redux';
@@ -28,10 +28,10 @@ const HomeLayout = () => {
     return (
         <Fragment>
             <div className="carousel">
-                <FilmCarousel />
+                <MovieCarousel />
             </div>
             <div className="search-box">
-                <FilmSearchBox />
+                <MovieSearchBox />
             </div>
             <div className="collection">
                 <MovieCollection />

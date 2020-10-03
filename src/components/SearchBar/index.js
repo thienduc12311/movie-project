@@ -6,7 +6,16 @@ import 'antd/dist/antd.css';
 
 const { Option } = Select;
 
-const SearchBar = ({ placeholder, currentValue, options, valueKey, optionKey, handleChange, isLoading, isDisabled }) => {
+const SearchBar = ({
+    placeholder,
+    currentValue,
+    options,
+    valueKey,
+    optionKey,
+    handleChange,
+    isLoading,
+    isDisabled
+}) => {
     const renderOptions = () => {
         return options?.map(option => {
             return (

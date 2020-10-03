@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const FilmTab = ({ film }) => {
+const MovieTab = ({ film }) => {
     let dateTimeArray;
     let dateArray = [];
 
@@ -75,4 +75,4 @@ const FilmTab = ({ film }) => {
     )
 }
 
-export default FilmTab;
+export default MovieTab;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Slider from "react-slick";
-import FilmSlider from '../../../components/FilmSlider';
+import MovieSlider from '../../../components/MovieSlider';
 import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const settings = {
     nextArrow: <RightOutlined />
 };
 
-const FilmCarousel = () => {
+const MovieCarousel = () => {
     const movieList = useSelector(state => state.movieReducer.movieList);
 
     const [isVideoOpened, setIsVideoOpened] = useState(false);
@@ -38,7 +38,7 @@ const FilmCarousel = () => {
                             key={index}
                             className="carousel-slider"
                         >
-                            <FilmSlider
+                            <MovieSlider
                                 film={film}
                                 index={index}
                                 handleClick={handleClick}
@@ -57,4 +57,4 @@ const FilmCarousel = () => {
     )
 }
 
-export default FilmCarousel;
+export default MovieCarousel;
