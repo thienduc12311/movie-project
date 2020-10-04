@@ -3,6 +3,7 @@ import MovieCarousel from './MovieCarousel';
 import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';
 import MovieNav from './MovieNav';
+import Application from './Application';
 import { useDispatch } from 'react-redux';
 import { getMovieList } from '../../redux/actions/movieAction';
 
@@ -26,11 +27,15 @@ const HomeLayout = () => {
                 <MovieSearchBox />
             </div>
             <div className="collection">
+                <h2>Movie Collection</h2>
                 <MovieCollection />
             </div>
             <div className="break-out"></div>
             <div className="nav-tab">
                 <MovieNav />
+            </div>
+            <div className="app">
+                <Application />
             </div>
         </Fragment>
     )
