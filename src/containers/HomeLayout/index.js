@@ -1,6 +1,4 @@
 import React, { useEffect, Fragment } from 'react';
-import { get } from '../../utils/ApiCaller';
-import { SET_MOVIE_LIST } from '../../redux/constants/movieConstants';
 import MovieCarousel from './MovieCarousel';
 import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';

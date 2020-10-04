@@ -14,7 +14,6 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
             <CardActionArea className="card-content">
                 <CardMedia
                     component="img"
-                    height="140"
                     image={card.hinhAnh}
                     className='card-image'
                 />

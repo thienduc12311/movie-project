@@ -2,6 +2,7 @@ import HomeLayout from '../containers/HomeLayout';
 import MovieDetailPage from '../components/MovieDetailPage';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
+import MoviePage from '../containers/MoviePage';
 
 const customerRoutes = [
     {
@@ -10,7 +11,12 @@ const customerRoutes = [
         component: HomeLayout
     },
     {
-        exact: false,
+        exact: true,
+        path: '/movie',
+        component: MoviePage
+    },
+    {
+        exact: true,
         path: '/movie/id=:movieId',
         component: MovieDetailPage
     },

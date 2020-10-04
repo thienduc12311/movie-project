@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UnorderedListOutlined, CloseOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 
 import './styles.scss';
 
@@ -43,9 +42,11 @@ const Navbar = () => {
                             <span className="overlay-title">hah</span>
                         </div>
                         <ul className="overlay-body">
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li onClick={() => setIsDropdownOpened(false)}>
+                                <NavLink to='/movie'>
+                                    Movie
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
