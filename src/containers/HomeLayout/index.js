@@ -4,6 +4,7 @@ import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';
 import MovieNav from './MovieNav';
 import Application from './Application';
+import News from './News';
 import { useDispatch } from 'react-redux';
 import { getMovieList } from '../../redux/actions/movieAction';
 
@@ -13,9 +14,7 @@ const HomeLayout = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(
-            getMovieList()
-        );
+        dispatch(getMovieList());
     }, [])
 
     return (
@@ -33,6 +32,10 @@ const HomeLayout = () => {
             <div className="break-out"></div>
             <div className="nav-tab">
                 <MovieNav />
+            </div>
+            <div className="news">
+                <h2>News</h2>
+                <News />
             </div>
             <div className="app">
                 <Application />

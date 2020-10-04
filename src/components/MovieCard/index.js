@@ -10,7 +10,7 @@ import './styles.scss';
 
 const MovieCard = ({ card, handleOpenTrailer, index }) => {
     return (
-        <Card className="card">
+        <Card className="movie-card">
             <CardActionArea className="card-content">
                 <CardMedia
                     component="img"

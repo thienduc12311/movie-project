@@ -47,6 +47,11 @@ const Navbar = () => {
                                     Movie
                                 </NavLink>
                             </li>
+                            <li onClick={() => setIsDropdownOpened(false)}>
+                                <NavLink to='/news'>
+                                    News
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>

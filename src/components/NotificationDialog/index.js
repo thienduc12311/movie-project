@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './styles.scss';
+
 const NotificationDialog = ({ isOpened, setIsOpened, text, options }) => {
     const handleCloseDialog = () => {
         setIsOpened(false);

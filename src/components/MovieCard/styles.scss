@@ -1,5 +1,5 @@
 .card-container {
-    .card {
+    .movie-card {
         width: 100%;
         height: 100%;
         position: relative;
@@ -10,13 +10,13 @@
 
             .card-image {
                 width: 100%;
-                height: 70%;
+                height: 80%;
                 display: block;
             }
 
             .card-body {
                 width: 100%;
-                height: 30%;
+                height: 20%;
                 position: relative;
 
                 .card-text {

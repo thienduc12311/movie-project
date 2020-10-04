@@ -3,6 +3,8 @@ import MovieDetailPage from '../components/MovieDetailPage';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import MoviePage from '../containers/MoviePage';
+import NewsDetailPage from '../components/NewsDetailPage';
+import NewsPage from '../containers/NewsPage';
 
 const customerRoutes = [
     {
@@ -16,9 +18,19 @@ const customerRoutes = [
         component: MoviePage
     },
     {
-        exact: true,
+        exact: false,
         path: '/movie/id=:movieId',
         component: MovieDetailPage
+    },
+    {
+        exact: true,
+        path: '/news',
+        component: NewsPage
+    },
+    {
+        exact: false,
+        path: '/news/id=:newsId',
+        component: NewsDetailPage
     },
     {
         exact: false,

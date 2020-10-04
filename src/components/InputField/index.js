@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Col } from 'antd';
 
+import './styles.scss';
 import 'antd/dist/antd.css';
 
 const InputFiled = ({ type, name, label, errors, validator, colSpan }) => {
