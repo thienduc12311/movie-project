@@ -1,16 +1,15 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { get } from '../../../utils/ApiCaller';
+import React, { useState, useEffect } from 'react';
 import { Tabs } from 'antd';
-import TheaterTab from '../../../components/TheaterTab';
-import MovieTab from '../../../components/MovieTab';
+import CinemaTab from '../../../components/CinemaTab';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
+import { getCinemaComplexList, getCurrentCinema, getInitialCinema } from '../../../redux/actions/movieAction';
+import { useSelector, useDispatch } from 'react-redux';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-
-import defaultCurrentTheater from '../../../assets/data/defaul-theater-data.json';
+import MovieTab from '../../../components/MovieTab'
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -18,38 +17,35 @@ import 'antd/dist/antd.css';
 const { TabPane } = Tabs;
 
 const MovieNavTab = () => {
-    const [theatersInfo, setTheatersInfo] = useState(null);
-    const [currentTheater, setCurrentTheater] = useState(defaultCurrentTheater);
+    const cinemaComplexList = useSelector(state => state.movieReducer.cinemaComplexList);
+    const currentCinema = useSelector(state => state.movieReducer.currentCinema);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await get('/api/QuanLyRap/LayThongTinHeThongRap');
-                setTheatersInfo(res.data);
-            } catch{ }
-        }
-        fetchData();
+        dispatch(getCinemaComplexList());
+        dispatch(getInitialCinema());
     }, [])
 
-
-    const renderTheaterLogo = (index) => {
-        return <img className="logo-theater" src={theatersInfo[index].logo} />
+    const handleSelectTheater = (index) => {
+        const cinemaComplex = cinemaComplexList[index];
+        dispatch(getCurrentCinema(cinemaComplex));
     }
 
     const renderTheaterContent = () => {
         return (
+            currentCinema &&
             <Tabs tabPosition={'left'} style={{ height: 500 }}>
-                {[...Array.from({ length: currentTheater[0].lstCumRap.length }, (v, i) => i)].map(i => (
+                {[...Array.from({ length: currentCinema[0].lstCumRap.length }, (v, i) => i)].map(i => (
                     <TabPane
                         className="tab-pane"
-                        tab={<TheaterTab theater={currentTheater[0].lstCumRap[i]} />}
+                        tab={<CinemaTab theater={currentCinema[0].lstCumRap[i]} />}
                         key={i}
                     >
                         <Paper className="movie-navtab-table-container">
                             <TableContainer className="movie-navtab-table">
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableBody>
-                                        {currentTheater[0].lstCumRap[i].danhSachPhim.map((film, index) => {
+                                        {currentCinema[0].lstCumRap[i].danhSachPhim.map((film, index) => {
                                             return (
                                                 <TableRow key={index}>
                                                     <TableCell>
@@ -68,26 +64,17 @@ const MovieNavTab = () => {
         )
     }
 
-    const handleSelectTheater = (index) => {
-        const fetchData = async () => {
-            try {
-                const res = await get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${theatersInfo[index].maHeThongRap}&maNhom=GP01`, theatersInfo[index].maHeThongRap);
-                await setCurrentTheater(res.data);
-            } catch{ }
-        }
-        fetchData();
-    }
-
     return (
         <Tabs
             defaultActiveKey="1"
-            tabPosition={'left'}
+            tabPosition={'top'}
+            centered
             onChange={(activeKey) => handleSelectTheater(activeKey)}
         >
-            {[...Array.from({ length: theatersInfo?.length }, (v, i) => i)].map(i => (
+            {[...Array.from({ length: cinemaComplexList?.length }, (v, i) => i)].map(i => (
                 <TabPane
                     className="tab-pane"
-                    tab={renderTheaterLogo(i)}
+                    tab={<img className="logo-theater" src={cinemaComplexList[i].logo} />}
                     key={i}
                     style={{ height: 500 }}
                 >

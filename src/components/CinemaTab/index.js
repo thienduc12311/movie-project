@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import './styles.scss';
 
-const TheaterTab = ({ theater }) => {
+const CinemaTab = ({ theater }) => {
     const formatTheaterName = (name) => {
         const indexOfHyphen = name.indexOf('-');
         const firstName = name.slice(0, indexOfHyphen);
@@ -23,4 +23,4 @@ const TheaterTab = ({ theater }) => {
     )
 }
 
-export default TheaterTab;
+export default CinemaTab;

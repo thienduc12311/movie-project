@@ -3,10 +3,34 @@ import {
     SET_CINEMA_COMPLEX_OPTIONS,
     SET_CINEMA_OPTIONS,
     SET_DATE_OPTIONS,
-    SET_TIME_OPTIONS
+    SET_TIME_OPTIONS,
+    SET_CINEMA_COMPLEX_LIST,
+    SET_CURRENT_CINEMA,
 } from '../constants/movieConstants';
 import { get } from '../../utils/ApiCaller';
 import moment from 'moment';
+
+const handleFilterDateOptions = (dateTimeArray) => {
+    let dateArray = [];
+    dateTimeArray.forEach(item => {
+        let currentDate = moment(item.ngayChieuGioChieu).format('ll');
+        if (dateArray.length === 0)
+            dateArray.push(currentDate);
+        else {
+            let index = dateArray.findIndex(date => date === currentDate)
+            if (index === -1)
+                dateArray.push(currentDate);
+        }
+    })
+    dateArray = dateArray.filter(date => date.slice(-4) === "2020");
+    return dateArray;
+}
+
+const handleFilterTimeOptions = (dateTimeArray, date) => {
+    const rawArray = dateTimeArray.filter(item => moment(item.ngayChieuGioChieu).format('ll') === date);
+    const timeArray = rawArray.map(item => moment(item.ngayChieuGioChieu).format('LT'));
+    return timeArray;
+}
 
 export const getMovieList = () => {
     return dispatch => {
@@ -43,22 +67,6 @@ export const getCinemaOptions = (cinemaComplexOptions, cinemaComplex) => {
 }
 
 export const getDateOptions = (cinemaOptions, cinema) => {
-    const handleFilterDateOptions = (dateTimeArray) => {
-        let dateArray = [];
-        dateTimeArray.forEach(item => {
-            let currentDate = moment(item.ngayChieuGioChieu).format('ll');
-            if (dateArray.length === 0)
-                dateArray.push(currentDate);
-            else {
-                let index = dateArray.findIndex(date => date === currentDate)
-                if (index === -1)
-                    dateArray.push(currentDate);
-            }
-        })
-        dateArray = dateArray.filter(date => date.slice(-4) === "2020");
-        return dateArray;
-    }
-
     const dateTimeArray = cinemaOptions.find(item => item.maCumRap = cinema);
     const dateArray = handleFilterDateOptions(dateTimeArray.lichChieuPhim);
     return dispatch => {
@@ -70,18 +78,48 @@ export const getDateOptions = (cinemaOptions, cinema) => {
 }
 
 export const getTimeOptions = (cinemaOptions, cinema, date) => {
-    const handleFilterTimeOptions = (dateTimeArray, date) => {
-        const rawArray = dateTimeArray.filter(item => moment(item.ngayChieuGioChieu).format('ll') === date);
-        const timeArray = rawArray.map(item => moment(item.ngayChieuGioChieu).format('LT'));
-        return timeArray;
-    }
-
-    var dateTimeArray = cinemaOptions.find(item => item.maCumRap = cinema);
+    const dateTimeArray = cinemaOptions.find(item => item.maCumRap = cinema);
     const timeArray = handleFilterTimeOptions(dateTimeArray.lichChieuPhim, date);
     return dispatch => {
         dispatch({
             type: SET_TIME_OPTIONS,
             timeOptions: timeArray
         })
+    }
+}
+
+export const getCinemaComplexList = () => {
+    return dispatch => {
+        get('/api/QuanLyRap/LayThongTinHeThongRap')
+            .then(res => {
+                dispatch({
+                    type: SET_CINEMA_COMPLEX_LIST,
+                    cinemaComplexList: res.data
+                })
+            })
+    }
+}
+
+export const getInitialCinema = () => {
+    return dispatch => {
+        get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=BHDStar", "BHDStar")
+            .then(res => {
+                dispatch({
+                    type: SET_CURRENT_CINEMA,
+                    cinema: res.data
+                })
+            })
+    }
+}
+
+export const getCurrentCinema = (cinemaComplex) => {
+    return dispatch => {
+        get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${cinemaComplex.maHeThongRap}`, cinemaComplex.maHeThongRap)
+            .then(res => {
+                dispatch({
+                    type: SET_CURRENT_CINEMA,
+                    cinema: res.data
+                })
+            })
     }
 }

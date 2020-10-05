@@ -5,6 +5,7 @@ import MovieCollection from './MovieCollection';
 import MovieNav from './MovieNav';
 import Application from './Application';
 import News from './News';
+import Footer from '../../components/Footer';
 import { useDispatch } from 'react-redux';
 import { getMovieList } from '../../redux/actions/movieAction';
 
@@ -40,6 +41,7 @@ const HomeLayout = () => {
             <div className="app">
                 <Application />
             </div>
+            <Footer />
         </Fragment>
     )
 }
