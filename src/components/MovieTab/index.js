@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import moment from 'moment';
 import TimeStarting from '../TimeStarting';
 import { NavLink } from 'react-router-dom';
+import TableRow from '@material-ui/core/TableRow';
 
 import './styles.scss';
 
@@ -62,6 +63,7 @@ const MovieTab = () => {
                     md={8}
                     lg={6}
                     xl={4}
+                    key={index}
                     onClick={() => handleClick(date, time, dateTimeArray)}
                 >
                     <TimeStarting key={index} time={time} />
@@ -101,12 +103,14 @@ const MovieTab = () => {
         <TableContainer style={{ maxHeight: 500 }}>
             <Table stickyHeader aria-label="sticky table">
                 <TableBody>
-                    <Menu
-                        style={{ width: '100%' }}
-                        mode="inline"
-                    >
-                        {renderMovieField()}
-                    </Menu>
+                    <TableRow>
+                        <Menu
+                            style={{ width: '100%' }}
+                            mode="inline"
+                        >
+                            {renderMovieField()}
+                        </Menu>
+                    </TableRow>
                 </TableBody>
             </Table>
         </TableContainer>

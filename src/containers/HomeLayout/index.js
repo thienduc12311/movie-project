@@ -8,6 +8,7 @@ import News from './News';
 import Footer from '../../components/Footer';
 import { useDispatch } from 'react-redux';
 import { getMovieList } from '../../redux/actions/movieAction';
+import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -19,7 +20,7 @@ const HomeLayout = () => {
     }, [])
 
     return (
-        <Fragment>
+        <div className="home">
             <div className="carousel">
                 <MovieCarousel />
             </div>
@@ -27,7 +28,9 @@ const HomeLayout = () => {
                 <MovieSearchBox />
             </div>
             <div className="collection">
-                <h2>Movie Collection</h2>
+                <NavLink to="/movie">
+                    <h2 className="home-title">Movie Collection</h2>
+                </NavLink>
                 <MovieCollection />
             </div>
             <div className="break-out"></div>
@@ -35,14 +38,16 @@ const HomeLayout = () => {
                 <MovieNav />
             </div>
             <div className="news">
-                <h2>News</h2>
+                <NavLink to="/news">
+                    <h2 className="home-title">News</h2>
+                </NavLink>
                 <News />
             </div>
             <div className="app">
                 <Application />
             </div>
             <Footer />
-        </Fragment>
+        </div>
     )
 }
 

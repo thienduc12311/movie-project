@@ -13,7 +13,7 @@ const MovieSlider = ({ film, index, handleClick }) => {
             </NavLink>
             <div
                 className="slider-play-icon"
-                onClick={() => { handleClick(index + 1) }}
+                onClick={() => { handleClick(index) }}
             >
                 <PlayArrowIcon />
             </div>

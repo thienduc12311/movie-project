@@ -1,32 +1,44 @@
-.carousel {
-    .carousel-slider {
-        color: white;
-        height: 80vh;
+.slide-container {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    .each-fade {
+        display: flex;
+        width: 100%;
     }
 
-    .slick-slider {
-        .slick-arrow {
-            width: 50px;
-            height: 50px;
+    .anticon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
 
-            &.slick-prev {
-                left: 3%;
-                z-index: 1;
-            }
+        svg {
+            color: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            height: 100%;
 
-            &.slick-next {
-                right: 3%;
-            }
-
-            &:hover svg {
+            &:hover {
                 color: white;
             }
+        }
 
-            svg {
-                color: rgba(255, 255, 255, 0.4);
-                width: 100%;
-                height: 100%;
-            }
+        &.anticon-right {
+            right: 3%;
+        }
+
+        &.anticon-left {
+            left: 3%;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .slide-container {
+        .anticon {
+            display: none;
         }
     }
 }
