@@ -5,7 +5,8 @@ import {
     SET_DATE_OPTIONS,
     SET_TIME_OPTIONS,
     SET_CINEMA_COMPLEX_LIST,
-    SET_CURRENT_CINEMA,
+    SET_CURRENT_CINEMA_LIST,
+    SET_CURRENT_MOVIE_LIST
 } from '../constants/movieConstants';
 import { get } from '../../utils/ApiCaller';
 import moment from 'moment';
@@ -100,26 +101,35 @@ export const getCinemaComplexList = () => {
     }
 }
 
-export const getInitialCinema = () => {
+export const getInitialCinemaList = () => {
     return dispatch => {
         get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=BHDStar", "BHDStar")
             .then(res => {
                 dispatch({
-                    type: SET_CURRENT_CINEMA,
-                    cinema: res.data
+                    type: SET_CURRENT_CINEMA_LIST,
+                    cinemaList: res.data[0].lstCumRap
                 })
             })
     }
 }
 
-export const getCurrentCinema = (cinemaComplex) => {
+export const getCurrentCinemaList = (cinemaComplex) => {
     return dispatch => {
         get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${cinemaComplex.maHeThongRap}`, cinemaComplex.maHeThongRap)
             .then(res => {
                 dispatch({
-                    type: SET_CURRENT_CINEMA,
-                    cinema: res.data
+                    type: SET_CURRENT_CINEMA_LIST,
+                    cinemaList: res.data[0].lstCumRap
                 })
             })
+    }
+}
+
+export const getCurrentMovieList = (info) => {
+    return dispatch => {
+        dispatch({
+            type: SET_CURRENT_MOVIE_LIST,
+            movieList: info.danhSachPhim
+        })
     }
 }

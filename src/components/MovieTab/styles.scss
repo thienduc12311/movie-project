@@ -1,4 +1,25 @@
-.film-avatar {
-    width: 50px;
+.date-tab {
+    text-align: center;
+}
+
+.tab-title {
+    width: 100%;
     height: 50px;
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        display: block;
+    }
+
+    h4 {
+        position: absolute;
+        top: 0;
+        left: 80px;
+        font-weight: 500;
+    }
 }

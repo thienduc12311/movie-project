@@ -7,7 +7,7 @@ import './styles.scss';
 
 const Footer = () => {
     const cinemaComplex = useSelector(state => state.movieReducer.cinemaComplexList);
-    console.log(cinemaComplex)
+
     return (
         <footer>
             <div className="footer-container">

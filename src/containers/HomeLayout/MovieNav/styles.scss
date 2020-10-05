@@ -1,21 +1,7 @@
-.logo-theater {
-    width: 50px;
-    height: 50px;
-}
-
-.tab-pane {
-    padding: 0 !important;
-
-    .movie-navtab-table-container {
-        width: 100%;
-        padding: 24px;
-
-        .movie-navtab-table {
-            max-height: 500px;
-        }
-    }
-
-    .MuiPaper-elevation1 {
-        box-shadow: none;
+.movie-collection {
+    .cinema-complex__logo {
+        width: 50px;
+        height: 50px;
+        display: block;
     }
 }

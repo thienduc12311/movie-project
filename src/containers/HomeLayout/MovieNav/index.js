@@ -1,88 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Tabs } from 'antd';
-import CinemaTab from '../../../components/CinemaTab';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableContainer from '@material-ui/core/TableContainer';
-import { getCinemaComplexList, getCurrentCinema, getInitialCinema } from '../../../redux/actions/movieAction';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import MovieTab from '../../../components/MovieTab'
+import { Tabs } from 'antd';
+import CinemaTab from './CinemaTab';
+import { getCinemaComplexList, getCurrentCinemaList, getInitialCinemaList } from '../../../redux/actions/movieAction';
 
 import './styles.scss';
-import 'antd/dist/antd.css';
 
 const { TabPane } = Tabs;
 
-const MovieNavTab = () => {
+const MovieNav = () => {
     const cinemaComplexList = useSelector(state => state.movieReducer.cinemaComplexList);
-    const currentCinema = useSelector(state => state.movieReducer.currentCinema);
     const dispatch = useDispatch();
+
+    const handleSelectCinemaComplex = (key) => {
+        dispatch(getCurrentCinemaList(cinemaComplexList[key]));
+    }
 
     useEffect(() => {
         dispatch(getCinemaComplexList());
-        dispatch(getInitialCinema());
+        dispatch(getInitialCinemaList());
     }, [])
-
-    const handleSelectTheater = (index) => {
-        const cinemaComplex = cinemaComplexList[index];
-        dispatch(getCurrentCinema(cinemaComplex));
-    }
-
-    const renderTheaterContent = () => {
-        return (
-            currentCinema &&
-            <Tabs tabPosition={'left'} style={{ height: 500 }}>
-                {[...Array.from({ length: currentCinema[0].lstCumRap.length }, (v, i) => i)].map(i => (
-                    <TabPane
-                        className="tab-pane"
-                        tab={<CinemaTab theater={currentCinema[0].lstCumRap[i]} />}
-                        key={i}
-                    >
-                        <Paper className="movie-navtab-table-container">
-                            <TableContainer className="movie-navtab-table">
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableBody>
-                                        {currentCinema[0].lstCumRap[i].danhSachPhim.map((film, index) => {
-                                            return (
-                                                <TableRow key={index}>
-                                                    <TableCell>
-                                                        <MovieTab film={film} />
-                                                    </TableCell>
-                                                </TableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </TabPane>
-                ))}
-            </Tabs>
-        )
-    }
 
     return (
         <Tabs
-            defaultActiveKey="1"
-            tabPosition={'top'}
+            defaultActiveKey="0"
+            tabPosition="top"
+            style={{ height: '100%', width: '100%' }}
             centered
-            onChange={(activeKey) => handleSelectTheater(activeKey)}
+            onChange={(activeKey) => handleSelectCinemaComplex(activeKey)}
+            className="movie-collection"
         >
             {[...Array.from({ length: cinemaComplexList?.length }, (v, i) => i)].map(i => (
                 <TabPane
-                    className="tab-pane"
-                    tab={<img className="logo-theater" src={cinemaComplexList[i].logo} />}
                     key={i}
-                    style={{ height: 500 }}
+                    tab={<img className="cinema-complex__logo" src={cinemaComplexList[i].logo} />}
                 >
-                    {renderTheaterContent()}
+                    <CinemaTab />
                 </TabPane>
             ))}
         </Tabs>
     )
 }
 
-export default MovieNavTab;
+export default MovieNav;
