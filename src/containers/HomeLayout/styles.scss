@@ -6,9 +6,13 @@ $bg-image: "../../assets/img/back-news.jpg";
     .nav-tab,
     .break-out,
     .news {
-        width: 85%;
+        width: 70%;
         margin: 0 auto;
     }
+
+    // .search-box {
+    //     width: 90%;
+    // }
 
     .search-box {
         padding: 20px;
@@ -50,5 +54,10 @@ $bg-image: "../../assets/img/back-news.jpg";
 @media only screen and (max-width: 1200px) {
     .home {
         margin-top: 60px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .home {
     }
 }
