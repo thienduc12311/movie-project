@@ -46,3 +46,9 @@ $bg-image: "../../assets/img/back-news.jpg";
         }
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    .home {
+        margin-top: 60px;
+    }
+}

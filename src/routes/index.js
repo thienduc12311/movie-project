@@ -5,6 +5,8 @@ import SignUp from '../containers/SignUp';
 import MoviePage from '../containers/MoviePage';
 import NewsDetailPage from '../components/NewsDetailPage';
 import NewsPage from '../containers/NewsPage';
+import CinemaComplexPage from '../containers/CinemaComplexPage';
+import CinemaPage from '../components/CinemaPage';
 
 const customerRoutes = [
     {
@@ -31,6 +33,16 @@ const customerRoutes = [
         exact: false,
         path: '/news/id=:newsId',
         component: NewsDetailPage
+    },
+    {
+        exact: true,
+        path: '/cinema-complex',
+        component: CinemaComplexPage
+    },
+    {
+        exact: false,
+        path: '/cinema-complex/:cinemaId',
+        component: CinemaPage
     },
     {
         exact: false,
