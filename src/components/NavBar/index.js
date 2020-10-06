@@ -1,12 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UnorderedListOutlined, CloseOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined, CloseOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 import './styles.scss';
 
+const stylesWhenOpen = {
+    transform: "translateX(0)",
+    animation: "increase-width 1s"
+}
+
+const stylesWhenClose = {
+    transform: "translateX(100%)",
+    animation: "decrease-width 1s"
+}
+
 const Navbar = () => {
     const [isDropdownOpened, setIsDropdownOpened] = useState(false);
+    const [user, setUser] = useState(null);
+    const [settings, setSettings] = useState(null);
+
+    const handleOpen = () => {
+        setIsDropdownOpened(true);
+        setSettings(stylesWhenOpen);
+    }
+
+    const handleClose = () => {
+        setIsDropdownOpened(false);
+        setSettings(stylesWhenClose);
+    }
+
+    useEffect(() => {
+        const user = LocalStorageUtils.getItem('user');
+        setUser(user);
+    }, [])
 
     return (
         <div className="navbar-container">
@@ -34,45 +62,54 @@ const Navbar = () => {
                     </span>
                 </div>
                 <div className="nav-user">
-                    <Avatar size={40}>
-                        U
-                    </Avatar>
+                    <NavLink to='/account'>
+                        <Avatar size={40}>
+                            {user ? user.hoTen[0].toUpperCase() : <UserOutlined />}
+                        </Avatar>
+                    </NavLink>
                 </div>
                 <UnorderedListOutlined
                     className="icon open-icon"
-                    onClick={() => setIsDropdownOpened(true)}
+                    onClick={handleOpen}
                 />
                 <div
                     className={isDropdownOpened ? "nav-overlay" : "nav-overlay-hidden"}
-                    onClick={() => setIsDropdownOpened(false)}
+                    onClick={handleClose}
                 >
                 </div>
-                <div className={isDropdownOpened ? "overlay-menu" : "overlay-menu-hidden"}>
+                <div
+                    className="overlay-menu"
+                    style={{ ...settings }}
+                >
                     <CloseOutlined
                         className="icon close-icon"
-                        onClick={() => setIsDropdownOpened(false)}
+                        onClick={handleClose}
                     />
                     <div className="overlay-content">
                         <div className="overlay-header">
-                            <span className="overlay-avatar">
-                                <Avatar size={40}>
-                                    U
-                                </Avatar>
+                            <span className="overlay-avatar" onClick={handleClose}>
+                                <NavLink to='/account'>
+                                    <Avatar size={40}>
+                                        {user ? user.hoTen[0].toUpperCase() : <UserOutlined />}
+                                    </Avatar>
+                                </NavLink>
                             </span>
-                            <span className="overlay-title">hah</span>
+                            <span className="overlay-title">
+                                {user && user.hoTen}
+                            </span>
                         </div>
                         <div className="overlay-body">
-                            <div onClick={() => setIsDropdownOpened(false)}>
+                            <div onClick={handleClose}>
                                 <NavLink to='/movie'>
                                     Movie
                                 </NavLink>
                             </div>
-                            <div onClick={() => setIsDropdownOpened(false)}>
+                            <div onClick={handleClose}>
                                 <NavLink to='/cinema-complex'>
                                     Cinema Complex
                                 </NavLink>
                             </div>
-                            <div onClick={() => setIsDropdownOpened(false)}>
+                            <div onClick={handleClose}>
                                 <NavLink to='/news'>
                                     News
                                 </NavLink>

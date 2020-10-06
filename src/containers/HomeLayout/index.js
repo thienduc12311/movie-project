@@ -9,6 +9,7 @@ import Footer from '../../components/Footer';
 import { useDispatch } from 'react-redux';
 import { getMovieList } from '../../redux/actions/movieAction';
 import { NavLink } from 'react-router-dom';
+import NavBar from '../../components/NavBar';
 
 import './styles.scss';
 
@@ -21,6 +22,7 @@ const HomeLayout = () => {
 
     return (
         <div className="home">
+            <NavBar />
             <div className="carousel">
                 <MovieCarousel />
             </div>

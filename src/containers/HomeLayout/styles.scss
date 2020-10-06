@@ -6,13 +6,9 @@ $bg-image: "../../assets/img/back-news.jpg";
     .nav-tab,
     .break-out,
     .news {
-        width: 70%;
         margin: 0 auto;
+        max-width: 950px;
     }
-
-    // .search-box {
-    //     width: 90%;
-    // }
 
     .search-box {
         padding: 20px;
@@ -33,7 +29,7 @@ $bg-image: "../../assets/img/back-news.jpg";
     .home-title {
         text-align: center;
         margin: 50px 0;
-        font-size: 40px;
+        font-size: 30px;
 
         &:hover {
             animation: scale-title 0.5s;
@@ -57,7 +53,30 @@ $bg-image: "../../assets/img/back-news.jpg";
     }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1050px) {
     .home {
+        .collection {
+            width: 80%;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .home {
+        .collection {
+            width: 60%;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .search-box {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-tab {
+        display: none;
     }
 }

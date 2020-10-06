@@ -4,6 +4,7 @@ import ModalVideo from 'react-modal-video';
 import MovieCard from '../../components/MovieCard';
 import { getMovieList } from '../../redux/actions/movieAction';
 import { Row, Col } from 'antd';
+import NavBar from '../../components/NavBar';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -28,6 +29,7 @@ const MoviePage = () => {
 
     return (
         <Fragment>
+            <NavBar />
             <div className="movie-page">
                 <h1>Movie</h1>
                 <Row>

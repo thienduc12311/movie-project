@@ -5,10 +5,14 @@ footer {
     .footer-container {
         width: 80%;
         margin: 0 auto;
-        padding: 50px 0;
+        padding: 50px 0 5px;
 
         p {
             color: white;
+        }
+
+        .footer-partners {
+            width: 65%;
         }
 
         .footer-logo {

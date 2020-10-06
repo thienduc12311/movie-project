@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AndroidOutlined, AppleOutlined, FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
+import { getCinemaComplexList } from '../../redux/actions/movieAction';
 
 import './styles.scss';
 
 const Footer = () => {
     const cinemaComplex = useSelector(state => state.movieReducer.cinemaComplexList);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCinemaComplexList());
+    }, [])
 
     return (
         <footer>
@@ -26,7 +32,7 @@ const Footer = () => {
                     </Col>
                     <Col xs={24} md={8}>
                         <Row gutter={[0, 20]}>PARTNERS</Row>
-                        <Row gutter={[0, 20]}>
+                        <Row gutter={[0, 20]} className="footer-partners">
                             {cinemaComplex?.map((item, index) => {
                                 return (
                                     <Col key={index} span={8}>

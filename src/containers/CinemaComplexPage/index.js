@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCinemaComplexList, getCurrentCinemaList } from '../../redux/actions/movieAction';
 import { Menu } from 'antd';
+import NavBar from '../../components/NavBar';
+
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -54,14 +56,17 @@ const CinemaComplexPage = () => {
     }, [])
 
     return (
-        <div className="cinema-complex-page">
-            <Menu
-                style={{ width: '100%' }}
-                mode="inline"
-            >
-                {renderCinemaComplexMenu()}
-            </Menu>
-        </div>
+        <Fragment>
+            <NavBar />
+            <div className="cinema-complex-page">
+                <Menu
+                    style={{ width: '100%' }}
+                    mode="inline"
+                >
+                    {renderCinemaComplexMenu()}
+                </Menu>
+            </div>
+        </Fragment>
     )
 }
 

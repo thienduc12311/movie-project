@@ -28,12 +28,12 @@ var settings = {
             }
         },
         {
-            breakpoint: 600,
+            breakpoint: 650,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
                 initialSlide: 2,
-                arrows: false
+                // arrows: false
             }
         },
         {
