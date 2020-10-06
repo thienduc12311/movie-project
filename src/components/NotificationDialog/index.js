@@ -3,9 +3,7 @@ import React from 'react';
 import './styles.scss';
 
 const NotificationDialog = ({ isOpened, setIsOpened, text, options }) => {
-    const handleCloseDialog = () => {
-        setIsOpened(false);
-    };
+    const handleCloseDialog = () => setIsOpened(false)
 
     return (
         <div className={isOpened ? 'dialog-container' : 'dialog-container-none'}>

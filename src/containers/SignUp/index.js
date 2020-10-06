@@ -124,9 +124,7 @@ const SignUp = () => {
         }
     };
 
-    const handleSelectGroup = (value) => {
-        setGroupID(value);
-    };
+    const handleSelectGroup = (value) => setGroupID(value)
 
     const saveUserToLocalStorage = (user) => {
         post('/api/QuanLyNguoiDung/DangNhap', user)

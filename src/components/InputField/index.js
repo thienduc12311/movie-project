@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 const InputFiled = ({ type, name, label, errors, validator, colSpan }) => {
     const [isFocus, setIsFocus] = useState(false);
     const [currentText, setCurrentText] = useState(null);
+
     return (
         <Col xs={24} xl={colSpan}>
             <div className={((isFocus && !currentText) || currentText) ? 'form-group focused' : 'form-group'}>

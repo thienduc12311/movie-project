@@ -26,7 +26,7 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
             <NavLink to={`/movie/id=${card.maPhim}`}>
                 <div className="card-overlay"></div>
             </NavLink>
-            <div className="card-play-icon" onClick={() => { handleOpenTrailer(index) }}>
+            <div className="card-play-icon" onClick={() => handleOpenTrailer(index)}>
                 <PlayArrowIcon />
             </div>
         </Card>

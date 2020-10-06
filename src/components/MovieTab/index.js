@@ -49,7 +49,6 @@ const MovieTab = () => {
                     <Row gutter={[0, 16]} className="date-tab">
                         {renderTimeField(dateTimeArray, date)}
                     </Row>
-                    {/* {renderTimeField(dateTimeArray, date)} */}
                 </Menu.ItemGroup>
             )
         })
@@ -68,16 +67,10 @@ const MovieTab = () => {
                     onClick={() => handleClick(date, time, dateTimeArray)}
                 >
                     <Menu.Item>
-
                         <TimeStarting key={index} time={time} />
                     </Menu.Item>
 
                 </Col>
-                // <Menu.Item>
-                //     <Col xl={4}>
-                //         <TimeStarting key={index} time={time} />
-                //     </Col>
-                // </Menu.Item>
             )
         })
     }

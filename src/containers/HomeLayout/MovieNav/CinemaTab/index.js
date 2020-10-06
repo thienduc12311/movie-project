@@ -11,9 +11,7 @@ const CinemaTab = () => {
     const cinemaList = useSelector(state => state.movieReducer.currentSelectionOfCollection.cinemaList);
     const dispatch = useDispatch();
 
-    const handleSelectCinema = (key) => {
-        dispatch(getCurrentMovieList(cinemaList[key]));
-    }
+    const handleSelectCinema = (key) => dispatch(getCurrentMovieList(cinemaList[key]))
 
     return (
         cinemaList &&

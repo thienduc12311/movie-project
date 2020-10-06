@@ -21,11 +21,7 @@ const MoviePage = () => {
         setIsVideoOpened(true);
     }
 
-    useEffect(() => {
-        dispatch(
-            getMovieList()
-        );
-    }, [])
+    useEffect(() => dispatch(getMovieList()), [])
 
     return (
         <Fragment>

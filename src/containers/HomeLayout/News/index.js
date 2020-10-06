@@ -15,7 +15,7 @@ const News = () => {
         <Row gutter={[16, 16]}>
             {newsArray?.map((news, index) => {
                 return (
-                    <Col key={index} md={colSpan[index]}>
+                    <Col key={index} sm={colSpan[index]}>
                         <NewsCard news={news} />
                     </Col>
                 )

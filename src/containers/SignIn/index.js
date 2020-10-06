@@ -20,7 +20,6 @@ const SignUp = () => {
             const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
             LocalStorageUtils.setItem('user', res.data);
         } catch (err) {
-            console.log(err.response.data)
             text = err.response.data;
             setIsDialogOpened(true);
         }

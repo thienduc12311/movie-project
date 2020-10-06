@@ -47,13 +47,9 @@ const CinemaComplexPage = () => {
         })
     }
 
-    const handleClick = (e) => {
-        dispatch(getCurrentCinemaList({ maHeThongRap: e.key }));
-    }
+    const handleClick = (e) => dispatch(getCurrentCinemaList({ maHeThongRap: e.key }))
 
-    useEffect(() => {
-        dispatch(getCinemaComplexList());
-    }, [])
+    useEffect(() => dispatch(getCinemaComplexList()), [])
 
     return (
         <Fragment>

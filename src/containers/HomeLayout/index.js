@@ -16,9 +16,7 @@ import './styles.scss';
 const HomeLayout = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getMovieList());
-    }, [])
+    useEffect(() => dispatch(getMovieList()), [])
 
     return (
         <div className="home">

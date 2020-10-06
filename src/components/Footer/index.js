@@ -10,9 +10,7 @@ const Footer = () => {
     const cinemaComplex = useSelector(state => state.movieReducer.cinemaComplexList);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getCinemaComplexList());
-    }, [])
+    useEffect(() => dispatch(getCinemaComplexList()), [])
 
     return (
         <footer>

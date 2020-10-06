@@ -12,9 +12,7 @@ const MovieNav = () => {
     const cinemaComplexList = useSelector(state => state.movieReducer.cinemaComplexList);
     const dispatch = useDispatch();
 
-    const handleSelectCinemaComplex = (key) => {
-        dispatch(getCurrentCinemaList(cinemaComplexList[key]));
-    }
+    const handleSelectCinemaComplex = (key) => dispatch(getCurrentCinemaList(cinemaComplexList[key]))
 
     useEffect(() => {
         dispatch(getCinemaComplexList());

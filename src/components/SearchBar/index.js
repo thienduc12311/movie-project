@@ -29,9 +29,7 @@ const SearchBar = ({
         })
     }
 
-    const onChange = (value) => {
-        handleChange(value);
-    }
+    const onChange = (value) => handleChange(value)
 
     return (
         <Select
