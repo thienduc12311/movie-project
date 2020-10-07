@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getCurrentMovieList } from '../../../../redux/actions/movieAction';
-import MovieTab from '../../../../components/MovieTab';
+import MovieTab from '../MovieTab';
 
 const { TabPane } = Tabs;
 
