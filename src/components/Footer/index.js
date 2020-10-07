@@ -7,7 +7,7 @@ import { getCinemaComplexInfo } from '../../redux/actions/movieAction';
 import './styles.scss';
 
 const Footer = () => {
-    const cinemaComplex = useSelector(state => state.movieReducer.cinemaComplexList);
+    const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
     const dispatch = useDispatch();
 
     useEffect(() => dispatch(getCinemaComplexInfo()), [])
@@ -31,7 +31,7 @@ const Footer = () => {
                     <Col xs={24} md={8}>
                         <Row gutter={[0, 20]}>PARTNERS</Row>
                         <Row gutter={[0, 20]} className="footer-partners">
-                            {cinemaComplex?.map((item, index) => (
+                            {cinemaComplexInfo?.map((item, index) => (
                                 <Col key={index} span={8}>
                                     <img className="footer-logo" src={item.logo} />
                                 </Col>
