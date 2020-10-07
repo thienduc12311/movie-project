@@ -1,4 +1,17 @@
 .movie-collection {
+    .ant-tabs-tab {
+        opacity: 0.6;
+
+        &:hover,
+        &.ant-tabs-tab-active {
+            opacity: 1;
+
+            .ant-tabs-tab-btn {
+                color: black;
+            }
+        }
+    }
+
     .cinema-complex__logo {
         width: 50px;
         height: 50px;

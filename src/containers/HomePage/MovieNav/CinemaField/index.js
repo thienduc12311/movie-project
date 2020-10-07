@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getCurrentMovieList } from '../../../../redux/actions/movieAction';
 import MovieField from '../MovieField';
+import { NavLink } from 'react-router-dom';
+
+import './styles.scss';
 
 const { TabPane } = Tabs;
 
@@ -20,11 +23,21 @@ const CinemaTab = () => {
             tabPosition="left"
             style={{ height: 500 }}
             onChange={(activeKey) => handleSelectCinema(activeKey)}
+            className="cinema-field"
         >
             {[...Array.from({ length: cinemaList.length }, (v, i) => i)].map(i => (
                 <TabPane
                     key={i}
-                    tab={cinemaList[i].tenCumRap}
+                    tab={
+                        <span>
+                            <span>
+                                <NavLink to={`/cinema-complex/${cinemaList[i].maCumRap}`}>
+                                    <img className="cinema-logo" src="https://s3img.vcdn.vn/123phim/2018/09/bhd-star-vincom-3-2-15379531630228.jpg" />
+                                </NavLink>
+                            </span>
+                            <span className="cinema-name">{cinemaList[i].tenCumRap}</span>
+                        </span>
+                    }
                 >
                     <MovieField />
                 </TabPane>
