@@ -47,30 +47,34 @@ const MovieCarousel = () => {
   const [isVideoOpened, setIsVideoOpened] = useState(false);
   const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
-  const handleClick = (indexOfFilm) => {
+  const handleOpen = (indexOfFilm) => {
     const id = movieList[indexOfFilm].trailer;
     setIdOfCurrentVideo(id);
     setIsVideoOpened(true);
+    document.body.setAttribute('style', 'overflow: hidden');
+  };
+
+  const handleClose = () => {
+    setIsVideoOpened(false);
+    document.body.setAttribute('style', 'overflow: unset');
   };
 
   return (
     <Fragment>
       <div className="slide-container">
         <Slide {...properties}>
-          {movieList.map((movie, index) => {
-            return (
-              <div key={index} className="each-fade">
-                <MovieSlider film={movie} index={index} handleClick={handleClick} />
-              </div>
-            );
-          })}
+          {movieList.map((movie, index) => (
+            <div key={index} className="each-fade">
+              <MovieSlider film={movie} index={index} handleClick={handleOpen} />
+            </div>
+          ))}
         </Slide>
       </div>
       <ModalVideo
         channel="youtube"
         isOpen={isVideoOpened}
         videoId={idOfCurrentVideo}
-        onClose={() => setIsVideoOpened(false)}
+        onClose={handleClose}
       />
     </Fragment>
   );

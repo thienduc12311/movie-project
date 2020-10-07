@@ -3,12 +3,12 @@ import Slider from 'react-slick';
 import MovieCard from '../../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
 import {useSelector} from 'react-redux';
+import {RightOutlined, LeftOutlined} from '@ant-design/icons';
 
 import './styles.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-modal-video/scss/modal-video.scss';
-import {RightOutlined, LeftOutlined} from '@ant-design/icons';
 
 var settings = {
   speed: 500,
@@ -33,7 +33,6 @@ var settings = {
         slidesToShow: 2,
         slidesToScroll: 2,
         initialSlide: 2,
-        // arrows: false
       },
     },
     {
@@ -53,20 +52,24 @@ const MovieCollection = () => {
   const [isVideoOpened, setIsVideoOpened] = useState(false);
   const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
-  const handleOpenTrailer = (indexOfFilm) => {
+  const handleOpen = (indexOfFilm) => {
     const id = movieList[indexOfFilm].trailer.slice(29);
     setIdOfCurrentVideo(id);
     setIsVideoOpened(true);
+    document.body.setAttribute('style', 'overflow: hidden');
+  };
+
+  const handleClose = () => {
+    setIsVideoOpened(false);
+    document.body.setAttribute('style', 'overflow: unset');
   };
 
   const renderMovieCard = () => {
-    return movieList?.map((card, index) => {
-      return (
-        <div key={index} className="card-container">
-          <MovieCard card={card} handleOpenTrailer={handleOpenTrailer} index={index} />
-        </div>
-      );
-    });
+    return movieList?.map((card, index) => (
+      <div key={index} className="card-container">
+        <MovieCard card={card} handleOpenTrailer={handleOpen} index={index} />
+      </div>
+    ));
   };
 
   return (
@@ -76,7 +79,7 @@ const MovieCollection = () => {
         channel="youtube"
         isOpen={isVideoOpened}
         videoId={idOfCurrentVideo}
-        onClose={() => setIsVideoOpened(false)}
+        onClose={handleClose}
       />
     </Fragment>
   );

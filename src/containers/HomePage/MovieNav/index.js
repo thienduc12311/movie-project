@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Tabs} from 'antd';
-import CinemaTab from './CinemaTab';
+import CinemaField from './CinemaField';
 import {
   getCinemaComplexList,
   getCurrentCinemaList,
@@ -38,7 +38,7 @@ const MovieNav = () => {
           key={i}
           tab={<img className="cinema-complex__logo" src={cinemaComplexList[i].logo} />}
         >
-          <CinemaTab />
+          <CinemaField />
         </TabPane>
       ))}
     </Tabs>

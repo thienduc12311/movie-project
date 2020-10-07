@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import NewsItem from '../../components/NewsItem';
-import Navbar from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 
 import './styles.scss';
 
@@ -12,10 +13,12 @@ const NewsPage = () => {
     <Fragment>
       <NavBar />
       <div className="news-page">
-        {newsArray?.map((news, index) => {
-          return <NewsItem key={index} news={news} index={index} />;
-        })}
+        <h1>News</h1>
+        {newsArray?.map((news, index) => (
+          <NewsItem key={index} news={news} index={index} />
+        ))}
       </div>
+      <Footer />
     </Fragment>
   );
 };

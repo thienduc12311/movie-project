@@ -13,7 +13,7 @@ import NavBar from '../../components/NavBar';
 
 import './styles.scss';
 
-const HomeLayout = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(getMovieList()), []);
@@ -51,4 +51,4 @@ const HomeLayout = () => {
   );
 };
 
-export default HomeLayout;
+export default HomePage;

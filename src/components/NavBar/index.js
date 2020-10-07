@@ -24,11 +24,13 @@ const Navbar = () => {
     const handleOpen = () => {
         setIsDropdownOpened(true);
         setSettings(stylesWhenOpen);
+        document.body.setAttribute('style', 'overflow: hidden');
     }
 
     const handleClose = () => {
         setIsDropdownOpened(false);
         setSettings(stylesWhenClose);
+        document.body.setAttribute('style', 'overflow: unset');
     }
 
     useEffect(() => {
@@ -92,25 +94,25 @@ const Navbar = () => {
                                     <Avatar size={40}>
                                         {user ? user.hoTen[0].toUpperCase() : <UserOutlined />}
                                     </Avatar>
+                                    <span className="overlay-title">
+                                        {user && user.hoTen}
+                                    </span>
                                 </NavLink>
-                            </span>
-                            <span className="overlay-title">
-                                {user && user.hoTen}
                             </span>
                         </div>
                         <div className="overlay-body">
-                            <div onClick={handleClose}>
-                                <NavLink to='/movie'>
+                            <div>
+                                <NavLink to='/movie' onClick={handleClose}>
                                     Movie
                                 </NavLink>
                             </div>
-                            <div onClick={handleClose}>
-                                <NavLink to='/cinema-complex'>
+                            <div>
+                                <NavLink to='/cinema-complex' onClick={handleClose}>
                                     Cinema Complex
                                 </NavLink>
                             </div>
-                            <div onClick={handleClose}>
-                                <NavLink to='/news'>
+                            <div>
+                                <NavLink to='/news' onClick={handleClose}>
                                     News
                                 </NavLink>
                             </div>

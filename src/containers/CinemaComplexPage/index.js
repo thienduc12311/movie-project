@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCinemaComplexList, getCurrentCinemaList } from '../../redux/actions/movieAction';
 import { Menu } from 'antd';
 import NavBar from '../../components/NavBar';
-
+import Footer from '../../components/Footer';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -17,34 +17,30 @@ const CinemaComplexPage = () => {
     const dispatch = useDispatch();
 
     const renderCinemaComplexMenu = () => {
-        return cinemaComplexList?.map(item => {
-            return (
-                <SubMenu
-                    key={item.maHeThongRap}
-                    onMouseEnter={(e) => { handleClick(e) }}
-                    title={
-                        <span>
-                            <img src={item.logo} />
-                            <span >{item.tenHeThongRap}</span>
-                        </span>
-                    }
-                >
-                    {renderCinemaMenu()}
-                </SubMenu>
-            )
-        })
+        return cinemaComplexList?.map(item => (
+            <SubMenu
+                key={item.maHeThongRap}
+                onMouseEnter={(e) => { handleClick(e) }}
+                title={
+                    <span>
+                        <img src={item.logo} />
+                        <span >{item.tenHeThongRap}</span>
+                    </span>
+                }
+            >
+                {renderCinemaMenu()}
+            </SubMenu>
+        ))
     }
 
     const renderCinemaMenu = () => {
-        return cinemaList && cinemaList.map(item => {
-            return (
-                <Menu.Item key={item.maCumRap}>
-                    <NavLink to={`/cinema-complex/${item.maCumRap}`}>
-                        {item.tenCumRap}
-                    </NavLink>
-                </Menu.Item>
-            )
-        })
+        return cinemaList && cinemaList.map(item => (
+            <Menu.Item key={item.maCumRap}>
+                <NavLink to={`/cinema-complex/${item.maCumRap}`}>
+                    {item.tenCumRap}
+                </NavLink>
+            </Menu.Item>
+        ))
     }
 
     const handleClick = (e) => dispatch(getCurrentCinemaList({ maHeThongRap: e.key }))
@@ -55,6 +51,7 @@ const CinemaComplexPage = () => {
         <Fragment>
             <NavBar />
             <div className="cinema-complex-page">
+                <h1>Cinema Complex</h1>
                 <Menu
                     style={{ width: '100%' }}
                     mode="inline"
@@ -62,6 +59,7 @@ const CinemaComplexPage = () => {
                     {renderCinemaComplexMenu()}
                 </Menu>
             </div>
+            <Footer />
         </Fragment>
     )
 }
