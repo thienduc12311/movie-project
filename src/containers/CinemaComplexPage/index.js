@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCinemaComplexList, getCurrentCinemaList } from '../../redux/actions/movieAction';
 import { Menu } from 'antd';
 import NavBar from '../../components/NavBar';
-
+import Footer from '../../components/Footer';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -51,6 +51,7 @@ const CinemaComplexPage = () => {
         <Fragment>
             <NavBar />
             <div className="cinema-complex-page">
+                <h1>Cinema Complex</h1>
                 <Menu
                     style={{ width: '100%' }}
                     mode="inline"
@@ -58,6 +59,7 @@ const CinemaComplexPage = () => {
                     {renderCinemaComplexMenu()}
                 </Menu>
             </div>
+            <Footer />
         </Fragment>
     )
 }

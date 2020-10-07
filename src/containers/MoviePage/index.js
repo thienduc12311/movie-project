@@ -5,6 +5,7 @@ import MovieCard from '../../components/MovieCard';
 import { getMovieList } from '../../redux/actions/movieAction';
 import { Row, Col } from 'antd';
 import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -44,6 +45,7 @@ const MoviePage = () => {
                     ))}
                 </Row>
             </div>
+            <Footer />
             <ModalVideo
                 channel='youtube'
                 isOpen={isVideoOpened}
