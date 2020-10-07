@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import NewsItem from '../../components/NewsItem';
-import Navbar from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
 
 import './styles.scss';
 

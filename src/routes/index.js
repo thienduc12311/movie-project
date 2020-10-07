@@ -1,4 +1,4 @@
-import HomeLayout from '../containers/HomeLayout';
+import HomePage from '../containers/HomePage';
 import MovieDetailPage from '../components/MovieDetailPage';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
@@ -13,7 +13,7 @@ const customerRoutes = [
     {
         exact: true,
         path: '/',
-        component: HomeLayout
+        component: HomePage
     },
     {
         exact: true,
