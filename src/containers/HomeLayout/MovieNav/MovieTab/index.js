@@ -10,13 +10,11 @@ import Collapse from '@material-ui/core/Collapse';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
 import './styles.scss';
 
-const MovieTab = () => {
-    const movieList = useSelector(state => state.movieReducer.currentSelectionOfCollection.movieList);
-
+const MovieField = ({ movie }) => {
+    const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
     const handleFilterDateOptions = (dateTimeArray) => {
         let dateArray = [];
@@ -30,7 +28,8 @@ const MovieTab = () => {
                     dateArray.push(currentDate);
             }
         })
-        // dateArray = dateArray.filter(date => date.slice(-4) === "2020");
+        if (dateArray.length > 2)
+            dateArray = dateArray.slice(-2);
         return dateArray;
     }
 
@@ -49,11 +48,10 @@ const MovieTab = () => {
                         <TableBody>
                             <TableRow>
                                 <TableCell style={{ width: 100, padding: 5 }}>
-                                    <h5>{date}</h5>
+                                    <h5 style={{ margin: 0 }}>{date}</h5>
                                 </TableCell>
                                 <TableCell>
                                     <Grid container>
-
                                         {renderTimeField(dateTimeArray, date)}
                                     </Grid>
                                 </TableCell>
@@ -83,41 +81,41 @@ const MovieTab = () => {
         console.log(showtimeInfo);
     }
 
-    const renderMovieField = () => {
-        return movieList.map((movie, index) => {
-            const [isDropdownOpened, setIsDropdownOpened] = useState(false);
+    return (
+        <TableContainer>
+            <Table stickyHeader aria-label="sticky table">
+                <TableBody>
+                    <TableRow onClick={() => setIsDropdownOpened(!isDropdownOpened)}>
+                        <TableCell style={{ width: 50, height: 50, padding: 5, border: 'none' }}>
+                            <NavLink to={`/movie/id=${movie.maPhim}`}>
+                                <img className="movie-logo" src={movie.hinhAnh} />
+                            </NavLink>
+                        </TableCell>
+                        <TableCell style={{ border: 'none' }}>
+                            <h4 className="movie-name">{movie.tenPhim}</h4>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell style={{ paddingBottom: 0, paddingTop: 0, border: 'none' }} colSpan={6}>
+                            <Collapse in={isDropdownOpened} timeout="auto" unmountOnExit>
+                                {renderDateTimeField(movie.lstLichChieuTheoPhim)}
+                            </Collapse>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
+}
 
-            return (
-                <TableContainer key={index}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableBody>
-                            <TableRow onClick={() => setIsDropdownOpened(!isDropdownOpened)}>
-                                <TableCell style={{ width: 50, height: 50, padding: 5 }}>
-                                    <NavLink to={`/movie/id=${movie.maPhim}`}>
-                                        <img className="movie-logo" src={movie.hinhAnh} />
-                                    </NavLink>
-                                </TableCell>
-                                <TableCell>
-                                    <h4 className="movie-name">{movie.tenPhim}</h4>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                                    <Collapse in={isDropdownOpened} timeout="auto" unmountOnExit>
-                                        {renderDateTimeField(movie.lstLichChieuTheoPhim)}
-                                    </Collapse>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            )
-        })
-    }
+const MovieTab = () => {
+    const movieList = useSelector(state => state.movieReducer.currentSelectionOfCollection.movieList);
 
     return (
         <div className="movie-tab">
-            {renderMovieField()}
+            {movieList.map((movie, index) => {
+                return <MovieField key={index} movie={movie} />
+            })}
         </div >
     )
 }
