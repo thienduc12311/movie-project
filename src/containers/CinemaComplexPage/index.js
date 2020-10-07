@@ -17,34 +17,30 @@ const CinemaComplexPage = () => {
     const dispatch = useDispatch();
 
     const renderCinemaComplexMenu = () => {
-        return cinemaComplexList?.map(item => {
-            return (
-                <SubMenu
-                    key={item.maHeThongRap}
-                    onMouseEnter={(e) => { handleClick(e) }}
-                    title={
-                        <span>
-                            <img src={item.logo} />
-                            <span >{item.tenHeThongRap}</span>
-                        </span>
-                    }
-                >
-                    {renderCinemaMenu()}
-                </SubMenu>
-            )
-        })
+        return cinemaComplexList?.map(item => (
+            <SubMenu
+                key={item.maHeThongRap}
+                onMouseEnter={(e) => { handleClick(e) }}
+                title={
+                    <span>
+                        <img src={item.logo} />
+                        <span >{item.tenHeThongRap}</span>
+                    </span>
+                }
+            >
+                {renderCinemaMenu()}
+            </SubMenu>
+        ))
     }
 
     const renderCinemaMenu = () => {
-        return cinemaList && cinemaList.map(item => {
-            return (
-                <Menu.Item key={item.maCumRap}>
-                    <NavLink to={`/cinema-complex/${item.maCumRap}`}>
-                        {item.tenCumRap}
-                    </NavLink>
-                </Menu.Item>
-            )
-        })
+        return cinemaList && cinemaList.map(item => (
+            <Menu.Item key={item.maCumRap}>
+                <NavLink to={`/cinema-complex/${item.maCumRap}`}>
+                    {item.tenCumRap}
+                </NavLink>
+            </Menu.Item>
+        ))
     }
 
     const handleClick = (e) => dispatch(getCurrentCinemaList({ maHeThongRap: e.key }))

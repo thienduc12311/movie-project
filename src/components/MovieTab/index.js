@@ -1,5 +1,4 @@
-import React, { useState, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -13,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 import './styles.scss';
 
-const MovieField = ({ movie }) => {
+const MovieTab = ({ movie }) => {
     const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
     const handleFilterDateOptions = (dateTimeArray) => {
@@ -105,18 +104,6 @@ const MovieField = ({ movie }) => {
                 </TableBody>
             </Table>
         </TableContainer>
-    )
-}
-
-const MovieTab = () => {
-    const movieList = useSelector(state => state.movieReducer.currentSelectionOfCollection.movieList);
-
-    return (
-        <div className="movie-tab">
-            {movieList.map((movie, index) => {
-                return <MovieField key={index} movie={movie} />
-            })}
-        </div >
     )
 }
 

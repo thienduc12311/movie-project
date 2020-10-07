@@ -13,13 +13,11 @@ const News = () => {
 
     return (
         <Row gutter={[16, 16]}>
-            {newsArray?.map((news, index) => {
-                return (
-                    <Col key={index} sm={colSpan[index]}>
-                        <NewsCard news={news} />
-                    </Col>
-                )
-            })}
+            {newsArray?.map((news, index) => (
+                <Col key={index} sm={colSpan[index]}>
+                    <NewsCard news={news} />
+                </Col>
+            ))}
         </Row>
     )
 }

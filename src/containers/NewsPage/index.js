@@ -12,15 +12,13 @@ const NewsPage = () => {
         <Fragment>
             <NavBar />
             <div className="news-page">
-                {newsArray?.map((news, index) => {
-                    return (
-                        <NewsItem
-                            key={index}
-                            news={news}
-                            index={index}
-                        />
-                    )
-                })}
+                {newsArray?.map((news, index) => (
+                    <NewsItem
+                        key={index}
+                        news={news}
+                        index={index}
+                    />
+                ))}
             </div>
         </Fragment>
     )

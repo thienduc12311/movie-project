@@ -54,17 +54,15 @@ const MovieCarousel = () => {
         <Fragment>
             <div className="slide-container">
                 <Slide {...properties}>
-                    {movieList.map((movie, index) => {
-                        return (
-                            <div key={index} className="each-fade">
-                                <MovieSlider
-                                    film={movie}
-                                    index={index}
-                                    handleClick={handleClick}
-                                />
-                            </div>
-                        )
-                    })}
+                    {movieList.map((movie, index) => (
+                        <div key={index} className="each-fade">
+                            <MovieSlider
+                                film={movie}
+                                index={index}
+                                handleClick={handleClick}
+                            />
+                        </div>
+                    ))}
 
                 </Slide>
             </div>

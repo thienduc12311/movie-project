@@ -142,19 +142,17 @@ const SignUp = () => {
                         <form className="form" onSubmit={handleSubmit(onSubmit)}>
                             <Row gutter={[32, 8]}>
                                 {
-                                    inputProperties.map((property, index) => {
-                                        return (
-                                            <InputField
-                                                key={index}
-                                                type={property.type}
-                                                name={property.name}
-                                                label={property.label}
-                                                errors={property.errors}
-                                                validator={property.validator}
-                                                colSpan={property.colSpan}
-                                            />
-                                        )
-                                    })
+                                    inputProperties.map((property, index) => (
+                                        <InputField
+                                            key={index}
+                                            type={property.type}
+                                            name={property.name}
+                                            label={property.label}
+                                            errors={property.errors}
+                                            validator={property.validator}
+                                            colSpan={property.colSpan}
+                                        />
+                                    ))
                                 }
                                 <div className="signup-group-selector" >
                                     <Select
@@ -162,9 +160,7 @@ const SignUp = () => {
                                         allowClear
                                         onChange={handleSelectGroup}
                                     >
-                                        {optionSelectors.map((option, index) => {
-                                            return <Option key={index} value={option.value}>{option.text}</Option>
-                                        })}
+                                        {optionSelectors.map((option, index) => <Option key={index} value={option.value}>{option.text}</Option>)}
                                     </Select>
                                 </div>
                                 <Col xs={24}>

@@ -3,12 +3,12 @@ import Slider from "react-slick";
 import MovieCard from '../../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
 import { useSelector } from 'react-redux';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 import './styles.scss';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-modal-video/scss/modal-video.scss';
-import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 var settings = {
     speed: 500,
@@ -33,7 +33,6 @@ var settings = {
                 slidesToShow: 2,
                 slidesToScroll: 2,
                 initialSlide: 2,
-                // arrows: false
             }
         },
         {
@@ -60,17 +59,15 @@ const MovieCollection = () => {
     }
 
     const renderMovieCard = () => {
-        return movieList?.map((card, index) => {
-            return (
-                <div key={index} className="card-container">
-                    <MovieCard
-                        card={card}
-                        handleOpenTrailer={handleOpenTrailer}
-                        index={index}
-                    />
-                </div>
-            )
-        })
+        return movieList?.map((card, index) => (
+            <div key={index} className="card-container">
+                <MovieCard
+                    card={card}
+                    handleOpenTrailer={handleOpenTrailer}
+                    index={index}
+                />
+            </div>
+        ))
     }
 
     return (

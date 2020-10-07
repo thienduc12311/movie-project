@@ -29,21 +29,19 @@ const MoviePage = () => {
             <div className="movie-page">
                 <h1>Movie</h1>
                 <Row>
-                    {movieList?.map((movie, index) => {
-                        return (
-                            <Col
-                                span={6}
-                                key={index}
-                                className="card-container"
-                            >
-                                <MovieCard
-                                    card={movie}
-                                    handleOpenTrailer={handleOpenTrailer}
-                                    index={index}
-                                />
-                            </Col>
-                        )
-                    })}
+                    {movieList?.map((movie, index) => (
+                        <Col
+                            span={6}
+                            key={index}
+                            className="card-container"
+                        >
+                            <MovieCard
+                                card={movie}
+                                handleOpenTrailer={handleOpenTrailer}
+                                index={index}
+                            />
+                        </Col>
+                    ))}
                 </Row>
             </div>
             <ModalVideo

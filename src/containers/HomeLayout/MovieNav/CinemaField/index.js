@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getCurrentMovieList } from '../../../../redux/actions/movieAction';
-import MovieTab from '../MovieTab';
+import MovieField from '../MovieField';
 
 const { TabPane } = Tabs;
 
@@ -26,7 +26,7 @@ const CinemaTab = () => {
                     key={i}
                     tab={cinemaList[i].tenCumRap}
                 >
-                    <MovieTab />
+                    <MovieField />
                 </TabPane>
             ))}
         </Tabs>

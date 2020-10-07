@@ -17,16 +17,14 @@ const SearchBar = ({
     isDisabled
 }) => {
     const renderOptions = () => {
-        return options?.map(option => {
-            return (
-                <Option
-                    key={valueKey ? option[valueKey] : option}
-                    value={valueKey ? option[valueKey] : option}
-                >
-                    {optionKey ? option[optionKey] : option}
-                </Option>
-            )
-        })
+        return options?.map(option => (
+            <Option
+                key={valueKey ? option[valueKey] : option}
+                value={valueKey ? option[valueKey] : option}
+            >
+                {optionKey ? option[optionKey] : option}
+            </Option>
+        ))
     }
 
     const onChange = (value) => handleChange(value)
