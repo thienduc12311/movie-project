@@ -4,7 +4,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
-import TableHead from '@material-ui/core/TableHead';
 import TableCell from '@material-ui/core/TableCell';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -49,11 +48,14 @@ const MovieTab = () => {
                     <Table size="small" aria-label="purchases">
                         <TableBody>
                             <TableRow>
-                                <TableCell>
+                                <TableCell style={{ width: 100, padding: 5 }}>
                                     <h5>{date}</h5>
                                 </TableCell>
                                 <TableCell>
-                                    {renderTimeField(dateTimeArray, date)}
+                                    <Grid container>
+
+                                        {renderTimeField(dateTimeArray, date)}
+                                    </Grid>
                                 </TableCell>
                             </TableRow>
                         </TableBody>
@@ -67,7 +69,9 @@ const MovieTab = () => {
         const timeArray = handleFilterTimeOptions(dateTimeArray, date);
         return timeArray.map((time, index) => {
             return (
-                <Paper key={index}>{time}</Paper>
+                <Grid item key={index} xs={4} >
+                    <span>{time}</span>
+                </Grid>
             )
         })
     }
@@ -101,7 +105,6 @@ const MovieTab = () => {
                                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                                     <Collapse in={isDropdownOpened} timeout="auto" unmountOnExit>
                                         {renderDateTimeField(movie.lstLichChieuTheoPhim)}
-
                                     </Collapse>
                                 </TableCell>
                             </TableRow>
