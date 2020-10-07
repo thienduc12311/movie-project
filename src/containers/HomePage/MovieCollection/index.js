@@ -10,6 +10,24 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-modal-video/scss/modal-video.scss';
 
+const SampleArrow = ({ className, style, onClick, side }) => {
+    if (side === "next")
+        return (
+            <RightOutlined
+                className={className}
+                style={{ ...style, display: "block" }}
+                onClick={onClick}
+            />
+        );
+    return (
+        <LeftOutlined
+            className={className}
+            style={{ ...style, display: "block" }}
+            onClick={onClick}
+        />
+    )
+}
+
 var settings = {
     speed: 500,
     rows: 2,
@@ -17,8 +35,8 @@ var settings = {
     slidesToScroll: 4,
     initialSlide: 0,
     infinite: true,
-    prevArrow: <LeftOutlined />,
-    nextArrow: <RightOutlined />,
+    prevArrow: <SampleArrow side="prev" />,
+    nextArrow: <SampleArrow side="next" />,
     responsive: [
         {
             breakpoint: 1024,
