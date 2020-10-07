@@ -16,10 +16,16 @@ const MoviePage = () => {
     const [isVideoOpened, setIsVideoOpened] = useState(false);
     const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
-    const handleOpenTrailer = (indexOfFilm) => {
+    const handleOpen = (indexOfFilm) => {
         const id = movieList[indexOfFilm].trailer.slice(29);
         setIdOfCurrentVideo(id);
         setIsVideoOpened(true);
+        document.body.setAttribute('style', 'overflow: hidden');
+    }
+
+    const handleClose = () => {
+        setIsVideoOpened(false);
+        document.body.setAttribute('style', 'overflow: unset');
     }
 
     useEffect(() => dispatch(getMovieList()), [])
@@ -38,7 +44,7 @@ const MoviePage = () => {
                         >
                             <MovieCard
                                 card={movie}
-                                handleOpenTrailer={handleOpenTrailer}
+                                handleOpenTrailer={handleOpen}
                                 index={index}
                             />
                         </Col>
@@ -50,7 +56,7 @@ const MoviePage = () => {
                 channel='youtube'
                 isOpen={isVideoOpened}
                 videoId={idOfCurrentVideo}
-                onClose={() => setIsVideoOpened(false)}
+                onClose={handleClose}
             />
         </Fragment>
     )

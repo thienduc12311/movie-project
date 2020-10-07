@@ -44,10 +44,16 @@ const MovieCarousel = () => {
     const [isVideoOpened, setIsVideoOpened] = useState(false);
     const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
-    const handleClick = (indexOfFilm) => {
+    const handleOpen = (indexOfFilm) => {
         const id = movieList[indexOfFilm].trailer;
         setIdOfCurrentVideo(id);
         setIsVideoOpened(true);
+        document.body.setAttribute('style', 'overflow: hidden');
+    }
+
+    const handleClose = () => {
+        setIsVideoOpened(false);
+        document.body.setAttribute('style', 'overflow: unset');
     }
 
     return (
@@ -59,7 +65,7 @@ const MovieCarousel = () => {
                             <MovieSlider
                                 film={movie}
                                 index={index}
-                                handleClick={handleClick}
+                                handleClick={handleOpen}
                             />
                         </div>
                     ))}
@@ -70,7 +76,7 @@ const MovieCarousel = () => {
                 channel='youtube'
                 isOpen={isVideoOpened}
                 videoId={idOfCurrentVideo}
-                onClose={() => setIsVideoOpened(false)}
+                onClose={handleClose}
             />
         </Fragment>
     )

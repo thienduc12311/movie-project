@@ -24,11 +24,13 @@ const Navbar = () => {
     const handleOpen = () => {
         setIsDropdownOpened(true);
         setSettings(stylesWhenOpen);
+        document.body.setAttribute('style', 'overflow: hidden');
     }
 
     const handleClose = () => {
         setIsDropdownOpened(false);
         setSettings(stylesWhenClose);
+        document.body.setAttribute('style', 'overflow: unset');
     }
 
     useEffect(() => {
