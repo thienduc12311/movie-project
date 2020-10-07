@@ -1,36 +1,36 @@
 import React from 'react';
-import { Tabs } from 'antd';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getCurrentMovieList } from '../../../../redux/actions/movieAction';
+import {Tabs} from 'antd';
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {getCurrentMovieList} from '../../../../redux/actions/movieAction';
 import MovieTab from '../../../../components/MovieTab';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 const CinemaTab = () => {
-    const cinemaList = useSelector(state => state.movieReducer.currentSelectionOfCollection.cinemaList);
-    const dispatch = useDispatch();
+  const cinemaList = useSelector(
+    (state) => state.movieReducer.currentSelectionOfCollection.cinemaList
+  );
+  const dispatch = useDispatch();
 
-    const handleSelectCinema = (key) => dispatch(getCurrentMovieList(cinemaList[key]))
+  const handleSelectCinema = (key) => dispatch(getCurrentMovieList(cinemaList[key]));
 
-    return (
-        cinemaList &&
-        <Tabs
-            defaultActiveKey="0"
-            tabPosition="left"
-            style={{ height: 500 }}
-            onChange={(activeKey) => handleSelectCinema(activeKey)}
-        >
-            {[...Array.from({ length: cinemaList.length }, (v, i) => i)].map(i => (
-                <TabPane
-                    key={i}
-                    tab={cinemaList[i].tenCumRap}
-                >
-                    <MovieTab />
-                </TabPane>
-            ))}
-        </Tabs>
+  return (
+    cinemaList && (
+      <Tabs
+        defaultActiveKey="0"
+        tabPosition="left"
+        style={{height: 500}}
+        onChange={(activeKey) => handleSelectCinema(activeKey)}
+      >
+        {[...Array.from({length: cinemaList.length}, (v, i) => i)].map((i) => (
+          <TabPane key={i} tab={cinemaList[i].tenCumRap}>
+            {/* <MovieTab /> */}
+          </TabPane>
+        ))}
+      </Tabs>
     )
-}
+  );
+};
 
 export default CinemaTab;

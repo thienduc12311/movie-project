@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import moment from 'moment';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { customerRoutes } from '../../routes';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {customerRoutes} from '../../routes';
 
 export const App = () => {
   moment.locale('en-gb');
@@ -15,16 +15,14 @@ export const App = () => {
           path={route.path}
           component={route.component}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <BrowserRouter>
       <Fragment>
-        <Switch>
-          {renderUserRouter(customerRoutes)}
-        </Switch>
+        <Switch>{renderUserRouter(customerRoutes)}</Switch>
       </Fragment>
     </BrowserRouter>
   );
