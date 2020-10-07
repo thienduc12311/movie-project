@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { AndroidOutlined, AppleOutlined, FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
-import { getCinemaComplexList } from '../../redux/actions/movieAction';
+import { getCinemaComplexInfo } from '../../redux/actions/movieAction';
 
 import './styles.scss';
 
@@ -10,7 +10,7 @@ const Footer = () => {
     const cinemaComplex = useSelector(state => state.movieReducer.cinemaComplexList);
     const dispatch = useDispatch();
 
-    useEffect(() => dispatch(getCinemaComplexList()), [])
+    useEffect(() => dispatch(getCinemaComplexInfo()), [])
 
     return (
         <footer>

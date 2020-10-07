@@ -1,11 +1,15 @@
 .cinema-field {
-    .cinema-logo {
-        width: 45px;
-        height: 45px;
-        border-radius: 8px;
-    }
+    .ant-tabs-nav {
+        width: 350px;
 
-    .cinema-name {
-        margin-left: 10px;
+        .cinema-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+        }
+
+        .cinema-name {
+            margin-left: 10px;
+        }
     }
 }
