@@ -20,7 +20,6 @@ const CinemaTab = ({ cinemaList }) => {
         )
     }
 
-    console.log(cinemaList[0])
     return (
         <Tabs
             defaultActiveKey="0"

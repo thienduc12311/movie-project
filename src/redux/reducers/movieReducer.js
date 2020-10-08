@@ -5,6 +5,7 @@ import {
     SET_DATE_OPTIONS,
     SET_TIME_OPTIONS,
     SET_CINEMA_COMPLEX_INFO,
+    SET_CINEMA_INFO
 } from '../constants/movieConstants';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
         timeOptions: null
     },
     cinemaComplexInfo: null,
+    cinemaInfo: null,
     newsArray: [
         {
             id: 0,
@@ -102,6 +104,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 cinemaComplexInfo: action.cinemaComplexList
+            }
+
+        case SET_CINEMA_INFO:
+            return {
+                ...state,
+                cinemaInfo: action.cinemaInfo
             }
 
         default:

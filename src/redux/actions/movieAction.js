@@ -5,6 +5,7 @@ import {
     SET_DATE_OPTIONS,
     SET_TIME_OPTIONS,
     SET_CINEMA_COMPLEX_INFO,
+    SET_CINEMA_INFO,
 } from '../constants/movieConstants';
 import { get } from '../../utils/ApiCaller';
 import moment from 'moment';
@@ -89,11 +90,42 @@ export const getTimeOptions = (cinemaOptions, cinema, date) => {
 
 export const getCinemaComplexInfo = () => {
     return dispatch => {
-        get('/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap')
+        get('/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01')
             .then(res => {
                 dispatch({
                     type: SET_CINEMA_COMPLEX_INFO,
                     cinemaComplexList: res.data
+                })
+            })
+    }
+}
+
+export const getCinemaInfo = (cinemaId) => {
+    const getCinemaComplexId = () => {
+        switch (cinemaId.slice(0, 2)) {
+            case "bh":
+                return "BHDStar";
+            case "cg":
+                return "cgv";
+            case "cn":
+                return "CineStar";
+            case "gl":
+                return "Galaxy";
+            case "lo":
+                return "LotteCinima";
+            case "me":
+                return "MegaGS";
+        }
+    }
+    const getCinema = (cinemaComplex) => cinemaComplex[0].lstCumRap.find(item => item.maCumRap === cinemaId);
+
+    const cinemaComplexId = getCinemaComplexId();
+    return dispatch => {
+        get(`/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${cinemaComplexId}&maNhom=GP01`)
+            .then(res => {
+                dispatch({
+                    type: SET_CINEMA_INFO,
+                    cinemaInfo: getCinema(res.data)
                 })
             })
     }

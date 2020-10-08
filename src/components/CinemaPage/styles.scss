@@ -1,3 +1,112 @@
 .cinema-page {
     margin-top: 60px;
+
+    .cinema-cover {
+        position: relative;
+
+        .cinema-background {
+            width: 100%;
+            height: auto;
+            filter: blur(15px);
+        }
+
+        .cinema-info {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 660px;
+
+            img {
+                width: 150px;
+                height: auto;
+                display: block;
+                border-radius: 5px;
+            }
+
+            .cinema-details {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                p {
+                    color: rgb(245, 225, 225);
+                    margin: 0;
+                    font-size: 14px;
+
+                    &.firstName {
+                        font-size: 17px;
+                        color: white;
+                        font-weight: 500;
+                    }
+
+                    &.lastName {
+                        color: white;
+                        font-size: 32px;
+                        font-weight: 700;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+
+            .ant-progress {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                span {
+                    color: white;
+                    font-weight: 500;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .cinema-showtime-info {
+        margin-top: 50px;
+
+        .cinema-details {
+            display: none;
+
+            p {
+                color: #333;
+                margin: 0;
+                font-size: 14px;
+
+                &.firstName {
+                    font-size: 17px;
+                    color: black;
+                    font-weight: 500;
+                }
+
+                &.lastName {
+                    color: black;
+                    font-size: 32px;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cinema-page {
+        .cinema-cover {
+            .cinema-background {
+                filter: none;
+            }
+
+            .cinema-info {
+                display: none;
+            }
+        }
+
+        .cinema-showtime-info {
+            .cinema-details {
+                display: block;
+            }
+        }
+    }
 }
