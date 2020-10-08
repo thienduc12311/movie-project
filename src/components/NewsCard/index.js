@@ -19,9 +19,7 @@ const NewsCard = ({ news }) => {
                         className="news-image"
                     />
                     <CardContent className="news-body">
-                        <h3>
-                            {news.title}
-                        </h3>
+                        <h3>{news.title}</h3>
                     </CardContent>
                 </CardActionArea>
             </Card>
