@@ -93,7 +93,11 @@ const MovieTab = ({ movie }) => {
                             </NavLink>
                         </TableCell>
                         <TableCell style={{ border: 'none' }}>
-                            <h4 className="movie-name">{movie.tenPhim}</h4>
+                            <h4 className="movie-name">
+                                <span className="movie-label">C16</span>
+                                {movie.tenPhim}
+                            </h4>
+                            <p className="movie-more-details">120 minutes - TIX 9.3 - IMDb 0</p>
                         </TableCell>
                     </TableRow>
                     <TableRow>
