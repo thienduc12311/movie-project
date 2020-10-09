@@ -18,9 +18,11 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
                     className='card-image'
                 />
                 <CardContent className="card-body">
-                    <div className="card-text">
-                        {card.tenPhim}
-                    </div>
+                    <NavLink to={`/movie/id=${card.maPhim}`}>
+                        <div className="card-text">
+                            {card.tenPhim}
+                        </div>
+                    </NavLink>
                 </CardContent>
             </CardActionArea>
             <NavLink to={`/movie/id=${card.maPhim}`}>

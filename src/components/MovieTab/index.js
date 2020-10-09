@@ -47,6 +47,7 @@ const MovieTab = ({movie}) => {
               <TableCell style={{width: 100, padding: 5}}>
                 <h5 style={{margin: 0}}>{date}</h5>
               </TableCell>
+              <TableCell style={{width: 50}}></TableCell>
               <TableCell>
                 <Grid container spacing={2}>
                   {renderTimeField(dateTimeArray, date)}

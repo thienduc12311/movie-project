@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCinemaComplexList, getCurrentCinemaList } from '../../redux/actions/movieAction';
+import { getCinemaComplexInfo } from '../../redux/actions/movieAction';
 import { Menu } from 'antd';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
@@ -12,29 +12,27 @@ import 'antd/dist/antd.css';
 const { SubMenu } = Menu;
 
 const CinemaComplexPage = () => {
-    const cinemaComplexList = useSelector(state => state.movieReducer.cinemaComplexList);
-    const cinemaList = useSelector(state => state.movieReducer.currentSelectionOfCollection.cinemaList);
+    const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
     const dispatch = useDispatch();
 
     const renderCinemaComplexMenu = () => {
-        return cinemaComplexList?.map(item => (
+        return cinemaComplexInfo?.map(cinemaComplex => (
             <SubMenu
-                key={item.maHeThongRap}
-                onMouseEnter={(e) => { handleClick(e) }}
+                key={cinemaComplex.maHeThongRap}
                 title={
                     <span>
-                        <img src={item.logo} />
-                        <span >{item.tenHeThongRap}</span>
+                        <img src={cinemaComplex.logo} />
+                        <span >{cinemaComplex.tenHeThongRap}</span>
                     </span>
                 }
             >
-                {renderCinemaMenu()}
+                {renderCinemaMenu(cinemaComplex)}
             </SubMenu>
         ))
     }
 
-    const renderCinemaMenu = () => {
-        return cinemaList && cinemaList.map(item => (
+    const renderCinemaMenu = cinemaComplex => {
+        return cinemaComplex.lstCumRap.map(item => (
             <Menu.Item key={item.maCumRap}>
                 <NavLink to={`/cinema-complex/${item.maCumRap}`}>
                     {item.tenCumRap}
@@ -43,9 +41,8 @@ const CinemaComplexPage = () => {
         ))
     }
 
-    const handleClick = (e) => dispatch(getCurrentCinemaList({ maHeThongRap: e.key }))
 
-    useEffect(() => dispatch(getCinemaComplexList()), [])
+    useEffect(() => dispatch(getCinemaComplexInfo()), [])
 
     return (
         <Fragment>

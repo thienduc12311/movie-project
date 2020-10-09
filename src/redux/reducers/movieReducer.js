@@ -4,9 +4,7 @@ import {
     SET_CINEMA_OPTIONS,
     SET_DATE_OPTIONS,
     SET_TIME_OPTIONS,
-    SET_CINEMA_COMPLEX_LIST,
-    SET_CURRENT_CINEMA_LIST,
-    SET_CURRENT_MOVIE_LIST
+    SET_CINEMA_COMPLEX_INFO,
 } from '../constants/movieConstants';
 
 const initialState = {
@@ -18,11 +16,7 @@ const initialState = {
         dateOptions: null,
         timeOptions: null
     },
-    cinemaComplexList: null,
-    currentSelectionOfCollection: {
-        cinemaList: null,
-        movieList: null
-    },
+    cinemaComplexInfo: null,
     newsArray: [
         {
             id: 0,
@@ -104,28 +98,10 @@ export default (state = initialState, action) => {
                 }
             }
 
-        case SET_CINEMA_COMPLEX_LIST:
+        case SET_CINEMA_COMPLEX_INFO:
             return {
                 ...state,
-                cinemaComplexList: action.cinemaComplexList
-            }
-
-        case SET_CURRENT_CINEMA_LIST:
-            return {
-                ...state,
-                currentSelectionOfCollection: {
-                    cinemaList: action.cinemaList,
-                    movieList: action.cinemaList[0].danhSachPhim
-                }
-            }
-
-        case SET_CURRENT_MOVIE_LIST:
-            return {
-                ...state,
-                currentSelectionOfCollection: {
-                    ...state.currentSelectionOfCollection,
-                    movieList: action.movieList
-                }
+                cinemaComplexInfo: action.cinemaComplexList
             }
 
         default:
