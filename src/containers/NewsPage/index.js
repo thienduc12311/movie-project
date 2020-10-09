@@ -7,24 +7,24 @@ import Footer from '../../components/Footer';
 import './styles.scss';
 
 const NewsPage = () => {
-    const newsArray = useSelector(state => state.movieReducer.newsArray);
+  const newsArray = useSelector(state => state.movieReducer.newsArray);
 
-    return (
-        <Fragment>
-            <NavBar />
-            <div className="news-page">
-                <h1>News</h1>
-                {newsArray?.map((news, index) => (
-                    <NewsItem
-                        key={index}
-                        news={news}
-                        index={index}
-                    />
-                ))}
-            </div>
-            <Footer />
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <NavBar />
+      <div className="news-page">
+        <h1>News</h1>
+        {newsArray?.map((news, index) => (
+          <NewsItem
+            key={index}
+            news={news}
+            index={index}
+          />
+        ))}
+      </div>
+      <Footer />
+    </Fragment>
+  )
 }
 
 export default NewsPage;

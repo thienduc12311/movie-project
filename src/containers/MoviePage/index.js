@@ -11,55 +11,55 @@ import './styles.scss';
 import 'antd/dist/antd.css';
 
 const MoviePage = () => {
-    const dispatch = useDispatch();
-    const movieList = useSelector(state => state.movieReducer.movieList);
-    const [isVideoOpened, setIsVideoOpened] = useState(false);
-    const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
+  const dispatch = useDispatch();
+  const movieList = useSelector(state => state.movieReducer.movieList);
+  const [isVideoOpened, setIsVideoOpened] = useState(false);
+  const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
-    const handleOpen = (indexOfFilm) => {
-        const id = movieList[indexOfFilm].trailer.slice(29);
-        setIdOfCurrentVideo(id);
-        setIsVideoOpened(true);
-        document.body.setAttribute('style', 'overflow: hidden');
-    }
+  const handleOpen = (indexOfFilm) => {
+    const id = movieList[indexOfFilm].trailer.slice(29);
+    setIdOfCurrentVideo(id);
+    setIsVideoOpened(true);
+    document.body.setAttribute('style', 'overflow: hidden');
+  }
 
-    const handleClose = () => {
-        setIsVideoOpened(false);
-        document.body.setAttribute('style', 'overflow: unset');
-    }
+  const handleClose = () => {
+    setIsVideoOpened(false);
+    document.body.setAttribute('style', 'overflow: unset');
+  }
 
-    useEffect(() => dispatch(getMovieList()), [])
+  useEffect(() => dispatch(getMovieList()), [])
 
-    return (
-        <Fragment>
-            <NavBar />
-            <div className="movie-page">
-                <h1>Movie</h1>
-                <Row>
-                    {movieList?.map((movie, index) => (
-                        <Col
-                            span={6}
-                            key={index}
-                            className="card-container"
-                        >
-                            <MovieCard
-                                card={movie}
-                                handleOpenTrailer={handleOpen}
-                                index={index}
-                            />
-                        </Col>
-                    ))}
-                </Row>
-            </div>
-            <Footer />
-            <ModalVideo
-                channel='youtube'
-                isOpen={isVideoOpened}
-                videoId={idOfCurrentVideo}
-                onClose={handleClose}
-            />
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <NavBar />
+      <div className="movie-page">
+        <h1>Movie</h1>
+        <Row>
+          {movieList?.map((movie, index) => (
+            <Col
+              span={6}
+              key={index}
+              className="card-container"
+            >
+              <MovieCard
+                card={movie}
+                handleOpenTrailer={handleOpen}
+                index={index}
+              />
+            </Col>
+          ))}
+        </Row>
+      </div>
+      <Footer />
+      <ModalVideo
+        channel='youtube'
+        isOpen={isVideoOpened}
+        videoId={idOfCurrentVideo}
+        onClose={handleClose}
+      />
+    </Fragment>
+  )
 }
 
 export default MoviePage;

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,WAFO,AACR,oBAAoB,CACnB,IAAI,CAAC;EACH,KAAK,EAAE,kBAAkB;CAC1B;;AAJL,AAME,WANS,CAMT,oBAAoB,CAAC;EACnB,MAAM,EAAE,eAAe;CAKxB;;AAZH,AAQI,WARO,CAMT,oBAAoB,CAElB,IAAI,CAAC;EACH,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,GAAG;CACjB;;AAIL,AAAA,QAAQ,CAAC;EACP,MAAM,EAAE,eAAe;CACxB",
+    "sources": [
+        "../SearchBar/styles.scss"
+    ],
+    "names": [],
+    "file": "styles.css"
+}

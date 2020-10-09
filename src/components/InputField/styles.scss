@@ -1,53 +1,52 @@
 .form-group {
-    position: relative;
-    height: 80px;
+  position: relative;
+  height: 80px;
 }
 
 .form-label {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    color: #999;
-    background-color: #fff;
-    z-index: 10;
-    transition: transform 150ms ease-out, font-size 150ms ease-out;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #999;
+  background-color: #fff;
+  z-index: 10;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
 .focused .form-label {
-    transform: translateY(-125%);
-    font-size: 0.75em;
-    // color: blue;
-    color: purple;
+  transform: translateY(-125%);
+  font-size: 0.75em;
+  color: purple;
 }
 
 .form-input {
-    position: relative;
-    padding: 12px 0px 5px 0;
-    width: 100%;
-    outline: 0;
-    border: 0;
-    box-shadow: 0 1px 0 0 #e5e5e5;
-    transition: box-shadow 150ms ease-out;
+  position: relative;
+  padding: 12px 0px 5px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 1px 0 0 #e5e5e5;
+  transition: box-shadow 150ms ease-out;
 
-    &:focus {
-        box-shadow: 0 2px 0 0 purple;
-    }
+  &:focus {
+    box-shadow: 0 2px 0 0 purple;
+  }
 
-    &.filled ~ label {
-        color: #999;
-    }
+  &.filled ~ label {
+    color: #999;
+  }
 }
 
 .form-input-error:focus {
-    box-shadow: 0 2px 0 0 red;
+  box-shadow: 0 2px 0 0 red;
 
-    & ~ label {
-        color: red;
-    }
+  & ~ label {
+    color: red;
+  }
 }
 
 p {
-    font-size: 13px;
-    text-align: left;
-    color: red;
+  font-size: 13px;
+  text-align: left;
+  color: red;
 }

@@ -6,41 +6,41 @@ import { NavLink } from 'react-router-dom';
 import './styles.scss';
 
 const MovieCard = ({ card, handleOpenTrailer, index }) => {
-    return (
-        <div className="movie-card">
-            <div className="card-media">
-                <NavLink to={`/movie/id=${card.maPhim}`}>
-                    <img className="card-image" src={card.hinhAnh} />
-                </NavLink>
-            </div>
-            <div className="card-text">
-                <div className="card-name">
-                    <span className="label">
-                        {card.nhan ? card.nhan : 'P'}
-                    </span>
-                    <span className="name">{card.tenPhim.toUpperCase()}</span>
-                </div>
-                <p className="card-time">
-                    {card.thoiGian ? card.thoiGian : 120} minutes
-                    </p>
-            </div>
-            <div className="card-progress">
-                <h3>{card.danhGia}</h3>
-                <Rating value={card.danhGia / 2} readOnly />
-            </div>
-            <NavLink to={`/movie/id=${card.maPhim}`}>
-                <div className="card-overlay" />
-            </NavLink>
-            <div className="card-play-icon" onClick={() => handleOpenTrailer(index)}>
-                <PlayArrowIcon />
-            </div>
-            <div className="card-button">
-                <NavLink to={`/movie/id=${card.maPhim}`}>
-                    <div>BUY TICKET</div>
-                </NavLink>
-            </div>
+  return (
+    <div className="movie-card">
+      <div className="card-media">
+        <NavLink to={`/movie/id=${card.maPhim}`}>
+          <img className="card-image" src={card.hinhAnh} />
+        </NavLink>
+      </div>
+      <div className="card-text">
+        <div className="card-name">
+          <span className="label">
+            {card.nhan ? card.nhan : 'P'}
+          </span>
+          <span className="name">{card.tenPhim.toUpperCase()}</span>
         </div>
-    );
+        <p className="card-time">
+          {card.thoiGian ? card.thoiGian : 120} minutes
+                    </p>
+      </div>
+      <div className="card-progress">
+        <h3>{card.danhGia}</h3>
+        <Rating value={card.danhGia / 2} readOnly />
+      </div>
+      <NavLink to={`/movie/id=${card.maPhim}`}>
+        <div className="card-overlay" />
+      </NavLink>
+      <div className="card-play-icon" onClick={() => handleOpenTrailer(index)}>
+        <PlayArrowIcon />
+      </div>
+      <div className="card-button">
+        <NavLink to={`/movie/id=${card.maPhim}`}>
+          <div>BUY TICKET</div>
+        </NavLink>
+      </div>
+    </div>
+  );
 }
 
 export default MovieCard;

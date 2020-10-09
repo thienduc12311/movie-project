@@ -1,41 +1,41 @@
 .cinema-field {
-    .ant-tabs-tab {
-        width: 350px;
-        position: relative;
-        height: 45px !important;
-        padding: 0 !important;
-        margin: 10px 0 !important;
+  .ant-tabs-tab {
+    width: 350px;
+    position: relative;
+    height: 45px !important;
+    padding: 0 !important;
+    margin: 10px 0 !important;
 
-        .cinema-logo {
-            position: absolute;
-            top: 0;
-            left: 24px;
-            width: 45px;
-            height: 45px;
-            border-radius: 5px;
-        }
-
-        .cinema-info {
-            position: absolute;
-            top: 50%;
-            left: 80px;
-            transform: translateY(-50%);
-
-            p {
-                margin: 0;
-                font-size: 14px;
-                color: black;
-            }
-
-            .cinema-address {
-                font-size: 12px;
-                color: #949494;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                width: 150px;
-                font-weight: normal !important;
-            }
-        }
+    .cinema-logo {
+      position: absolute;
+      top: 0;
+      left: 24px;
+      width: 45px;
+      height: 45px;
+      border-radius: 5px;
     }
+
+    .cinema-info {
+      position: absolute;
+      top: 50%;
+      left: 80px;
+      transform: translateY(-50%);
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: black;
+      }
+
+      .cinema-address {
+        font-size: 12px;
+        color: #949494;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 150px;
+        font-weight: normal !important;
+      }
+    }
+  }
 }

@@ -10,56 +10,56 @@ import CinemaPage from '../components/CinemaPage';
 import UserPage from '../containers/UserPage';
 
 const customerRoutes = [
-    {
-        exact: true,
-        path: '/',
-        component: HomePage
-    },
-    {
-        exact: true,
-        path: '/movie',
-        component: MoviePage
-    },
-    {
-        exact: false,
-        path: '/movie/id=:movieId',
-        component: MovieDetailPage
-    },
-    {
-        exact: true,
-        path: '/news',
-        component: NewsPage
-    },
-    {
-        exact: false,
-        path: '/news/id=:newsId',
-        component: NewsDetailPage
-    },
-    {
-        exact: true,
-        path: '/cinema-complex',
-        component: CinemaComplexPage
-    },
-    {
-        exact: false,
-        path: '/cinema-complex/:cinemaId',
-        component: CinemaPage
-    },
-    {
-        exact: true,
-        path: '/account',
-        component: UserPage
-    },
-    {
-        exact: false,
-        path: '/account/signin',
-        component: SignIn
-    },
-    {
-        exact: false,
-        path: '/account/signup',
-        component: SignUp
-    },
+  {
+    exact: true,
+    path: '/',
+    component: HomePage
+  },
+  {
+    exact: true,
+    path: '/movie',
+    component: MoviePage
+  },
+  {
+    exact: false,
+    path: '/movie/id=:movieId',
+    component: MovieDetailPage
+  },
+  {
+    exact: true,
+    path: '/news',
+    component: NewsPage
+  },
+  {
+    exact: false,
+    path: '/news/id=:newsId',
+    component: NewsDetailPage
+  },
+  {
+    exact: true,
+    path: '/cinema-complex',
+    component: CinemaComplexPage
+  },
+  {
+    exact: false,
+    path: '/cinema-complex/:cinemaId',
+    component: CinemaPage
+  },
+  {
+    exact: true,
+    path: '/account',
+    component: UserPage
+  },
+  {
+    exact: false,
+    path: '/account/signin',
+    component: SignIn
+  },
+  {
+    exact: false,
+    path: '/account/signup',
+    component: SignUp
+  },
 ];
 
 export { customerRoutes };

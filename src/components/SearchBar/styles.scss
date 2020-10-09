@@ -1,18 +1,18 @@
 .ant-select {
-    &.ant-select-disabled {
-        span {
-            color: #bfbfbf !important;
-        }
+  &.ant-select-disabled {
+    span {
+      color: #bfbfbf !important;
     }
-    .ant-select-selector {
-        border: none !important;
-        span {
-            color: black;
-            font-weight: 500;
-        }
+  }
+  .ant-select-selector {
+    border: none !important;
+    span {
+      color: black;
+      font-weight: 500;
     }
+  }
 }
 
 .ant-btn {
-    border: none !important;
+  border: none !important;
 }

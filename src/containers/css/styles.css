@@ -1,0 +1,41 @@
+.user-page {
+  margin-top: 60px;
+}
+
+.user-page .options-field {
+  position: relative;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.user-page .options-field .options-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.user-page .options-field .options-content .options-avatar {
+  text-align: center;
+}
+
+.user-page .options-field .options-content .options-button .options-btn {
+  color: black;
+  text-align: center;
+  padding: 5px 50px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.user-page .options-field .options-content .options-button .options-btn.options-signin {
+  background-color: lightblue;
+}
+
+.user-page .options-field .options-content .options-button .options-btn.options-signup {
+  background-color: bisque;
+}
+/*# sourceMappingURL=styles.css.map */
