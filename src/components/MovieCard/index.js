@@ -1,8 +1,5 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import Rating from '@material-ui/lab/Rating';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { NavLink } from 'react-router-dom';
 
@@ -10,28 +7,39 @@ import './styles.scss';
 
 const MovieCard = ({ card, handleOpenTrailer, index }) => {
     return (
-        <Card className="movie-card">
-            <CardActionArea className="card-content">
-                <CardMedia
-                    component="img"
-                    image={card.hinhAnh}
-                    className='card-image'
-                />
-                <CardContent className="card-body">
-                    <NavLink to={`/movie/id=${card.maPhim}`}>
-                        <div className="card-text">
-                            {card.tenPhim}
-                        </div>
-                    </NavLink>
-                </CardContent>
-            </CardActionArea>
+        <div className="movie-card">
+            <div className="card-media">
+                <NavLink to={`/movie/id=${card.maPhim}`}>
+                    <img className="card-image" src={card.hinhAnh} />
+                </NavLink>
+            </div>
+            <div className="card-text">
+                <div className="card-name">
+                    <span className="label">
+                        {card.nhan ? card.nhan : 'P'}
+                    </span>
+                    <span className="name">{card.tenPhim.toUpperCase()}</span>
+                </div>
+                <p className="card-time">
+                    {card.thoiGian ? card.thoiGian : 120} minutes
+                    </p>
+            </div>
+            <div className="card-progress">
+                <h3>{card.danhGia}</h3>
+                <Rating value={card.danhGia / 2} readOnly />
+            </div>
             <NavLink to={`/movie/id=${card.maPhim}`}>
-                <div className="card-overlay"></div>
+                <div className="card-overlay" />
             </NavLink>
             <div className="card-play-icon" onClick={() => handleOpenTrailer(index)}>
                 <PlayArrowIcon />
             </div>
-        </Card>
+            <div className="card-button">
+                <NavLink to={`/movie/id=${card.maPhim}`}>
+                    <div>BUY TICKET</div>
+                </NavLink>
+            </div>
+        </div>
     );
 }
 

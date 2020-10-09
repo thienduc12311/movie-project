@@ -22,7 +22,7 @@ const CinemaComplexPage = () => {
                 title={
                     <span>
                         <img src={cinemaComplex.logo} />
-                        <span >{cinemaComplex.tenHeThongRap}</span>
+                        <span>{cinemaComplex.tenHeThongRap}</span>
                     </span>
                 }
             >

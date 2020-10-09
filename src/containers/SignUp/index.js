@@ -9,7 +9,7 @@ import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const {Options} = Select;
+const Option = Select.Option;
 
 const optionSelectors = [
   {value: 'GP01', text: 'GP01'},
@@ -39,10 +39,6 @@ const SignUp = () => {
       errors: errors,
       validator: register({
         required: 'Enter name',
-        pattern: {
-          value: /^[A-Za-z]+$/,
-          message: 'Use normal characters only',
-        },
       }),
       colSpan: 24,
     },
@@ -64,8 +60,8 @@ const SignUp = () => {
       validator: register({
         required: 'Enter password',
         minLength: {
-          value: 10,
-          message: 'Use 10 or more characters',
+          value: 6,
+          message: 'Use 6 or more characters',
         },
       }),
       colSpan: 12,

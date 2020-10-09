@@ -8,6 +8,19 @@ import './styles.scss';
 const {TabPane} = Tabs;
 
 const CinemaTab = ({cinemaList}) => {
+  const handleName = (name) => {
+    const indexOfHyphen = name.indexOf('-');
+    const firstName = name.slice(0, indexOfHyphen);
+    const lastName = name.slice(indexOfHyphen - 1);
+    return (
+      <p className="cinema-name">
+        <span style={{color: '#8bc541'}}>{firstName}</span>
+        <span>{lastName}</span>
+      </p>
+    );
+  };
+
+  console.log(cinemaList[0]);
   return (
     <Tabs
       defaultActiveKey="0"
@@ -21,15 +34,16 @@ const CinemaTab = ({cinemaList}) => {
           key={i}
           tab={
             <span>
-              <span>
-                <NavLink to={`/cinema-complex/${cinemaList[i].maCumRap}`}>
-                  <img
-                    className="cinema-logo"
-                    src="https://s3img.vcdn.vn/123phim/2018/09/bhd-star-vincom-3-2-15379531630228.jpg"
-                  />
-                </NavLink>
-              </span>
-              <span className="cinema-name">{cinemaList[i].tenCumRap}</span>
+              <NavLink to={`/cinema-complex/${cinemaList[i].maCumRap}`}>
+                <img
+                  className="cinema-logo"
+                  src="https://s3img.vcdn.vn/123phim/2018/09/bhd-star-vincom-3-2-15379531630228.jpg"
+                />
+              </NavLink>
+              <div className="cinema-info">
+                {handleName(cinemaList[i].tenCumRap)}
+                <p className="cinema-address">{cinemaList[i].diaChi}</p>
+              </div>
             </span>
           }
         >
