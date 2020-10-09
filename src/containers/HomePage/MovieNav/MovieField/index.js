@@ -3,10 +3,10 @@ import MovieTab from '../../../../components/MovieTab';
 
 import './styles.scss';
 
-const MovieField = ({ movieList }) => {
+const MovieField = ({ movieList, isBigScreen }) => {
     return (
         <div className="movie-field">
-            {movieList.map((movie, index) => <MovieTab key={index} movie={movie} />)}
+            {movieList.map((movie, index) => <MovieTab key={index} movie={movie} isBigScreen={isBigScreen} />)}
         </div >
     )
 }

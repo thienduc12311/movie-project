@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 import './styles.scss';
 
-const MovieTab = ({ movie }) => {
+const MovieTab = ({ movie, isBigScreen }) => {
     const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
     const handleFilterDateOptions = (dateTimeArray) => {
@@ -27,7 +27,7 @@ const MovieTab = ({ movie }) => {
                     dateArray.push(currentDate);
             }
         })
-        if (dateArray.length > 2)
+        if (!isBigScreen && dateArray.length > 2)
             dateArray = dateArray.slice(-2);
         return dateArray;
     }
@@ -61,14 +61,26 @@ const MovieTab = ({ movie }) => {
         ))
     }
 
+    let settings;
     const renderTimeField = (dateTimeArray, date) => {
         const timeArray = handleFilterTimeOptions(dateTimeArray, date);
+        if (isBigScreen)
+            settings = {
+                xs: 12,
+                sm: 4,
+                md: 3,
+                lg: 2,
+            };
+        else
+            settings = {
+                xs: 4
+            };
         return timeArray.map((time, index) => (
             <Grid
                 item
                 key={index}
-                xs={4}
                 onClick={() => handleClick(date, time, dateTimeArray)}
+                {...settings}
             >
                 <span className="movie-time-selector">{time}</span>
             </Grid>
@@ -83,16 +95,18 @@ const MovieTab = ({ movie }) => {
     }
 
     return (
-        <TableContainer>
+        <TableContainer style={{ marginBottom: 10 }} >
             <Table stickyHeader aria-label="sticky table">
                 <TableBody>
                     <TableRow onClick={() => setIsDropdownOpened(!isDropdownOpened)}>
-                        <TableCell style={{ width: 50, height: 50, padding: 5, border: 'none' }}>
+                        <TableCell
+                            className={isBigScreen ? "movie-logo-container-bigscreen" : "movie-logo-container"}
+                        >
                             <NavLink to={`/movie/id=${movie.maPhim}`}>
                                 <img className="movie-logo" src={movie.hinhAnh} />
                             </NavLink>
                         </TableCell>
-                        <TableCell style={{ border: 'none' }}>
+                        <TableCell style={{ border: 'none', padding: '16px 0 16px 15px' }}>
                             <h4 className="movie-name">
                                 <span className="movie-label">C16</span>
                                 {movie.tenPhim}

@@ -7,7 +7,7 @@
         .cinema-background {
             width: 100%;
             height: auto;
-            filter: blur(15px);
+            filter: blur(35px);
         }
 
         .cinema-info {
@@ -15,13 +15,13 @@
             top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 660px;
+            width: 760px;
 
             img {
-                width: 150px;
+                width: 190px;
                 height: auto;
                 display: block;
-                border-radius: 5px;
+                border-radius: 7px;
             }
 
             .cinema-details {
@@ -61,16 +61,47 @@
                 }
             }
         }
+
+        .card-progress {
+            display: none;
+            top: 10px;
+            right: 10px;
+            background-color: #354257d5;
+            width: 60px;
+            padding: 5px 5px 0;
+            z-index: 1;
+            position: absolute;
+            border-radius: 5px;
+
+            h3 {
+                color: white;
+                text-align: center;
+                margin: 0;
+            }
+
+            .MuiRating-root {
+                width: 50px;
+
+                span {
+                    width: 10px;
+
+                    svg {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 
     .cinema-showtime-info {
-        margin-top: 50px;
+        margin-top: 10px;
+        padding: 0 50px;
 
         .cinema-details {
             display: none;
 
             p {
-                color: #333;
+                color: #9b9b9b;
                 margin: 0;
                 font-size: 14px;
 
@@ -88,6 +119,71 @@
                 }
             }
         }
+
+        .cinema-table {
+            max-width: 900px;
+            margin: 30px auto 0;
+
+            .ant-tabs-nav::before {
+                border: none;
+            }
+
+            .ant-tabs-nav-list {
+                .ant-tabs-tab {
+                    color: #000;
+                    transition: all 0.1s;
+                    cursor: pointer;
+                    font-size: 20px;
+                    font-weight: normal;
+                    align-items: flex-end;
+                    margin: 0 15px;
+
+                    &:hover {
+                        font-size: 24px;
+                        font-weight: 500;
+                        padding: 12px 10px;
+                    }
+                }
+
+                .ant-tabs-tab-active {
+                    .ant-tabs-tab-btn {
+                        color: #fb4226;
+                        font-size: 24px;
+                        font-weight: 500;
+                    }
+
+                    &:hover {
+                        font-size: 24px;
+                        font-weight: 500;
+                        padding: 12px 0;
+                    }
+                }
+
+                .ant-tabs-ink-bar {
+                    background: transparent;
+                }
+            }
+
+            .cinema-table-tab-pane-details {
+                p {
+                    font-size: 14px;
+                    color: #4a4a4a;
+                    word-spacing: 2px;
+
+                    &.cinema-tab-title {
+                        color: #333;
+                        font-weight: 500;
+                    }
+                }
+
+                .cinema-tab-address {
+                    width: 90%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
     }
 }
 
@@ -101,11 +197,32 @@
             .cinema-info {
                 display: none;
             }
+
+            .card-progress {
+                display: block;
+            }
         }
 
         .cinema-showtime-info {
             .cinema-details {
                 display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .cinema-showtime-info {
+        padding: 0 30px !important;
+
+        .cinema-table {
+            .ant-tabs-tab:hover {
+                padding: 12px 0 !important;
+            }
+
+            .ant-tabs-tab-btn {
+                font-size: 16px !important;
+                font-weight: 500;
             }
         }
     }
