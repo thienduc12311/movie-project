@@ -107,7 +107,7 @@ const MovieTab = ({ movie, isBigScreen }) => {
               </NavLink>
             </TableCell>
             <TableCell style={{ border: 'none', padding: '16px 0 16px 15px' }}>
-              <h4 className="movie-name">
+              <h4 className="movie-name-table">
                 <span className="movie-label">C16</span>
                 {movie.tenPhim}
               </h4>

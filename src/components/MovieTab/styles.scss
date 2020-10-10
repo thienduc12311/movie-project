@@ -30,7 +30,7 @@
   }
 }
 
-.movie-name {
+.movie-name-table {
   margin: 0;
   font-weight: 700 !important;
 
@@ -67,7 +67,7 @@
 }
 
 @media only screen and (max-width: 570px) {
-  .movie-name {
+  .movie-name-table {
     width: 200px;
     white-space: nowrap;
     overflow: hidden;

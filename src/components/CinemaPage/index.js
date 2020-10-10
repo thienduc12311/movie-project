@@ -9,7 +9,7 @@ import MovieField from '../../containers/HomePage/MovieNav/MovieField';
 import Rating from '@material-ui/lab/Rating';
 
 import './styles.scss';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
 
 const { TabPane } = Tabs;
 
@@ -59,7 +59,7 @@ const CinemaPage = (props) => {
 							<Col span={6}>
 								<Progress
 									strokeColor="#7ED321"
-									trailColor="#656A56"
+									trailColor="#333"
 									type="circle"
 									percent={83}
 									format={() => '8.3'}

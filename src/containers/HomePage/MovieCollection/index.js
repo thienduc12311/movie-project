@@ -67,7 +67,7 @@ const movieList = [
   {
     maPhim: 2528,
     tenPhim: 'Mắt Biếc',
-    hinhAnh: 'https://lh3.googleusercontent.com/proxy/AEMvwTzJmUfRAVLUs6p4fxhWU_JNISglvC2hPMp5mt4inK55XYX_tg-vMKBcDLB3O2-YLyHC7JnvdjBeclXIHXDLYRPIgdKMUuxPrRUx',
+    hinhAnh: 'https://kenh14cdn.com/thumb_w/660/2019/7/9/photo-1-15626383654031927173029.jpg',
     trailer: 'ITlQ0oU7tDA',
     danhGia: 9,
     thoiGian: 117,
@@ -92,7 +92,7 @@ const movieList = [
     nhan: 'C16',
   },
   {
-    maPhim: 2684,
+    maPhim: 2864,
     tenPhim: 'Transformers',
     hinhAnh: 'https://images-na.ssl-images-amazon.com/images/I/71I0zJJ2dqL._AC_SY879_.jpg',
     trailer: 'dYDGqmxMZFI',

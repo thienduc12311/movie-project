@@ -6,6 +6,7 @@ import {
   SET_TIME_OPTIONS,
   SET_CINEMA_COMPLEX_INFO,
   SET_CINEMA_INFO,
+  SET_MOVIE_INFO
 } from '../constants/movieConstants';
 import { get } from '../../utils/ApiCaller';
 import moment from 'moment';
@@ -126,6 +127,18 @@ export const getCinemaInfo = (cinemaId) => {
         dispatch({
           type: SET_CINEMA_INFO,
           cinemaInfo: getCinema(res.data)
+        })
+      })
+  }
+}
+
+export const getMovieInfo = movieId => {
+  return dispatch => {
+    get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`)
+      .then(res => {
+        dispatch({
+          type: SET_MOVIE_INFO,
+          movieInfo: res.data
         })
       })
   }
