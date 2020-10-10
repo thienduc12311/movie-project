@@ -33,7 +33,10 @@ const CinemaPage = (props) => {
 		)
 	}
 
-	useEffect(() => dispatch(getCinemaInfo(cinemaId)), [])
+	useEffect(() => {
+		dispatch(getCinemaInfo(cinemaId));
+		return () => document.title = "Movie Project";
+	}, [])
 
 	return (
 		cinema &&

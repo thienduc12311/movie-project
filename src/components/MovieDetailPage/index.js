@@ -68,7 +68,11 @@ const MovieDetailPage = (props) => {
     dispatch(getCinemaComplexOptions(movieId));
     window.addEventListener("resize", handleResize);
     handleResize();
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.title = "Movie Project";
+    }
   }, [])
 
   return (
