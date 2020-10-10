@@ -46,7 +46,7 @@ const CinemaPage = (props) => {
 						src={background}
 					/>
 					<div className="cinema-info">
-						<Row gutter={[100, 0]}>
+						<Row>
 							<Col span={6}>
 								<img src="https://s3img.vcdn.vn/123phim/2018/09/bhd-star-vincom-3-2-15379531630228.jpg" />
 							</Col>

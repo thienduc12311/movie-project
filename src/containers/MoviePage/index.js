@@ -17,7 +17,7 @@ const MoviePage = () => {
   const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
   const handleOpen = (indexOfFilm) => {
-    const id = movieList[indexOfFilm].trailer.slice(29);
+    const id = movieList[indexOfFilm].trailer[24] === 'w' ? movieList[indexOfFilm].trailer.slice(32) : movieList[indexOfFilm].trailer.slice(29);
     setIdOfCurrentVideo(id);
     setIsVideoOpened(true);
     document.body.setAttribute('style', 'overflow: hidden');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 import './styles.scss';
 
-const MovieTab = ({ movie, isBigScreen }) => {
+const MovieTab = ({ movie, cinema, isBigScreen }) => {
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   const handleFilterDateOptions = (dateTimeArray) => {
@@ -94,30 +94,58 @@ const MovieTab = ({ movie, isBigScreen }) => {
     console.log(showtimeInfo);
   }
 
+  const handleName = name => {
+    const indexOfHyphen = name.indexOf('-');
+    const firstName = name.slice(0, indexOfHyphen);
+    const lastName = name.slice(indexOfHyphen - 1);
+    return (
+      <Fragment>
+        <span style={{ color: '#8bc541' }}>{firstName}</span>
+        <span>{lastName}</span>
+      </Fragment>
+    )
+  }
+
   return (
-    <TableContainer style={{ marginBottom: 10 }} >
+    <TableContainer style={{ marginBottom: 10 }}>
       <Table stickyHeader aria-label="sticky table">
         <TableBody>
           <TableRow onClick={() => setIsDropdownOpened(!isDropdownOpened)}>
             <TableCell
               className={isBigScreen ? "movie-logo-container-bigscreen" : "movie-logo-container"}
             >
-              <NavLink to={`/movie/id=${movie.maPhim}`}>
-                <img className="movie-logo" src={movie.hinhAnh} />
-              </NavLink>
+              {movie &&
+                <NavLink to={`/movie/id=${movie.maPhim}`}>
+                  <img className="movie-logo" src={movie.hinhAnh} />
+                </NavLink>}
+              {cinema &&
+                <NavLink to={`/cinema-complex/${cinema.maCumRap}`}>
+                  <img className="movie-logo" src="https://s3img.vcdn.vn/123phim/2018/09/bhd-star-vincom-3-2-15379531630228.jpg" />
+                </NavLink>}
             </TableCell>
             <TableCell style={{ border: 'none', padding: '16px 0 16px 15px' }}>
-              <h4 className="movie-name-table">
-                <span className="movie-label">C16</span>
-                {movie.tenPhim}
-              </h4>
-              <p className="movie-more-details">120 minutes - TIX 9.3 - IMDb 0</p>
+              {movie &&
+                <Fragment>
+                  <h4 className="movie-name-table">
+                    <span className="movie-label">C16</span>
+                    {movie.tenPhim}
+                  </h4>
+                  <p className="movie-more-details">120 minutes - TIX 9.3 - IMDb 0</p>
+                </Fragment>}
+              {cinema &&
+                <Fragment>
+                  <h4 className="movie-name-table">
+                    {handleName(cinema.tenCumRap)}
+                  </h4>
+                  <p className="movie-more-details">Ho Chi Minh city, Viet Nam</p>
+                </Fragment>}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0, border: 'none' }} colSpan={6}>
               <Collapse in={isDropdownOpened} timeout="auto" unmountOnExit>
-                {renderDateTimeField(movie.lstLichChieuTheoPhim)}
+                {movie && renderDateTimeField(movie.lstLichChieuTheoPhim)}
+                {cinema && renderDateTimeField(cinema.lichChieuPhim)}
               </Collapse>
             </TableCell>
           </TableRow>
