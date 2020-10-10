@@ -140,35 +140,34 @@ const MovieDetailPage = (props) => {
                 <TabPane className="movie-table-tab-pane" tab="Showtime" key="1">
                   {renderShowtime()}
                 </TabPane>}
-              {cinemaComplexOptions?.length <= 0 &&
-                <TabPane
-                  className="movie-table-tab-pane-details"
-                  tab="Information"
-                  key="2"
-                >
-                  <Row gutter={[0, 20]}>
-                    <Col xs={13} sm={8} md={5}>
-                      <p className="movie-tab-title">Release Date</p>
-                      <p className="movie-tab-title">Directors</p>
-                      <p className="movie-tab-title">Cast</p>
-                      <p className="movie-tab-title">Category</p>
-                      <p className="movie-tab-title">Format</p>
-                      <p className="movie-tab-title">Country Of Production</p>
-                    </Col>
-                    <Col xs={11} sm={16} md={7}>
-                      <p>12 Dec 2020</p>
-                      <p>Christopher</p>
-                      <p>Tom Cruise</p>
-                      <p>Action</p>
-                      <p>2D / Digital</p>
-                      <p>America</p>
-                    </Col>
-                    <Col xs={24} md={12}>
-                      <p className="movie-tab-title">Content</p>
-                      <p>{movie.tenPhim} is the next project of talented director Christopher is a film related to espionage</p>
-                    </Col>
-                  </Row>
-                </TabPane>}
+              <TabPane
+                className="movie-table-tab-pane-details"
+                tab="Information"
+                key="2"
+              >
+                <Row gutter={[0, 20]}>
+                  <Col xs={13} sm={8} md={5}>
+                    <p className="movie-tab-title">Release Date</p>
+                    <p className="movie-tab-title">Directors</p>
+                    <p className="movie-tab-title">Cast</p>
+                    <p className="movie-tab-title">Category</p>
+                    <p className="movie-tab-title">Format</p>
+                    <p className="movie-tab-title">Country Of Production</p>
+                  </Col>
+                  <Col xs={11} sm={16} md={7}>
+                    <p>12 Dec 2020</p>
+                    <p>Christopher</p>
+                    <p>Tom Cruise</p>
+                    <p>Action</p>
+                    <p>2D / Digital</p>
+                    <p>America</p>
+                  </Col>
+                  <Col xs={24} md={12}>
+                    <p className="movie-tab-title">Content</p>
+                    <p>{movie.tenPhim} is the next project of talented director Christopher is a film related to espionage</p>
+                  </Col>
+                </Row>
+              </TabPane>
             </Tabs>
           </div>
         </div>
