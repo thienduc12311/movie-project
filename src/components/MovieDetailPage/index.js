@@ -9,6 +9,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ModalVideo from 'react-modal-video';
 import { getCinemaComplexOptions } from '../../redux/actions/movieAction';
 import MovieField from '../../containers/HomePage/MovieNav/MovieField';
+import LoadingPage from '../../components/LoadingPage';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -61,24 +62,8 @@ const MovieDetailPage = (props) => {
     </Tabs>
   )
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidthSize(window.innerWidth)
-
-    dispatch(getMovieInfo(movieId));
-    dispatch(getCinemaComplexOptions(movieId));
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      document.title = "Movie Project";
-    }
-  }, [])
-
-  return (
-    movie &&
+  const renderMovieDetailPage = () => (
     <Fragment>
-      <NavBar />
       <div className="movie-detail-page">
         <div className="movie-cover">
           <img className="movie-background" src="https://static-cse.canva.com/blob/140259/ComposeStunningImages7.jpg" />
@@ -176,13 +161,34 @@ const MovieDetailPage = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
       <ModalVideo
         channel='youtube'
         isOpen={isVideoModalOpened}
         videoId={idOfCurrentVideo}
         onClose={handleClose}
       />
+    </Fragment>
+  )
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidthSize(window.innerWidth)
+
+    dispatch(getMovieInfo(movieId));
+    dispatch(getCinemaComplexOptions(movieId));
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.title = "Movie Project";
+    }
+  }, [])
+
+  return (
+    <Fragment>
+      <NavBar />
+      {movie && cinemaComplexOptions ? renderMovieDetailPage() : <LoadingPage />}
+      <Footer />
     </Fragment>
   )
 }

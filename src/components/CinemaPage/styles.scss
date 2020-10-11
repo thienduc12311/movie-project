@@ -1,5 +1,6 @@
 .cinema-page {
   margin-top: 60px;
+  animation: transform-when-loaded 1s;
 
   .cinema-cover {
     position: relative;

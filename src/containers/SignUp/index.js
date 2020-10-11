@@ -4,6 +4,8 @@ import { Row, Col, Select } from 'antd';
 import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 import './styles.scss';
@@ -135,6 +137,7 @@ const SignUp = () => {
 
   return (
     <Fragment>
+      <NavBar />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-heading">Creat Account</div>
@@ -179,6 +182,7 @@ const SignUp = () => {
         text={text}
         options={[{ label: 'OK' }]}
       />
+      <Footer />
     </Fragment>
   );
 };

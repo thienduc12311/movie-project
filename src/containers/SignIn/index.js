@@ -4,6 +4,8 @@ import { Row, Col, Select } from 'antd';
 import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 import './styles.scss';
@@ -11,7 +13,7 @@ import 'antd/dist/antd.css';
 
 let text;
 
-const SignUp = () => {
+const SignIn = () => {
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register } = useForm();
 
@@ -27,6 +29,7 @@ const SignUp = () => {
 
   return (
     <Fragment>
+      <NavBar />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-heading">LOGIN</div>
@@ -66,8 +69,9 @@ const SignUp = () => {
         text={text}
         options={[{ label: 'OK' }]}
       />
+      <Footer />
     </Fragment>
   );
 }
 
-export default SignUp;
+export default SignIn;

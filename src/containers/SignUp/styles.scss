@@ -9,6 +9,8 @@ $bg-image: "../../assets/img/bg_signup.jpg";
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  animation: transform-when-loaded 1s;
+  margin-top: 60px;
 
   .signup-content {
     margin: auto;

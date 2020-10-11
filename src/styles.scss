@@ -25,3 +25,12 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: grey;
 }
+
+@keyframes transform-when-loaded {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

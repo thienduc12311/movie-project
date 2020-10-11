@@ -1,6 +1,8 @@
 $bg-image: "../../assets/img/back-news.jpg";
 
 .home {
+  animation: transform-when-loaded 1s;
+
   .search-box,
   .collection,
   .nav-tab,

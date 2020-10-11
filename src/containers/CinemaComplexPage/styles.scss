@@ -2,6 +2,7 @@
   margin: 60px auto;
   width: 80%;
   min-height: 100vh;
+  animation: transform-when-loaded 1s;
 
   .ant-menu-submenu {
     .ant-menu-submenu-title {

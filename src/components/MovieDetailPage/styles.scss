@@ -1,5 +1,6 @@
 .movie-detail-page {
   margin-top: 60px;
+  animation: transform-when-loaded 1s;
 
   .movie-cover {
     position: relative;

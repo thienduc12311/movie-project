@@ -6,6 +6,7 @@ import { getMovieList } from '../../redux/actions/movieAction';
 import { Row, Col } from 'antd';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
+import LoadingPage from '../../components/LoadingPage';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -28,11 +29,8 @@ const MoviePage = () => {
     document.body.setAttribute('style', 'overflow: unset');
   }
 
-  useEffect(() => dispatch(getMovieList()), [])
-
-  return (
+  const renderMoviePage = () => (
     <Fragment>
-      <NavBar />
       <div className="movie-page">
         <h1>Movie</h1>
         <Row>
@@ -51,13 +49,22 @@ const MoviePage = () => {
           ))}
         </Row>
       </div>
-      <Footer />
       <ModalVideo
         channel='youtube'
         isOpen={isVideoOpened}
         videoId={idOfCurrentVideo}
         onClose={handleClose}
       />
+    </Fragment>
+  )
+
+  useEffect(() => dispatch(getMovieList()), [])
+
+  return (
+    <Fragment>
+      <NavBar />
+      {movieList ? renderMoviePage() : <LoadingPage />}
+      <Footer />
     </Fragment>
   )
 }

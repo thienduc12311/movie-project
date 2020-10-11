@@ -19,35 +19,37 @@ const HomePage = () => {
   useEffect(() => dispatch(getMovieList()), [])
 
   return (
-    <div className="home">
+    <Fragment>
       <NavBar />
-      <div className="carousel">
-        <MovieCarousel />
-      </div>
-      <div className="search-box">
-        <MovieSearchBox />
-      </div>
-      <div className="collection">
-        <NavLink to="/movie">
-          <h2 className="home-title">Movie Collection</h2>
-        </NavLink>
-        <MovieCollection />
-      </div>
-      <div className="break-out"></div>
-      <div className="nav-tab">
-        <MovieNav />
-      </div>
-      <div className="news">
-        <NavLink to="/news">
-          <h2 className="home-title">News</h2>
-        </NavLink>
-        <News />
-      </div>
-      <div className="app">
-        <Application />
+      <div className="home">
+        <div className="carousel">
+          <MovieCarousel />
+        </div>
+        <div className="search-box">
+          <MovieSearchBox />
+        </div>
+        <div className="collection">
+          <NavLink to="/movie">
+            <h2 className="home-title">Movie Collection</h2>
+          </NavLink>
+          <MovieCollection />
+        </div>
+        <div className="break-out"></div>
+        <div className="nav-tab">
+          <MovieNav />
+        </div>
+        <div className="news">
+          <NavLink to="/news">
+            <h2 className="home-title">News</h2>
+          </NavLink>
+          <News />
+        </div>
+        <div className="app">
+          <Application />
+        </div>
       </div>
       <Footer />
-    </div>
+    </Fragment>
   )
 }
 
