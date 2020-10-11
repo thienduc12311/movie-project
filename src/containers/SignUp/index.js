@@ -9,7 +9,7 @@ import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const { Options } = Select;
+const { Option } = Select;
 
 const optionSelectors = [
     { value: "GP01", text: "GP01" },
@@ -26,11 +26,27 @@ const optionSelectors = [
 
 let text;
 
+const initialInputValue = {
+    // hoTen: '',
+    // taiKhoan: '',
+    // matKhau: '',
+    // xacNhanMatKhau: '',
+    // email: '',
+    // soDT: '',
+    hoTen: 'c',
+    taiKhoan: 'x',
+    matKhau: 'c',
+    xacNhanMatKhau: 'a',
+    email: 'c',
+    soDT: '1',
+}
+
 const SignUp = () => {
     const [groupID, setGroupID] = useState('GP01');
     const [isDialogOpened, setIsDialogOpened] = useState(false);
     const { handleSubmit, errors, register, watch } = useForm();
-
+    const [valueOfInput, setValueOfInput] = useState(initialInputValue);
+    console.log(valueOfInput)
     const inputProperties = [
         {
             type: "text",
@@ -44,7 +60,9 @@ const SignUp = () => {
                     message: "Use normal characters only"
                 }
             }),
-            colSpan: 24
+            colSpan: 24,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
         {
             type: "text",
@@ -54,7 +72,9 @@ const SignUp = () => {
             validator: register({
                 required: "Choose an Account name"
             }),
-            colSpan: 24
+            colSpan: 24,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
         {
             type: "password",
@@ -68,7 +88,9 @@ const SignUp = () => {
                     message: "Use 10 or more characters"
                 }
             }),
-            colSpan: 12
+            colSpan: 12,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
         {
             type: "password",
@@ -79,7 +101,9 @@ const SignUp = () => {
                 required: "Confirm password",
                 validate: value => value !== watch('matKhau') ? "Those password didn't match" : undefined
             }),
-            colSpan: 12
+            colSpan: 12,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
         {
             type: "text",
@@ -93,7 +117,9 @@ const SignUp = () => {
                     message: "Invalid email address"
                 }
             }),
-            colSpan: 12
+            colSpan: 12,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
         {
             type: "text",
@@ -107,7 +133,9 @@ const SignUp = () => {
                     message: "Use exactly 10 numbers"
                 }
             }),
-            colSpan: 12
+            colSpan: 12,
+            value: valueOfInput,
+            onChange: setValueOfInput
         },
     ];
 
@@ -154,6 +182,8 @@ const SignUp = () => {
                                                 errors={property.errors}
                                                 validator={property.validator}
                                                 colSpan={property.colSpan}
+                                                value={property.value}
+                                                onChange={property.onChange}
                                             />
                                         )
                                     })
