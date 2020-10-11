@@ -56,10 +56,7 @@ const CinemaComplexPage = () => {
     </div>
   )
 
-  useEffect(() => {
-    dispatch(getCinemaComplexInfo());
-    return () => document.title = "Movie Project";
-  }, [])
+  useEffect(() => dispatch(getCinemaComplexInfo()), [])
 
   return (
     <Fragment>

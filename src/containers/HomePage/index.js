@@ -16,6 +16,8 @@ import './styles.scss';
 const HomePage = () => {
   const dispatch = useDispatch();
 
+  document.title = "Movie Project";
+
   useEffect(() => dispatch(getMovieList()), [])
 
   return (

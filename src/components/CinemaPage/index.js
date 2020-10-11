@@ -115,10 +115,7 @@ const CinemaPage = (props) => {
 		</div>
 	)
 
-	useEffect(() => {
-		dispatch(getCinemaInfo(cinemaId));
-		return () => document.title = "Movie Project";
-	}, [])
+	useEffect(() => dispatch(getCinemaInfo(cinemaId)), [])
 
 	return (
 		<Fragment>

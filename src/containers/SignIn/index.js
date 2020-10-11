@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useForm } from "react-hook-form";
-import { Row, Col, Select } from 'antd';
+import { Row, Col } from 'antd';
 import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
@@ -16,6 +16,8 @@ let text;
 const SignIn = () => {
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register } = useForm();
+
+  document.title = "Sign In - Movie Project";
 
   const onSubmit = async (data) => {
     try {

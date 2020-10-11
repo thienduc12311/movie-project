@@ -55,7 +55,6 @@ const UserPage = () => {
   }
 
   const renderUserPage = () => {
-    console.log(account);
     const renderHeader = () => (
       <div className="user-page-header">
         <div className="header-upper">
@@ -139,7 +138,6 @@ const UserPage = () => {
     const user = LocalStorageUtils.getItem('user');
     if (user)
       fetData(user);
-    return () => document.title = "Movie Project";
   }, [])
 
   return (

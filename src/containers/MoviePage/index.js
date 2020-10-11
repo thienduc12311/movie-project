@@ -60,10 +60,7 @@ const MoviePage = () => {
     </Fragment>
   )
 
-  useEffect(() => {
-    dispatch(getMovieList());
-    return () => document.title = "Movie Project";
-  }, [])
+  useEffect(() => dispatch(getMovieList()), [])
 
   return (
     <Fragment>

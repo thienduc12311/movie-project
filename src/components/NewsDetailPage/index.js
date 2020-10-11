@@ -10,6 +10,8 @@ const NewsDetailPage = (props) => {
   const { newsId } = props.match.params;
   const news = useSelector(state => state.movieReducer.newsArray[newsId]);
 
+  document.title = `${news.title} - Movie Project`;
+
   const renderNewDetailPage = () => (
     <div className="news-detail">
       <h2>{news.title}</h2>

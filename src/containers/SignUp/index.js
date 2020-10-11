@@ -33,6 +33,8 @@ const SignUp = () => {
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register, watch } = useForm();
 
+  document.title = "Sign Up - Movie Project";
+
   const inputProperties = [
     {
       type: "text",

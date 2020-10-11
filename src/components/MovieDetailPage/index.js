@@ -177,10 +177,7 @@ const MovieDetailPage = (props) => {
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      document.title = "Movie Project";
-    }
+    return () => window.removeEventListener("resize", handleResize);
   }, [])
 
   return (

@@ -1,0 +1,35 @@
+$bg-image-apple: "../../../assets/img/apple.jpg";
+
+.user-manage-page {
+  margin: 60px 0 100px;
+  animation: transform-when-loaded 1s;
+
+  .user-manage-header {
+    background-image: url($bg-image-apple);
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 20vh;
+    top: 0;
+    left: 0;
+
+    .header-left,
+    .header-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .header-left {
+      left: 10%;
+    }
+
+    .header-right {
+      right: 10%;
+    }
+  }
+
+  .user-manage-body {
+    margin-top: 60px;
+  }
+}

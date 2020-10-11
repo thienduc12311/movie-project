@@ -9,6 +9,8 @@ import './styles.scss';
 const NewsPage = () => {
   const newsArray = useSelector(state => state.movieReducer.newsArray);
 
+  document.title = "News - Movie Project";
+
   return (
     <Fragment>
       <NavBar />

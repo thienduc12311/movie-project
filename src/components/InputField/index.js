@@ -4,9 +4,9 @@ import { Col } from 'antd';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const InputFiled = ({ type, name, label, errors, validator, colSpan }) => {
+const InputFiled = ({ type, name, label, errors, validator, colSpan, value }) => {
   const [isFocus, setIsFocus] = useState(false);
-  const [currentText, setCurrentText] = useState(null);
+  const [currentText, setCurrentText] = useState(value ? value : '');
 
   return (
     <Col xs={24} xl={colSpan}>
@@ -21,7 +21,8 @@ const InputFiled = ({ type, name, label, errors, validator, colSpan }) => {
           ref={validator}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          onChange={(e) => setCurrentText(e.target.value)}
+        // onChange={(e) => setCurrentText(e.target.value)}
+        // value={currentText}
         />
         <label className="form-label" htmlFor={name}>{label}</label>
         {errors[name] && <p>{errors[name].message}</p>}
