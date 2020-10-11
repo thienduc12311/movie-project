@@ -1,5 +1,5 @@
 .user-page {
-  margin-top: 60px;
+  margin: 60px 0 100px;
   animation: transform-when-loaded 1s;
 
   .options-field {
@@ -38,5 +38,9 @@
         }
       }
     }
+  }
+
+  .user-page-header {
+    background-color: #f5f5f7;
   }
 }

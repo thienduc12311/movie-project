@@ -16,7 +16,6 @@ import 'antd/dist/antd.css';
 
 const { TabPane } = Tabs;
 
-
 const MovieDetailPage = (props) => {
   const { movieId } = props.match.params;
   const movie = useSelector(state => state.movieReducer.movieInfo);
@@ -28,7 +27,7 @@ const MovieDetailPage = (props) => {
   const [windowWidthSize, setWindowWidthSize] = useState(null);
 
   if (movie)
-    document.title = movie.tenPhim;
+    document.title = `${movie.tenPhim} - Movie Project`;
 
   const handleOpen = () => {
     const id = movie.trailer[24] === 'w' ? movie.trailer.slice(32) : movie.trailer.slice(29);

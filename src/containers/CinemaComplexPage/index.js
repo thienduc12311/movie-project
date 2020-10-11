@@ -16,6 +16,8 @@ const CinemaComplexPage = () => {
   const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
   const dispatch = useDispatch();
 
+  document.title = 'Cinema Complex - Movie Project';
+
   const renderCinemaComplexMenu = () => {
     return cinemaComplexInfo?.map(cinemaComplex => (
       <SubMenu
@@ -54,13 +56,15 @@ const CinemaComplexPage = () => {
     </div>
   )
 
-  useEffect(() => dispatch(getCinemaComplexInfo()), [])
+  useEffect(() => {
+    dispatch(getCinemaComplexInfo());
+    return () => document.title = "Movie Project";
+  }, [])
 
   return (
     <Fragment>
       <NavBar />
       {cinemaComplexInfo ? renderCinemaComplexPage() : <LoadingPage />}
-      {/* <LoadingPage /> */}
       <Footer />
     </Fragment>
   )

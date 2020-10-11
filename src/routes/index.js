@@ -8,6 +8,7 @@ import NewsPage from '../containers/NewsPage';
 import CinemaComplexPage from '../containers/CinemaComplexPage';
 import CinemaPage from '../components/CinemaPage';
 import UserPage from '../containers/UserPage';
+import UserManagement from '../containers/UserPage/UserManagement';
 
 const customerRoutes = [
   {
@@ -49,6 +50,11 @@ const customerRoutes = [
     exact: true,
     path: '/account',
     component: UserPage
+  },
+  {
+    exact: false,
+    path: '/account/manage',
+    component: UserManagement
   },
   {
     exact: false,

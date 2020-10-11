@@ -20,7 +20,7 @@ const CinemaPage = (props) => {
 	const dispatch = useDispatch();
 
 	if (cinema)
-		document.title = cinema.tenCumRap;
+		document.title = `${cinema.tenCumRap} - Movie Project`;
 
 	const handleName = (name) => {
 		const indexOfHyphen = name.indexOf('-');

@@ -17,6 +17,8 @@ const MoviePage = () => {
   const [isVideoOpened, setIsVideoOpened] = useState(false);
   const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
 
+  document.title = 'Movie - Movie Project';
+
   const handleOpen = (indexOfFilm) => {
     const id = movieList[indexOfFilm].trailer[24] === 'w' ? movieList[indexOfFilm].trailer.slice(32) : movieList[indexOfFilm].trailer.slice(29);
     setIdOfCurrentVideo(id);
@@ -58,7 +60,10 @@ const MoviePage = () => {
     </Fragment>
   )
 
-  useEffect(() => dispatch(getMovieList()), [])
+  useEffect(() => {
+    dispatch(getMovieList());
+    return () => document.title = "Movie Project";
+  }, [])
 
   return (
     <Fragment>
