@@ -19,7 +19,7 @@ const inFoField = [
   { label: 'EMAIL', id: 'email' },
   { label: 'PHONE', id: 'soDT' },
   { label: 'PASSWORD', id: 'matKhau' },
-]
+];
 
 const UserManagement = () => {
   const [account, setAccount] = useState(null);
@@ -38,7 +38,7 @@ const UserManagement = () => {
       errors: errors,
       validator: register({
         required: "Choose an Account name"
-      }),
+      })
     },
     {
       type: "text",
@@ -51,7 +51,7 @@ const UserManagement = () => {
           value: /^[A-Za-z]+$/,
           message: "Use normal characters only"
         }
-      }),
+      })
     },
     {
       type: "text",
@@ -64,7 +64,7 @@ const UserManagement = () => {
           value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
           message: "Invalid email address"
         }
-      }),
+      })
     },
     {
       type: "text",
@@ -77,17 +77,17 @@ const UserManagement = () => {
           value: /^\d{10}$/,
           message: "Use exactly 10 numbers"
         }
-      }),
+      })
     },
     {
       type: "password",
-      name: 'matKhau',
+      name: 'matKhauHienTai',
       label: 'Current password',
       errors: errors,
       validator: register({
         required: "Confirm password",
-        validate: value => value !== account.matKhau ? "Those password didn't match" : undefined
-      }),
+        validate: value => value !== account.matKhau ? "The current password you entered is incorrect" : undefined
+      })
     },
     {
       type: "password",
@@ -100,7 +100,7 @@ const UserManagement = () => {
           value: 6,
           message: "Use 6 or more characters"
         }
-      }),
+      })
     },
     {
       type: "password",
@@ -110,7 +110,7 @@ const UserManagement = () => {
       validator: register({
         required: "Confirm password",
         validate: value => value !== watch('matKhau') ? "Those password didn't match" : undefined
-      }),
+      })
     },
   ];
 
@@ -151,44 +151,59 @@ const UserManagement = () => {
               errors={property.errors}
               validator={property.validator}
               colSpan={property.colSpan}
-              value={!start && account[inFoField[index].id]}
+              defaultValue={!start ? account[property.name] : ''}
             />
           ))}
         </Row>
         <div className="submit-container">
-          <button className="btn btn-form-submit">SUBMIT</button>
+          <button className="btn btn-form-submit">Submit</button>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => !start ? setIsAccountEditing(false) : setIsSecurityEditing(false)}
+          >
+            Cancel
+            </button>
         </div>
       </form>
     )
 
     const renderInfoField = (start, end) => (
-      <Row>
+      <Row className="info">
         {inFoField.slice(start, end).map(field => (
-          <Col style={{ height: 80 }} key={field.id} span={24}>
+          <Col style={{ height: 88 }} key={field.id} span={24}>
             <h3>{field.label}</h3>
-            <p>{account[field.id]}</p>
+            {field.id !== "matKhau" ?
+              <p>{account[field.id]}</p> :
+              <div onClick={() => { setIsSecurityEditing(true); setIsAccountEditing(false) }}>
+                <span className="btn">Edit</span>
+              </div>}
           </Col>
         ))}
       </Row>
     )
 
-    console.log(account)
     const renderBody = () => (
       <div className="user-manage-body">
         <Row>
-          <Col span={6}>Account</Col>
-          <Col span={12}>
+          <Col span={6}>
+            <h2>Account</h2>
+          </Col>
+          <Col span={16}>
             {isAccountEditing ? renderEditField(0, 4) : renderInfoField(0, 4)}
           </Col>
-          <Col onClick={() => setIsAccountEditing(!isAccountEditing)} span={6}>Edit</Col>
+          <Col onClick={() => { setIsAccountEditing(true); setIsSecurityEditing(false) }} span={2}>
+            <span className="btn">Edit</span>
+          </Col>
         </Row>
         <hr />
-        <Row>
-          <Col span={6}>Security</Col>
-          <Col span={12}>
+        <Row style={{ marginTop: 60 }}>
+          <Col span={6}>
+            <h2>Security</h2>
+          </Col>
+          <Col span={18}>
             {isSecurityEditing ? renderEditField(4) : renderInfoField(4)}
           </Col>
-          <Col onClick={() => setIsSecurityEditing(!isSecurityEditing)} span={6}>Edit</Col>
         </Row>
       </div>
     )

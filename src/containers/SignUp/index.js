@@ -4,14 +4,12 @@ import { Row, Col, Select } from 'antd';
 import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
-import NavBar from '../../components/NavBar';
-import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const { Options } = Select;
+const { Option } = Select;
 
 const optionSelectors = [
   { value: "GP01", text: "GP01" },
@@ -32,8 +30,6 @@ const SignUp = () => {
   const [groupID, setGroupID] = useState('GP01');
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register, watch } = useForm();
-
-  document.title = "Sign Up - Movie Project";
 
   const inputProperties = [
     {
@@ -128,7 +124,9 @@ const SignUp = () => {
     }
   };
 
-  const handleSelectGroup = (value) => setGroupID(value)
+  const handleSelectGroup = (value) => {
+    setGroupID(value);
+  };
 
   const saveUserToLocalStorage = (user) => {
     post('/api/QuanLyNguoiDung/DangNhap', user)
@@ -139,7 +137,6 @@ const SignUp = () => {
 
   return (
     <Fragment>
-      <NavBar />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-heading">Creat Account</div>
@@ -147,17 +144,19 @@ const SignUp = () => {
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
               <Row gutter={[32, 8]}>
                 {
-                  inputProperties.map((property, index) => (
-                    <InputField
-                      key={index}
-                      type={property.type}
-                      name={property.name}
-                      label={property.label}
-                      errors={property.errors}
-                      validator={property.validator}
-                      colSpan={property.colSpan}
-                    />
-                  ))
+                  inputProperties.map((property, index) => {
+                    return (
+                      <InputField
+                        key={index}
+                        type={property.type}
+                        name={property.name}
+                        label={property.label}
+                        errors={property.errors}
+                        validator={property.validator}
+                        colSpan={property.colSpan}
+                      />
+                    )
+                  })
                 }
                 <div className="signup-group-selector" >
                   <Select
@@ -165,7 +164,9 @@ const SignUp = () => {
                     allowClear
                     onChange={handleSelectGroup}
                   >
-                    {optionSelectors.map((option, index) => <Option key={index} value={option.value}>{option.text}</Option>)}
+                    {optionSelectors.map((option, index) => {
+                      return <Option key={index} value={option.value}>{option.text}</Option>
+                    })}
                   </Select>
                 </div>
                 <Col xs={24}>
@@ -184,7 +185,6 @@ const SignUp = () => {
         text={text}
         options={[{ label: 'OK' }]}
       />
-      <Footer />
     </Fragment>
   );
 };
