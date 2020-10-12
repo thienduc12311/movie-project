@@ -2,6 +2,7 @@ import Axios from 'axios';
 import objectAssign from 'object-assign';
 import { API_ROOT_URL } from '../configurations';
 import LocalStorageUtils from './LocalStorageUtils';
+
 export const getHeaders = () => {
   return {
     'Content-Type': 'application/json',

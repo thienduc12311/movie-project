@@ -1,4 +1,4 @@
-import {LOCALSTORAGE_TOKEN_NAME} from '../configurations';
+import { LOCALSTORAGE_TOKEN_NAME } from '../configurations';
 import jwt_decode from 'jwt-decode';
 class LocalStorageUtils {
   getItem(key, defaultValue = '""') {

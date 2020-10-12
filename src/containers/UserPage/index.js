@@ -14,6 +14,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
+import NotificationDialog from '../../components/NotificationDialog';
 
 import './styles.scss';
 
@@ -25,10 +26,19 @@ const columns = [
   { id: 'maVe', label: 'Ticket Code' }
 ];
 
+let text = "Are you sure to Sign Out";
+let options = [];
+
 const UserPage = () => {
   const [account, setAccount] = useState(null);
+  const [isDialogOpened, setIsDialogOpened] = useState(false);
 
   document.title = "Account Home - Movie Project";
+
+  if (isDialogOpened)
+    document.body.setAttribute('style', 'overflow: hidden');
+  else
+    document.body.setAttribute('style', 'overflow: unset');
 
   const renderOptionsField = () => {
     return (
@@ -55,11 +65,24 @@ const UserPage = () => {
   }
 
   const renderUserPage = () => {
+    const handleSignOut = () => {
+      const singOut = () => {
+        LocalStorageUtils.removeItem('user');
+        LocalStorageUtils.removeItem('token');
+      }
+
+      options = [
+        { label: "Cancel" },
+        { label: "OK", onClick: singOut, linkTo: '/' }
+      ];
+      setIsDialogOpened(true);
+    }
+
     const renderHeader = () => (
       <div className="user-page-header">
         <div className="header-upper">
           <h2>Account</h2>
-          <p>Sign out ></p>
+          <p onClick={handleSignOut}>Sign out ></p>
         </div>
         <hr />
         <div className="header-lower">
@@ -147,6 +170,12 @@ const UserPage = () => {
         {LocalStorageUtils.getItem('user') ? renderUserPage() : renderOptionsField()}
       </div>
       <Footer />
+      <NotificationDialog
+        isOpened={isDialogOpened}
+        setIsOpened={setIsDialogOpened}
+        text={text}
+        options={options}
+      />
     </Fragment>
   )
 }

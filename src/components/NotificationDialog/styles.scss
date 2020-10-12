@@ -6,8 +6,8 @@
   left: 0;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.4);
-  animation-name: fade;
-  animation-duration: 1s;
+  animation: transform-when-loaded 1s;
+
   .dialog {
     background-color: white;
     min-width: 200px;
@@ -63,13 +63,4 @@
 
 .dialog-container-none {
   display: none;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
 }

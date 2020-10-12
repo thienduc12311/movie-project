@@ -4,6 +4,8 @@ import { Row, Col, Select } from 'antd';
 import { post } from '../../utils/ApiCaller';
 import InputField from '../../components/InputField';
 import NotificationDialog from '../../components/NotificationDialog';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 import './styles.scss';
@@ -64,8 +66,8 @@ const SignUp = () => {
       validator: register({
         required: "Enter password",
         minLength: {
-          value: 10,
-          message: "Use 10 or more characters"
+          value: 6,
+          message: "Use 6 or more characters"
         }
       }),
       colSpan: 12
@@ -132,11 +134,13 @@ const SignUp = () => {
     post('/api/QuanLyNguoiDung/DangNhap', user)
       .then((res) => {
         LocalStorageUtils.setItem('user', res.data);
+        LocalStorageUtils.setItem('token', res.data.accessToken);
       })
   };
 
   return (
     <Fragment>
+      <NavBar />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-heading">Creat Account</div>
@@ -179,6 +183,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <Footer />
       <NotificationDialog
         isOpened={isDialogOpened}
         setIsOpened={setIsDialogOpened}

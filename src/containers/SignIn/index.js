@@ -23,6 +23,7 @@ const SignIn = () => {
     try {
       const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
       LocalStorageUtils.setItem('user', res.data);
+      LocalStorageUtils.setItem('token', res.data.accessToken);
     } catch (err) {
       text = err.response.data;
       setIsDialogOpened(true);

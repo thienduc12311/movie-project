@@ -3,7 +3,7 @@ import NavBar from '../../../components/NavBar';
 import Footer from '../../../components/Footer';
 import LoadingPage from '../../../components/LoadingPage';
 import LocalStorageUtils from '../../../utils/LocalStorageUtils';
-import { post } from '../../../utils/ApiCaller';
+import { post, put } from '../../../utils/ApiCaller';
 import { Row, Col } from 'antd';
 import { useForm } from "react-hook-form";
 import InputField from '../../../components/InputField';
@@ -11,15 +11,16 @@ import NotificationDialog from '../../../components/NotificationDialog';
 
 import './styles.scss';
 
-let text;
-
-const inFoField = [
+const infoField = [
   { label: 'USERNAME', id: 'taiKhoan' },
   { label: 'NAME', id: 'hoTen' },
   { label: 'EMAIL', id: 'email' },
   { label: 'PHONE', id: 'soDT' },
   { label: 'PASSWORD', id: 'matKhau' },
 ];
+
+let text;
+let options = [{ label: 'OK' }];
 
 const UserManagement = () => {
   const [account, setAccount] = useState(null);
@@ -114,18 +115,61 @@ const UserManagement = () => {
     },
   ];
 
+  if (isDialogOpened)
+    document.body.setAttribute('style', 'overflow: hidden');
+  else
+    document.body.setAttribute('style', 'overflow: unset');
+
   const renderUserManagement = () => {
     const onSubmit = async (data) => {
-      // try {
-      //   const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
-      //   LocalStorageUtils.setItem('user', res.data);
-      // } catch (err) {
-      //   text = err.response.data;
-      //   setIsDialogOpened(true);
-      // }
-      const user = LocalStorageUtils.getItem('user');
-      console.log({ ...data })
+      const singIn = async user => {
+        try {
+          const res = await post('/api/QuanLyNguoiDung/DangNhap', user);
+          LocalStorageUtils.setItem('user', res.data);
+          LocalStorageUtils.setItem('token', res.data.accessToken);
+        } catch{ }
+      }
+      const updateAccount = async user => {
+        try {
+          const res = await post('/api/QuanLyNguoiDung/ThongTinTaiKhoan', user);
+          setAccount(res.data);
+        } catch{ }
+      }
+      const changeInfo = async () => {
+        const user = LocalStorageUtils.getItem('user');
+        try {
+          const res = await put('/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung', { ...user, ...account, ...data });
+
+          singIn(res.data);
+          updateAccount(res.data);
+
+          setIsAccountEditing(false);
+          setIsSecurityEditing(false);
+
+          text = "Update Successfully";
+          setIsDialogOpened(true);
+        } catch{
+          text = "Update Failed";
+          setIsDialogOpened(true);
+        }
+      }
+
+      changeInfo();
     };
+
+    const handleSignOut = () => {
+      const singOut = () => {
+        LocalStorageUtils.removeItem('user');
+        LocalStorageUtils.removeItem('token');
+      }
+
+      text = "Are you sure to Sign Out";
+      options = [
+        { label: "Cancel" },
+        { label: "OK", onClick: singOut, linkTo: '/' }
+      ];
+      setIsDialogOpened(true);
+    }
 
     const renderHeader = () => (
       <div className="user-manage-header">
@@ -135,7 +179,7 @@ const UserManagement = () => {
             <h3>Your account is {account.taiKhoan}</h3>
           </Col>
           <Col xs={24} md={6}>
-            <span>Sign Out</span>
+            <span onClick={handleSignOut}>Sign Out</span>
           </Col>
         </Row>
       </div>
@@ -153,7 +197,7 @@ const UserManagement = () => {
               errors={property.errors}
               validator={property.validator}
               colSpan={property.colSpan}
-              defaultValue={!start ? account[property.name] : ''}
+              defaultValue={start === 1 ? account[property.name] : ''}
             />
           ))}
         </Row>
@@ -162,7 +206,7 @@ const UserManagement = () => {
           <button
             type="button"
             className="btn"
-            onClick={() => !start ? setIsAccountEditing(false) : setIsSecurityEditing(false)}
+            onClick={() => start === 1 ? setIsAccountEditing(false) : setIsSecurityEditing(false)}
           >
             Cancel
             </button>
@@ -172,7 +216,7 @@ const UserManagement = () => {
 
     const renderInfoField = (start, end) => (
       <Row className="info">
-        {inFoField.slice(start, end).map(field => (
+        {infoField.slice(start, end).map(field => (
           <Col style={{ height: 88 }} key={field.id} span={24}>
             <h3>{field.label}</h3>
             {field.id !== "matKhau" ?
@@ -195,7 +239,13 @@ const UserManagement = () => {
             <h2>Account</h2>
           </Col>
           <Col span={16}>
-            {isAccountEditing ? renderEditField(0, 4) : renderInfoField(0, 4)}
+            <Row className="info">
+              <Col style={{ height: 88 }} span={24}>
+                <h3>USERNAME</h3>
+                <p>{account.taiKhoan}</p>
+              </Col>
+            </Row>
+            {isAccountEditing ? renderEditField(1, 4) : renderInfoField(1, 4)}
           </Col>
           <Col>
             <span
@@ -244,6 +294,7 @@ const UserManagement = () => {
     const user = LocalStorageUtils.getItem('user');
     if (user)
       fetData(user);
+    return () => document.body.setAttribute('style', 'overflow: unset');
   }, [])
 
 
@@ -252,6 +303,12 @@ const UserManagement = () => {
       <NavBar />
       {account ? renderUserManagement() : <LoadingPage />}
       <Footer />
+      <NotificationDialog
+        isOpened={isDialogOpened}
+        setIsOpened={setIsDialogOpened}
+        text={text}
+        options={options}
+      />
     </Fragment>
   )
 }
