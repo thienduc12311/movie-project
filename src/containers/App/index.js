@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import moment from 'moment';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { customerRoutes } from '../../routes';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import { post } from '../../utils/ApiCaller';
 
 export const App = () => {
   moment.locale('en-gb');
@@ -18,6 +20,28 @@ export const App = () => {
       )
     })
   }
+
+  useEffect(() => {
+    const getUserFromLocalStorage = () => {
+      return LocalStorageUtils.getItem('user');
+    }
+    const signIn = async user => {
+      try {
+        const res = await post('/api/QuanLyNguoiDung/ThongTinTaiKhoan', user);
+        saveUser(res.data);
+      } catch{ }
+    }
+    const saveUser = async user => {
+      try {
+        const res = await post('/api/QuanLyNguoiDung/DangNhap', user);
+        LocalStorageUtils.setItem('user', res.data);
+      } catch { }
+    }
+
+    const user = getUserFromLocalStorage();
+    if (user)
+      signIn(user);
+  }, [])
 
   return (
     <BrowserRouter>
