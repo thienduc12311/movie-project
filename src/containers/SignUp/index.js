@@ -10,7 +10,6 @@ import './styles.scss';
 import 'antd/dist/antd.css';
 
 const Option = Select.Option;
-
 const optionSelectors = [
   {value: 'GP01', text: 'GP01'},
   {value: 'GP02', text: 'GP02'},
@@ -30,7 +29,6 @@ const SignUp = () => {
   const [groupID, setGroupID] = useState('GP01');
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const {handleSubmit, errors, register, watch} = useForm();
-
   const inputProperties = [
     {
       type: 'text',
@@ -120,15 +118,12 @@ const SignUp = () => {
       setIsDialogOpened(true);
     }
   };
-
   const handleSelectGroup = (value) => setGroupID(value);
-
   const saveUserToLocalStorage = (user) => {
     post('/api/QuanLyNguoiDung/DangNhap', user).then((res) => {
       LocalStorageUtils.setItem('user', res.data);
     });
   };
-
   return (
     <Fragment>
       <div className="signup-container">

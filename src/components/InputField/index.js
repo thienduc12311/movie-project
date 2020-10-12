@@ -28,6 +28,7 @@ const InputFiled = ({ type, name, label, errors, validator, colSpan }) => {
             </div>
         </Col>
     );
+
 }
 
 export default InputFiled;
