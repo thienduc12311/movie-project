@@ -1,27 +1,27 @@
-import React, {useState, Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import Slider from 'react-slick';
 import MovieCard from '../../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
-import {RightOutlined, LeftOutlined} from '@ant-design/icons';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 import './styles.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-modal-video/scss/modal-video.scss';
 
-const SampleArrow = ({className, style, onClick, side}) => {
+const SampleArrow = ({ className, style, onClick, side }) => {
   if (side === 'next')
     return (
       <RightOutlined
         className={className}
-        style={{...style, display: 'block'}}
+        style={{ ...style, display: 'block' }}
         onClick={onClick}
       />
     );
   return (
     <LeftOutlined
       className={className}
-      style={{...style, display: 'block'}}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -67,8 +67,7 @@ const movieList = [
   {
     maPhim: 2528,
     tenPhim: 'Mắt Biếc',
-    hinhAnh:
-      'https://lh3.googleusercontent.com/proxy/AEMvwTzJmUfRAVLUs6p4fxhWU_JNISglvC2hPMp5mt4inK55XYX_tg-vMKBcDLB3O2-YLyHC7JnvdjBeclXIHXDLYRPIgdKMUuxPrRUx',
+    hinhAnh: 'https://thegioidienanh.vn/stores/news_dataimages/hath/072019/09/15/5450_Main.jpg',
     trailer: 'ITlQ0oU7tDA',
     danhGia: 9,
     thoiGian: 117,

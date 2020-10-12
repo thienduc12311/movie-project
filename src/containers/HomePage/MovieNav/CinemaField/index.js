@@ -1,34 +1,33 @@
 import React from 'react';
-import {Tabs} from 'antd';
+import { Tabs } from 'antd';
 import MovieField from '../MovieField';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
-const {TabPane} = Tabs;
+const { TabPane } = Tabs;
 
-const CinemaTab = ({cinemaList}) => {
+const CinemaTab = ({ cinemaList }) => {
   const handleName = (name) => {
     const indexOfHyphen = name.indexOf('-');
     const firstName = name.slice(0, indexOfHyphen);
     const lastName = name.slice(indexOfHyphen - 1);
     return (
       <p className="cinema-name">
-        <span style={{color: '#8bc541'}}>{firstName}</span>
+        <span style={{ color: '#8bc541' }}>{firstName}</span>
         <span>{lastName}</span>
       </p>
     );
   };
 
-  console.log(cinemaList[0]);
   return (
     <Tabs
       defaultActiveKey="0"
       tabPosition="left"
-      style={{height: 500}}
+      style={{ height: 500 }}
       className="cinema-field"
     >
-      {[...Array.from({length: cinemaList.length}, (v, i) => i)].map((i) => (
+      {[...Array.from({ length: cinemaList.length }, (v, i) => i)].map((i) => (
         <TabPane
           className="cinema-tab"
           key={i}
