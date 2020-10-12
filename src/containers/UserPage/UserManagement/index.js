@@ -129,13 +129,15 @@ const UserManagement = () => {
 
     const renderHeader = () => (
       <div className="user-manage-header">
-        <div className="header-left">
-          <h1>{account.hoTen}</h1>
-          <h3>Your account is {account.taiKhoan}</h3>
-        </div>
-        <div className="header-right">
-          <p>Sign Out</p>
-        </div>
+        <Row className="user-manage-header-container">
+          <Col xs={24} md={18}>
+            <h1>{account.hoTen}</h1>
+            <h3>Your account is {account.taiKhoan}</h3>
+          </Col>
+          <Col xs={24} md={6}>
+            <span>Sign Out</span>
+          </Col>
+        </Row>
       </div>
     )
 
@@ -175,7 +177,10 @@ const UserManagement = () => {
             <h3>{field.label}</h3>
             {field.id !== "matKhau" ?
               <p>{account[field.id]}</p> :
-              <div onClick={() => { setIsSecurityEditing(true); setIsAccountEditing(false) }}>
+              <div
+                onClick={() => { setIsSecurityEditing(true); setIsAccountEditing(false) }}
+                style={{ display: `${isSecurityEditing ? "none" : "block"}` }}
+              >
                 <span className="btn">Edit</span>
               </div>}
           </Col>
@@ -192,8 +197,14 @@ const UserManagement = () => {
           <Col span={16}>
             {isAccountEditing ? renderEditField(0, 4) : renderInfoField(0, 4)}
           </Col>
-          <Col onClick={() => { setIsAccountEditing(true); setIsSecurityEditing(false) }} span={2}>
-            <span className="btn">Edit</span>
+          <Col>
+            <span
+              className="btn"
+              style={{ display: `${isAccountEditing ? "none" : "block"}` }}
+              onClick={() => { setIsAccountEditing(true); setIsSecurityEditing(false) }} span={2}
+            >
+              Edit
+            </span>
           </Col>
         </Row>
         <hr />

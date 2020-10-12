@@ -8,24 +8,50 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
     background-image: url($bg-image-apple);
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
     height: 20vh;
-    top: 0;
-    left: 0;
 
-    .header-left,
-    .header-right {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+    .user-manage-header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 100%;
 
-    .header-left {
-      left: 10%;
-    }
+      .ant-col {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
 
-    .header-right {
-      right: 10%;
+        &:first-child {
+          left: 0;
+        }
+
+        &:last-child {
+          right: 0;
+        }
+      }
+
+      h1,
+      h3 {
+        color: white;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      span {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 8px 15px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
     }
   }
 
@@ -35,7 +61,7 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
 
     h2 {
       color: #fb4226;
-      font-size: 32px;
+      font-size: 25px;
     }
 
     .info {
@@ -64,6 +90,10 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
       color: white;
       border-radius: 5px;
       cursor: pointer;
+
+      &.btn-form-submit {
+        margin-right: 20px;
+      }
     }
 
     .form {
