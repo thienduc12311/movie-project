@@ -1,0 +1,41 @@
+.user-page {
+    margin-top: 60px;
+
+    .options-field {
+        position: relative;
+        min-height: 100vh;
+        top: 0;
+        left: 0;
+
+        .options-content {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            .options-avatar {
+                text-align: center;
+            }
+
+            .options-button {
+                .options-btn {
+                    color: black;
+                    text-align: center;
+                    padding: 5px 50px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    margin: 10px 0;
+                    border-radius: 10px;
+
+                    &.options-signin {
+                        background-color: lightblue;
+                    }
+
+                    &.options-signup {
+                        background-color: bisque;
+                    }
+                }
+            }
+        }
+    }
+}

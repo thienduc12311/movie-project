@@ -1,0 +1,33 @@
+footer {
+    background-color: #222222;
+    color: white;
+    clear: both;
+    width: 100%;
+
+    .footer-container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 50px 0 5px;
+
+        p {
+            color: white;
+        }
+
+        .footer-partners {
+            width: 65%;
+        }
+
+        .footer-logo {
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+
+        .footer-icon {
+            svg {
+                font-size: 25px;
+                color: white;
+            }
+        }
+    }
+}
