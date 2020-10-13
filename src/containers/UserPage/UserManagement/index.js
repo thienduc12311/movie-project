@@ -20,7 +20,7 @@ const infoField = [
 ];
 
 let text;
-let options = [{ label: 'OK' }];
+let options = [];
 
 const UserManagement = () => {
   const [account, setAccount] = useState(null);
@@ -147,9 +147,11 @@ const UserManagement = () => {
           setIsSecurityEditing(false);
 
           text = "Update Successfully";
+          options = [{ label: 'OK' }];
           setIsDialogOpened(true);
         } catch{
           text = "Update Failed";
+          options = [{ label: 'OK' }];
           setIsDialogOpened(true);
         }
       }
@@ -173,12 +175,12 @@ const UserManagement = () => {
 
     const renderHeader = () => (
       <div className="user-manage-header">
-        <Row className="user-manage-header-container">
-          <Col xs={24} md={18}>
+        <Row className="user-manage-header-container" align="middle">
+          <Col xs={24} md={21}>
             <h1>{account.hoTen}</h1>
             <h3>Your account is {account.taiKhoan}</h3>
           </Col>
-          <Col xs={24} md={6}>
+          <Col xs={24} md={3}>
             <span onClick={handleSignOut}>Sign Out</span>
           </Col>
         </Row>
@@ -217,28 +219,26 @@ const UserManagement = () => {
     const renderInfoField = (start, end) => (
       <Row className="info">
         {infoField.slice(start, end).map(field => (
-          <Col style={{ height: 88 }} key={field.id} span={24}>
-            <h3>{field.label}</h3>
-            {field.id !== "matKhau" ?
-              <p>{account[field.id]}</p> :
-              <div
-                onClick={() => { setIsSecurityEditing(true); setIsAccountEditing(false) }}
-                style={{ display: `${isSecurityEditing ? "none" : "block"}` }}
-              >
-                <span className="btn">Edit</span>
-              </div>}
+          <Col
+            style={{ height: field.id !== "matKhau" ? 88 : 50 }}
+            key={field.id}
+            span={24}
+          >
+            <h3 style={{ marginTop: field.id === "matKhau" && 12 }}>{field.label}</h3>
+            {field.id !== "matKhau" && <p>{account[field.id]}</p>}
           </Col>
-        ))}
-      </Row>
+        ))
+        }
+      </Row >
     )
 
     const renderBody = () => (
       <div className="user-manage-body">
-        <Row>
-          <Col span={6}>
+        <Row style={{ marginBottom: 30 }}>
+          <Col xs={24} md={6}>
             <h2>Account</h2>
           </Col>
-          <Col span={16}>
+          <Col xs={24} md={16}>
             <Row className="info">
               <Col style={{ height: 88 }} span={24}>
                 <h3>USERNAME</h3>
@@ -251,19 +251,28 @@ const UserManagement = () => {
             <span
               className="btn"
               style={{ display: `${isAccountEditing ? "none" : "block"}` }}
-              onClick={() => { setIsAccountEditing(true); setIsSecurityEditing(false) }} span={2}
+              onClick={() => { setIsAccountEditing(true); setIsSecurityEditing(false) }}
             >
               Edit
             </span>
           </Col>
         </Row>
         <hr />
-        <Row style={{ marginTop: 60 }}>
-          <Col span={6}>
+        <Row style={{ marginTop: 30 }}>
+          <Col xs={24} md={6}>
             <h2>Security</h2>
           </Col>
-          <Col span={18}>
+          <Col xs={24} md={16}>
             {isSecurityEditing ? renderEditField(4) : renderInfoField(4)}
+          </Col>
+          <Col>
+            <span
+              className="btn"
+              style={{ display: `${isSecurityEditing ? "none" : "block"}` }}
+              onClick={() => { setIsSecurityEditing(true); setIsAccountEditing(false) }}
+            >
+              Edit
+            </span>
           </Col>
         </Row>
       </div>

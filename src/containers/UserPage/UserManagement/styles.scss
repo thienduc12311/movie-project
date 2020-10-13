@@ -8,29 +8,13 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
     background-image: url($bg-image-apple);
     background-position: center;
     background-repeat: no-repeat;
-    height: 20vh;
+    height: 210px;
 
     .user-manage-header-container {
       max-width: 1000px;
       margin: 0 auto;
-      position: relative;
-      top: 0;
-      left: 0;
       height: 100%;
-
-      .ant-col {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-        &:first-child {
-          left: 0;
-        }
-
-        &:last-child {
-          right: 0;
-        }
-      }
+      padding: 0 33px;
 
       h1,
       h3 {
@@ -40,6 +24,7 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+
       span {
         color: white;
         background-color: rgba(0, 0, 0, 0.3);
@@ -56,7 +41,8 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
   }
 
   .user-manage-body {
-    margin: 60px auto 0;
+    margin: 30px auto 0;
+    padding: 0 30px;
     max-width: 1000px;
 
     h2 {
@@ -99,5 +85,11 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
     .form {
       animation: transform-when-loaded 1s;
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .user-manage-header-container {
+    // display: none;
   }
 }

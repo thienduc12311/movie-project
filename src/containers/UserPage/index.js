@@ -94,9 +94,8 @@ const UserPage = () => {
       </div>
     )
 
-    const renderBookingInfo = () => (
-      <div className="booking-info">
-        <h1>Your Booking Information</h1>
+    const renderBookingInfo = () => {
+      const renderTable = () => (
         <TableContainer style={{ maxHeight: 500 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -137,8 +136,15 @@ const UserPage = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
-    )
+      )
+
+      return (
+        <div className="booking-info">
+          <h1>Your Booking Information</h1>
+          {account.thongTinDatVe.length ? renderTable() : <p>no</p>}
+        </div>
+      )
+    }
 
     if (account)
       return (
@@ -161,6 +167,7 @@ const UserPage = () => {
     const user = LocalStorageUtils.getItem('user');
     if (user)
       fetData(user);
+    return () => document.body.setAttribute('style', 'overflow: unset');
   }, [])
 
   return (

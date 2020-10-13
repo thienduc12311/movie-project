@@ -6,7 +6,7 @@
   left: 0;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.4);
-  animation: transform-when-loaded 1s;
+  animation: transform-when-loaded 0.5s;
 
   .dialog {
     background-color: white;
@@ -36,12 +36,12 @@
         cursor: pointer;
         &:first-child {
           border-right: 1px solid rgb(220, 215, 215);
-          border-radius: 0 0 0 100%;
+          border-radius: 0 0 0 10px;
           color: red;
         }
         &:last-child {
           border-left: 1px solid rgb(220, 215, 215);
-          border-radius: 0 0 100% 0;
+          border-radius: 0 0 10px 0;
           color: blue;
         }
         &:focus {
@@ -54,7 +54,7 @@
       .btn-dialog-one-option {
         width: 100%;
         border: none !important;
-        border-radius: 0 0 100% 100% !important;
+        border-radius: 0 0 10px 10px !important;
         color: blue !important;
       }
     }

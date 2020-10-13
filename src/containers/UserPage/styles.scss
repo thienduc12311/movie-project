@@ -1,6 +1,7 @@
 .user-page {
   margin: 60px 0 100px;
   animation: transform-when-loaded 1s;
+  min-height: 100vh;
 
   .options-field {
     position: relative;
