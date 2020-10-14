@@ -32,7 +32,6 @@ const customerRoutes = [
     component: NewsPage
   },
   {
-    exact: false,
     path: '/news/id=:newsId',
     component: NewsDetailPage
   },
@@ -42,7 +41,6 @@ const customerRoutes = [
     component: CinemaComplexPage
   },
   {
-    exact: false,
     path: '/cinema-complex/:cinemaId',
     component: CinemaPage
   },
@@ -52,17 +50,15 @@ const customerRoutes = [
     component: UserPage
   },
   {
-    exact: false,
+    isProtected: true,
     path: '/account/manage',
     component: UserManagement
   },
   {
-    exact: false,
     path: '/account/signin',
     component: SignIn
   },
   {
-    exact: false,
     path: '/account/signup',
     component: SignUp
   },

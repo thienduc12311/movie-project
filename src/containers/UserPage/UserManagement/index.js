@@ -8,6 +8,7 @@ import { Row, Col } from 'antd';
 import { useForm } from "react-hook-form";
 import InputField from '../../../components/InputField';
 import NotificationDialog from '../../../components/NotificationDialog';
+import auth from '../../../routes/auth';
 
 import './styles.scss';
 
@@ -135,8 +136,7 @@ const UserManagement = () => {
           setAccount(res.data);
         } catch{ }
       }
-      const changeInfo = async () => {
-        const user = LocalStorageUtils.getItem('user');
+      const changeInfo = async user => {
         try {
           const res = await put('/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung', { ...user, ...account, ...data });
 
@@ -156,13 +156,20 @@ const UserManagement = () => {
         }
       }
 
-      changeInfo();
+      const user = LocalStorageUtils.getItem('user');
+      if (data.hoTen !== user.hoTen || data.email !== user.email || data.soDT !== user.soDT)
+        changeInfo(user);
+      else {
+        setIsAccountEditing(false);
+        setIsSecurityEditing(false);
+      }
     };
 
     const handleSignOut = () => {
       const singOut = () => {
         LocalStorageUtils.removeItem('user');
         LocalStorageUtils.removeItem('token');
+        auth.signOut(() => props.history.push('/'));
       }
 
       text = "Are you sure to Sign Out";
@@ -204,14 +211,14 @@ const UserManagement = () => {
           ))}
         </Row>
         <div className="submit-container">
-          <button className="btn btn-form-submit">Submit</button>
           <button
             type="button"
             className="btn"
             onClick={() => start === 1 ? setIsAccountEditing(false) : setIsSecurityEditing(false)}
           >
             Cancel
-            </button>
+          </button>
+          <button className="btn btn-form-submit">Done</button>
         </div>
       </form>
     )
@@ -305,7 +312,6 @@ const UserManagement = () => {
       fetData(user);
     return () => document.body.setAttribute('style', 'overflow: unset');
   }, [])
-
 
   return (
     <Fragment>

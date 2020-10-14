@@ -1,4 +1,5 @@
 import {
+  SET_CURRENT_PATH,
   SET_MOVIE_LIST,
   SET_CINEMA_COMPLEX_OPTIONS,
   SET_CINEMA_OPTIONS,
@@ -31,6 +32,15 @@ const handleFilterTimeOptions = (dateTimeArray, date) => {
   const rawArray = dateTimeArray.filter(item => moment(item.ngayChieuGioChieu).format('ll') === date);
   const timeArray = rawArray.map(item => moment(item.ngayChieuGioChieu).format('LT'));
   return timeArray;
+}
+
+export const setCurrentPath = pathname => {
+  return dispatch => {
+    dispatch({
+      type: SET_CURRENT_PATH,
+      currentPath: pathname
+    })
+  }
 }
 
 export const getMovieList = () => {

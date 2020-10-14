@@ -7,6 +7,8 @@ import NotificationDialog from '../../components/NotificationDialog';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import auth from '../../routes/auth';
+import { useSelector } from 'react-redux';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -28,10 +30,11 @@ const optionSelectors = [
 
 let text;
 
-const SignUp = () => {
+const SignUp = props => {
   const [groupID, setGroupID] = useState('GP01');
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register, watch } = useForm();
+  const pathname = useSelector(state => state.movieReducer.currentPath);
 
   const inputProperties = [
     {
@@ -116,10 +119,8 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     try {
       const res = await post('/api/QuanLyNguoiDung/DangKy', { ...data, maNhom: groupID });
-      text = 'Sign Up Successfully';
-      setIsDialogOpened(true);
       saveUserToLocalStorage({ ...data, maNhom: groupID });
-      console.log(res.status)
+      auth.signIn(() => props.history.push(pathname));
     } catch (err) {
       text = err.response.data;
       setIsDialogOpened(true);

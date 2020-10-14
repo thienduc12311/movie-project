@@ -15,6 +15,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import NotificationDialog from '../../components/NotificationDialog';
+import auth from '../../routes/auth';
+import { useDispatch } from 'react-redux';
+import { setCurrentPath } from '../../redux/actions/movieAction';
 
 import './styles.scss';
 
@@ -29,11 +32,14 @@ const columns = [
 let text = "Are you sure to Sign Out";
 let options = [];
 
-const UserPage = () => {
+const UserPage = props => {
   const [account, setAccount] = useState(null);
   const [isDialogOpened, setIsDialogOpened] = useState(false);
+  const dispatch = useDispatch();
 
   document.title = "Account Home - Movie Project";
+
+  dispatch(setCurrentPath("/account"));
 
   if (isDialogOpened)
     document.body.setAttribute('style', 'overflow: hidden');
@@ -69,11 +75,12 @@ const UserPage = () => {
       const singOut = () => {
         LocalStorageUtils.removeItem('user');
         LocalStorageUtils.removeItem('token');
+        auth.signOut(() => props.history.push('/'));
       }
 
       options = [
         { label: "Cancel" },
-        { label: "OK", onClick: singOut, linkTo: '/' }
+        { label: "OK", onClick: singOut }
       ];
       setIsDialogOpened(true);
     }

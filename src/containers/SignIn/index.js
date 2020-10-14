@@ -7,15 +7,18 @@ import NotificationDialog from '../../components/NotificationDialog';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import auth from '../../routes/auth';
+import { useSelector } from 'react-redux';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
 
 let text;
 
-const SignIn = () => {
+const SignIn = props => {
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const { handleSubmit, errors, register } = useForm();
+  const pathname = useSelector(state => state.movieReducer.currentPath);
 
   document.title = "Sign In - Movie Project";
 
@@ -24,6 +27,7 @@ const SignIn = () => {
       const res = await post('/api/QuanLyNguoiDung/DangNhap', data);
       LocalStorageUtils.setItem('user', res.data);
       LocalStorageUtils.setItem('token', res.data.accessToken);
+      auth.signIn(() => props.history.push(pathname));
     } catch (err) {
       text = err.response.data;
       setIsDialogOpened(true);

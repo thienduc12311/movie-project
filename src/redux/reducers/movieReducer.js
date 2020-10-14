@@ -1,4 +1,5 @@
 import {
+  SET_CURRENT_PATH,
   SET_MOVIE_LIST,
   SET_CINEMA_COMPLEX_OPTIONS,
   SET_CINEMA_OPTIONS,
@@ -6,10 +7,11 @@ import {
   SET_TIME_OPTIONS,
   SET_CINEMA_COMPLEX_INFO,
   SET_CINEMA_INFO,
-  SET_MOVIE_INFO,
+  SET_MOVIE_INFO
 } from '../constants/movieConstants';
 
 const initialState = {
+  currentPath: '/',
   movieList: null,
   optionsForSearchBar: {
     movieOptions: null,
@@ -57,6 +59,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_CURRENT_PATH:
+      return {
+        ...state,
+        currentPath: action.currentPath
+      }
+
     case SET_MOVIE_LIST:
       return {
         ...state,
