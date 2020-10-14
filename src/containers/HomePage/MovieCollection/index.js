@@ -1,12 +1,12 @@
 import React, { useState, Fragment } from 'react';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import MovieCard from '../../../components/MovieCard';
 import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 import './styles.scss';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import 'react-modal-video/scss/modal-video.scss';
 
 const SampleArrow = ({ className, style, onClick, side }) => {

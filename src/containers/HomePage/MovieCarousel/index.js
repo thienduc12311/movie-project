@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, {useState, Fragment} from 'react';
 import MovieSlider from '../../../components/MovieSlider';
 import ModalVideo from 'react-modal-video';
-import { RightOutlined, LeftOutlined } from '@ant-design/icons';
-import { Slide } from 'react-slideshow-image';
+import {RightOutlined, LeftOutlined} from '@ant-design/icons';
+import {Slide} from 'react-slideshow-image';
 
 import './styles.scss';
 import 'react-slideshow-image/dist/styles.css';

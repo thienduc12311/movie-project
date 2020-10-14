@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 
 import './styles.scss';

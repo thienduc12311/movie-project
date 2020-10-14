@@ -28,9 +28,9 @@ export const App = () => {
           path={route.path}
           component={route.component}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   if (LocalStorageUtils.getItem('user'))
     auth.signIn();
@@ -58,9 +58,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
-        <Switch>
-          {renderUserRouter(customerRoutes)}
-        </Switch>
+        <Switch>{renderUserRouter(customerRoutes)}</Switch>
       </Fragment>
     </BrowserRouter>
   );
