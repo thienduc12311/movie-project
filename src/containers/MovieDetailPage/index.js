@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import NavBar from '../NavBar';
-import Footer from '../Footer';
+import NavBar from '../../components/NavBar';
+import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieInfo } from '../../redux/actions/movieAction';
 import { Row, Col, Progress, Tabs } from 'antd';
@@ -8,8 +8,8 @@ import Rating from '@material-ui/lab/Rating';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ModalVideo from 'react-modal-video';
 import { getCinemaComplexOptions } from '../../redux/actions/movieAction';
-import MovieField from '../../containers/HomePage/MovieNav/MovieField';
-import LoadingPage from '../../components/LoadingPage';
+import MovieField from '../HomePage/MovieNav/MovieField';
+import LoadingPage from '../LoadingPage';
 
 import './styles.scss';
 import 'antd/dist/antd.css';

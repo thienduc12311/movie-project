@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
-import LoadingPage from '../../components/LoadingPage';
+import LoadingPage from '../LoadingPage';
 
 import './styles.scss';
 

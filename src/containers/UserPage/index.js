@@ -6,7 +6,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Row, Col } from 'antd';
 import Footer from '../../components/Footer';
 import { post } from '../../utils/ApiCaller';
-import LoadingPage from '../../components/LoadingPage';
+import LoadingPage from '../LoadingPage';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

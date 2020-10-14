@@ -7,7 +7,7 @@ import background from '../../assets/img/rooftop.jpg';
 import { Row, Col, Progress, Tabs } from 'antd';
 import MovieField from '../../containers/HomePage/MovieNav/MovieField';
 import Rating from '@material-ui/lab/Rating';
-import LoadingPage from '../../components/LoadingPage';
+import LoadingPage from '../LoadingPage';
 
 import './styles.scss';
 import 'antd/dist/antd.css';

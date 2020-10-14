@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import NavBar from '../../../components/NavBar';
 import Footer from '../../../components/Footer';
-import LoadingPage from '../../../components/LoadingPage';
+import LoadingPage from '../../LoadingPage';
 import LocalStorageUtils from '../../../utils/LocalStorageUtils';
 import { post, put } from '../../../utils/ApiCaller';
 import { Row, Col } from 'antd';

@@ -1,12 +1,12 @@
 import HomePage from '../containers/HomePage';
-import MovieDetailPage from '../components/MovieDetailPage';
+import MovieDetailPage from '../containers/MovieDetailPage';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import MoviePage from '../containers/MoviePage';
-import NewsDetailPage from '../components/NewsDetailPage';
+import NewsDetailPage from '../containers/NewsDetailPage';
 import NewsPage from '../containers/NewsPage';
 import CinemaComplexPage from '../containers/CinemaComplexPage';
-import CinemaPage from '../components/CinemaPage';
+import CinemaPage from '../containers/CinemaPage';
 import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
 

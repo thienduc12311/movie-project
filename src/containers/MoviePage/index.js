@@ -6,7 +6,7 @@ import { getMovieList } from '../../redux/actions/movieAction';
 import { Row, Col } from 'antd';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
-import LoadingPage from '../../components/LoadingPage';
+import LoadingPage from '../LoadingPage';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
