@@ -23,7 +23,7 @@ const infoField = [
 let text;
 let options = [];
 
-const UserManagement = () => {
+const UserManagement = props => {
   const [account, setAccount] = useState(null);
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const [isAccountEditing, setIsAccountEditing] = useState(false);
