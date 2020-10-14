@@ -32,8 +32,10 @@ export const App = () => {
     })
   }
 
+  if (LocalStorageUtils.getItem('user'))
+    auth.signIn();
+
   useEffect(() => {
-    const getUserFromLocalStorage = () => LocalStorageUtils.getItem('user');
     const signIn = async user => {
       try {
         const res = await post('/api/QuanLyNguoiDung/ThongTinTaiKhoan', user);
@@ -45,11 +47,10 @@ export const App = () => {
         const res = await post('/api/QuanLyNguoiDung/DangNhap', user);
         LocalStorageUtils.setItem('user', res.data);
         LocalStorageUtils.setItem('token', res.data.accessToken);
-        auth.signIn();
       } catch { }
     }
 
-    const user = getUserFromLocalStorage();
+    const user = LocalStorageUtils.getItem('user');
     if (user)
       signIn(user);
   }, [])

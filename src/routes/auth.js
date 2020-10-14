@@ -5,7 +5,8 @@ class Auth {
 
   signIn(callback) {
     this.authenticated = true;
-    callback();
+    if (callback)
+      callback();
   }
 
   signOut(callback) {
@@ -16,7 +17,6 @@ class Auth {
   isAuthenticated() {
     return this.authenticated;
   }
-
 }
 
 export default new Auth(); 

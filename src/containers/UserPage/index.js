@@ -3,7 +3,7 @@ import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import { Avatar, Row, Col } from 'antd';
 import Footer from '../../components/Footer';
 import { post } from '../../utils/ApiCaller';
 import LoadingPage from '../../components/LoadingPage';
@@ -22,11 +22,28 @@ import { setCurrentPath } from '../../redux/actions/movieAction';
 import './styles.scss';
 
 const columns = [
-  { id: 'tenPhim', label: 'Movie' },
-  { id: 'tenHeThongRap', label: 'Cinema' },
-  { id: 'seat', label: 'Seats' },
-  { id: 'tenCumRap', label: 'Room' },
-  { id: 'maVe', label: 'Ticket Code' }
+  {
+    id: 'tenPhim',
+    label: 'Movie',
+    minWidth: 200
+  },
+  {
+    id: 'tenHeThongRap',
+    label: 'Cinema',
+    minWidth: 250
+  },
+  {
+    id: 'seat',
+    label: 'Seats'
+  },
+  {
+    id: 'tenCumRap',
+    label: 'Room'
+  },
+  {
+    id: 'maVe',
+    label: 'Ticket Code'
+  }
 ];
 
 let text = "Are you sure to Sign Out";
@@ -88,15 +105,27 @@ const UserPage = props => {
     const renderHeader = () => (
       <div className="user-page-header">
         <div className="header-upper">
-          <h2>Account</h2>
-          <p onClick={handleSignOut}>Sign out ></p>
+          <Row align="middle">
+            <Col xs={24} md={21}>
+              <h3>Account</h3>
+            </Col>
+            <Col xs={24} md={3}>
+              <p onClick={handleSignOut}>Sign Out ></p>
+            </Col>
+          </Row>
+          <hr />
         </div>
-        <hr />
         <div className="header-lower">
-          <h1>Hi, {account.hoTen}.</h1>
-          <NavLink to='/account/manage'>
-            <p>Account management ></p>
-          </NavLink>
+          <Row align="middle">
+            <Col xs={24} md={19}>
+              <h1>Hi, {account.hoTen}.</h1>
+            </Col>
+            <Col xs={24} md={5}>
+              <NavLink to='/account/manage'>
+                <p>Account management ></p>
+              </NavLink>
+            </Col>
+          </Row>
         </div>
       </div>
     )
@@ -110,7 +139,7 @@ const UserPage = props => {
                 {columns.map((column, index) => (
                   <TableCell
                     key={index}
-                    style={{ backgroundColor: 'black', color: 'white' }}
+                    style={{ backgroundColor: 'black', color: 'white', minWidth: column.minWidth }}
                   >
                     {column.label}
                   </TableCell>

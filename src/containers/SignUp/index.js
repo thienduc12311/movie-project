@@ -120,7 +120,6 @@ const SignUp = props => {
     try {
       const res = await post('/api/QuanLyNguoiDung/DangKy', { ...data, maNhom: groupID });
       saveUserToLocalStorage({ ...data, maNhom: groupID });
-      auth.signIn(() => props.history.push(pathname));
     } catch (err) {
       text = err.response.data;
       setIsDialogOpened(true);
@@ -136,6 +135,7 @@ const SignUp = props => {
       .then((res) => {
         LocalStorageUtils.setItem('user', res.data);
         LocalStorageUtils.setItem('token', res.data.accessToken);
+        auth.signIn(() => props.history.push(pathname));
       })
   };
 
