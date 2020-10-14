@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, {useEffect, Fragment} from 'react';
 import MovieCarousel from './MovieCarousel';
 import MovieSearchBox from './MovieSearchBox';
 import MovieCollection from './MovieCollection';
@@ -6,9 +6,9 @@ import MovieNav from './MovieNav';
 import Application from './Application';
 import News from './News';
 import Footer from '../../components/Footer';
-import { useDispatch } from 'react-redux';
-import { getMovieList } from '../../redux/actions/movieAction';
-import { NavLink } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {getMovieList} from '../../redux/actions/movieAction';
+import {NavLink} from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 
 import './styles.scss';

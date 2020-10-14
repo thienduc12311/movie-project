@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {Fragment, useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import ModalVideo from 'react-modal-video';
 import MovieCard from '../../components/MovieCard';
-import { getMovieList } from '../../redux/actions/movieAction';
-import { Row, Col } from 'antd';
+import {getMovieList} from '../../redux/actions/movieAction';
+import {Row, Col} from 'antd';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LoadingPage from '../../components/LoadingPage';
