@@ -1,13 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
-import { useSelector, useDispatch } from 'react-redux';
-import { getMovieInfo } from '../../redux/actions/movieAction';
+import { get } from '../../utils/ApiCaller';
 import { Row, Col, Progress, Tabs } from 'antd';
 import Rating from '@material-ui/lab/Rating';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ModalVideo from 'react-modal-video';
-import { getCinemaComplexOptions } from '../../redux/actions/movieAction';
 import MovieField from '../HomePage/MovieNav/MovieField';
 import LoadingPage from '../LoadingPage';
 
@@ -16,15 +14,14 @@ import 'antd/dist/antd.css';
 
 const { TabPane } = Tabs;
 
-const MovieDetailPage = (props) => {
+const MovieDetailPage = props => {
   const { movieId } = props.match.params;
-  const movie = useSelector(state => state.movieReducer.movieInfo);
-  const cinemaComplexOptions = useSelector(state => state.movieReducer.optionsForSearchBar.cinemaComplexOptions)
   const [isVideoOpened, setIsVideoOpened] = useState(false);
   const [isVideoModalOpened, setIsVideoModalOpened] = useState(false);
   const [idOfCurrentVideo, setIdOfCurrentVideo] = useState(null);
-  const dispatch = useDispatch();
   const [windowWidthSize, setWindowWidthSize] = useState(null);
+  const [movie, setMovie] = useState(null);
+  const [showtime, setShowtime] = useState(null);
 
   if (movie)
     document.title = `${movie.tenPhim} - Movie Project`;
@@ -46,9 +43,9 @@ const MovieDetailPage = (props) => {
       tabPosition={windowWidthSize > 768 ? "left" : "top"}
       style={{ height: 500 }}
       centered={windowWidthSize <= 768}
-      defaultActiveKey={cinemaComplexOptions[0].maHeThongRap}
+      defaultActiveKey={showtime[0].maHeThongRap}
     >
-      {cinemaComplexOptions.map(cinemaComplex => {
+      {showtime.map(cinemaComplex => {
         return (
           <TabPane
             tab={<img className="movie-cinema-img" src={cinemaComplex.logo} />}
@@ -124,7 +121,7 @@ const MovieDetailPage = (props) => {
               style={{ height: 650 }}
               className="movie-table-tab"
             >
-              {cinemaComplexOptions?.length > 0 &&
+              {showtime?.length > 0 &&
                 <TabPane className="movie-table-tab-pane" tab="Showtime" key="1">
                   {renderShowtime()}
                 </TabPane>}
@@ -152,7 +149,7 @@ const MovieDetailPage = (props) => {
                   </Col>
                   <Col xs={24} md={12}>
                     <p className="movie-tab-title">Content</p>
-                    <p>{movie.tenPhim} is the next project of talented director Christopher is a film related to espionage</p>
+                    <p>{movie.moTa}</p>
                   </Col>
                 </Row>
               </TabPane>
@@ -171,19 +168,34 @@ const MovieDetailPage = (props) => {
 
   useEffect(() => {
     const handleResize = () => setWindowWidthSize(window.innerWidth)
+    const fetchMovie = async () => {
+      try {
+        const res = await get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`);
+        setMovie(res.data);
+      } catch{ }
+    }
+    const fetchCinemaComplexOptions = async () => {
+      try {
+        const res = await get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
+        console.log(res.data)
+        setShowtime(res.data.heThongRapChieu);
+      } catch{ }
+    }
 
-    dispatch(getMovieInfo(movieId));
-    dispatch(getCinemaComplexOptions(movieId));
+    fetchMovie();
+    fetchCinemaComplexOptions();
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
   }, [])
 
   return (
     <Fragment>
       <NavBar />
-      {movie && cinemaComplexOptions ? renderMovieDetailPage() : <LoadingPage />}
+      {movie && showtime ? renderMovieDetailPage() : <LoadingPage />}
       <Footer />
     </Fragment>
   )
