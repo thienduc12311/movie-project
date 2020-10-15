@@ -22,8 +22,12 @@ const customerRoutes = [
     component: MoviePage
   },
   {
-    exact: false,
-    path: '/movie/id=:movieId',
+    exact: true,
+    path: '/movie/:movieId',
+    component: MovieDetailPage
+  },
+  {
+    path: '/movie/:movieId-:movieName',
     component: MovieDetailPage
   },
   {

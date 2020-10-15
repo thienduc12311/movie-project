@@ -177,7 +177,6 @@ const MovieDetailPage = props => {
     const fetchCinemaComplexOptions = async () => {
       try {
         const res = await get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
-        console.log(res.data)
         setShowtime(res.data.heThongRapChieu);
       } catch{ }
     }

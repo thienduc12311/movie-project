@@ -72,6 +72,7 @@ const movieList = [
     danhGia: 9,
     thoiGian: 117,
     nhan: 'C16',
+    biDanh: 'mat-biec'
   },
   {
     maPhim: 1359,
@@ -81,6 +82,7 @@ const movieList = [
     danhGia: 9,
     thoiGian: 97,
     nhan: 'C18',
+    biDanh: 'vo-ba'
   },
   {
     maPhim: 1509,
@@ -90,6 +92,7 @@ const movieList = [
     danhGia: 5,
     thoiGian: 126,
     nhan: 'C16',
+    biDanh: 'spectre'
   },
   {
     maPhim: 2864,
@@ -99,6 +102,7 @@ const movieList = [
     danhGia: 8,
     thoiGian: 159,
     nhan: 'P',
+    biDanh: 'transformers'
   },
   {
     maPhim: 2598,
@@ -108,6 +112,7 @@ const movieList = [
     danhGia: 2,
     thoiGian: 87,
     nhan: 'P',
+    biDanh: 'dragon-ball'
   },
   {
     maPhim: 4033,
@@ -117,6 +122,7 @@ const movieList = [
     danhGia: 10,
     thoiGian: 126,
     nhan: 'P',
+    biDanh: 'rampage'
   },
   {
     maPhim: 3922,
@@ -126,6 +132,7 @@ const movieList = [
     danhGia: 10,
     thoiGian: 139,
     nhan: 'C16',
+    biDanh: 'tenet'
   },
   {
     maPhim: 1314,
@@ -135,6 +142,7 @@ const movieList = [
     danhGia: 10,
     thoiGian: 128,
     nhan: 'C16',
+    biDanh: '13-reasons-why'
   },
   {
     maPhim: 1329,
@@ -144,6 +152,7 @@ const movieList = [
     danhGia: 7,
     thoiGian: 147,
     nhan: 'P',
+    biDanh: 'inside-out'
   },
   {
     maPhim: 1539,
@@ -153,6 +162,7 @@ const movieList = [
     danhGia: 10,
     thoiGian: 121,
     nhan: 'P',
+    biDanh: 'angry-birds-2'
   },
   {
     maPhim: 2803,
@@ -162,6 +172,7 @@ const movieList = [
     danhGia: 8,
     thoiGian: 169,
     nhan: 'P',
+    biDanh: 'wonder-woman-1984'
   },
 ];
 
