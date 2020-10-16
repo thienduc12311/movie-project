@@ -8,7 +8,7 @@ const MovieSlider = ({ film, index, handleClick }) => {
   return (
     <div className="slider" >
       <img className="slider-img" src={film.hinhAnh} />
-      <NavLink to={`/movie/${film.maPhim}-${film.biDanh}`}>
+      <NavLink to={`/movie/${film.maPhim}/${film.biDanh}`}>
         <div className="slider-overlay"></div>
       </NavLink>
       <div

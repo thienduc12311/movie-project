@@ -21,13 +21,13 @@ const customerRoutes = [
     path: '/movie',
     component: MoviePage
   },
+  // {
+  //   exact: true,
+  //   path: '/movie/:movieId',
+  //   component: MovieDetailPage
+  // },
   {
-    exact: true,
-    path: '/movie/:movieId',
-    component: MovieDetailPage
-  },
-  {
-    path: '/movie/:movieId-:movieName',
+    path: '/movie/:movieId/:name?',
     component: MovieDetailPage
   },
   {
