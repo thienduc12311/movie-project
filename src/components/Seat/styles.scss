@@ -1,0 +1,49 @@
+.seat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 30%;
+  background-color: rgb(23, 20, 20);
+  color: white;
+  font-size: 10px;
+
+  span {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.chosen {
+    background-color: rgba(128, 128, 128, 0.197);
+    cursor: no-drop;
+  }
+
+  &.vip {
+    background-color: yellow;
+  }
+
+  &.choosing {
+    background-color: green;
+  }
+
+  &.been-chosen {
+    background-color: rgba(108, 108, 108, 0.7);
+  }
+
+  &.demo {
+    width: 10%;
+    margin-right: 5%;
+    padding: 10% 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .seat span {
+    font-size: 8px;
+  }
+}

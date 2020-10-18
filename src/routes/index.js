@@ -9,6 +9,7 @@ import CinemaComplexPage from '../containers/CinemaComplexPage';
 import CinemaPage from '../containers/CinemaPage';
 import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
+import BookingPage from '../containers/BookingPage';
 
 const customerRoutes = [
   {
@@ -61,6 +62,10 @@ const customerRoutes = [
   {
     path: '/account/signup',
     component: SignUp
+  },
+  {
+    path: '/checkout/:roomId',
+    component: BookingPage
   },
 ];
 

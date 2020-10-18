@@ -9,10 +9,12 @@ import Collapse from '@material-ui/core/Collapse';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import { withRouter } from 'react-router-dom';
 
 import './styles.scss';
 
-const MovieTab = ({ movie, cinema, isBigScreen }) => {
+const MovieTab = props => {
+  const { movie, cinema, isBigScreen, history } = props;
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   const handleFilterDateOptions = (dateTimeArray) => {
@@ -91,7 +93,7 @@ const MovieTab = ({ movie, cinema, isBigScreen }) => {
     const showtimeInfo = dateTimeArray.find(item =>
       moment(item.ngayChieuGioChieu).format('ll') === date && moment(item.ngayChieuGioChieu).format('LT') === time
     );
-    console.log(showtimeInfo);
+    history.push(`/checkout/${showtimeInfo.maLichChieu}`);
   }
 
   const handleName = name => {
@@ -155,4 +157,4 @@ const MovieTab = ({ movie, cinema, isBigScreen }) => {
   )
 }
 
-export default MovieTab;
+export default withRouter(MovieTab);

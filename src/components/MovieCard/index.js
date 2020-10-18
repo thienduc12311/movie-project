@@ -22,7 +22,7 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
         </div>
         <p className="card-time">
           {card.thoiGian ? card.thoiGian : 120} minutes
-                    </p>
+        </p>
       </div>
       <div className="card-progress">
         <h3>{card.danhGia}</h3>
