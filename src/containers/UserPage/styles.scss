@@ -1,41 +1,95 @@
 .user-page {
-    margin-top: 60px;
+  margin: 60px 0 0;
+  animation: transform-when-loaded 1s;
+  min-height: 100vh;
 
-    .options-field {
-        position: relative;
-        min-height: 100vh;
-        top: 0;
-        left: 0;
+  .options-field {
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
 
-        .options-content {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+    .options-content {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
-            .options-avatar {
-                text-align: center;
-            }
+      .options-avatar {
+        text-align: center;
+      }
 
-            .options-button {
-                .options-btn {
-                    color: black;
-                    text-align: center;
-                    padding: 5px 50px;
-                    font-size: 16px;
-                    font-weight: 500;
-                    margin: 10px 0;
-                    border-radius: 10px;
+      .options-button {
+        .options-btn {
+          color: black;
+          text-align: center;
+          padding: 5px 50px;
+          font-size: 16px;
+          font-weight: 500;
+          margin: 10px 0;
+          border-radius: 10px;
 
-                    &.options-signin {
-                        background-color: lightblue;
-                    }
+          &.options-signin {
+            background-color: lightblue;
+          }
 
-                    &.options-signup {
-                        background-color: bisque;
-                    }
-                }
-            }
+          &.options-signup {
+            background-color: bisque;
+          }
         }
+      }
     }
+  }
+
+  .user-page-header {
+    background-color: #f5f5f7;
+
+    p {
+      text-align: right;
+      font-size: 12px;
+      cursor: pointer;
+      color: rgba(0, 0, 255, 0.8);
+      margin: 0;
+    }
+
+    .header-upper {
+      max-width: 1000px;
+      padding: 15px 30px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 20px;
+      }
+
+      hr {
+        border-color: #f5f5f7;
+      }
+    }
+
+    .header-lower {
+      max-width: 1000px;
+      padding: 20px 30px;
+      margin: 0 auto;
+    }
+  }
+
+  .booking-info {
+    max-width: 1000px;
+    padding: 15px 30px;
+    margin: 100px auto;
+
+    p {
+      text-align: center;
+      font-size: 15px;
+      color: rgba(0, 0, 255, 0.8);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .user-page-header {
+    p {
+      text-align: left !important;
+    }
+  }
 }

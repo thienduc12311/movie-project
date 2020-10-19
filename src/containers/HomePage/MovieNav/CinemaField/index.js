@@ -17,8 +17,8 @@ const CinemaTab = ({ cinemaList }) => {
         <span style={{ color: '#8bc541' }}>{firstName}</span>
         <span>{lastName}</span>
       </p>
-    );
-  };
+    )
+  }
 
   return (
     <Tabs
@@ -27,7 +27,7 @@ const CinemaTab = ({ cinemaList }) => {
       style={{ height: 500 }}
       className="cinema-field"
     >
-      {[...Array.from({ length: cinemaList.length }, (v, i) => i)].map((i) => (
+      {[...Array.from({ length: cinemaList.length }, (v, i) => i)].map(i => (
         <TabPane
           className="cinema-tab"
           key={i}
@@ -50,7 +50,7 @@ const CinemaTab = ({ cinemaList }) => {
         </TabPane>
       ))}
     </Tabs>
-  );
-};
+  )
+}
 
 export default CinemaTab;

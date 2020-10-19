@@ -1,0 +1,95 @@
+$bg-image-apple: "../../../assets/img/apple.jpg";
+
+.user-manage-page {
+  margin: 60px 0 100px;
+  animation: transform-when-loaded 1s;
+
+  .user-manage-header {
+    background-image: url($bg-image-apple);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 210px;
+
+    .user-manage-header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 33px;
+
+      h1,
+      h3 {
+        color: white;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      span {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 8px 15px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+
+  .user-manage-body {
+    margin: 30px auto 0;
+    padding: 0 30px;
+    max-width: 1000px;
+
+    h2 {
+      color: #fb4226;
+      font-size: 25px;
+    }
+
+    .info {
+      animation: transform-when-loaded 1s;
+
+      h3 {
+        font-size: 12px;
+        color: #666;
+        font-weight: 600;
+      }
+
+      p {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 18px;
+        color: black;
+      }
+    }
+
+    .btn {
+      background: linear-gradient(to left, #fb4226, #ce3017 100%);
+      padding: 4px 13px;
+      font-size: 13px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &.btn-form-submit {
+        margin-left: 20px;
+      }
+    }
+
+    .form {
+      animation: transform-when-loaded 1s;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .user-manage-header-container {
+    // display: none;
+  }
+}

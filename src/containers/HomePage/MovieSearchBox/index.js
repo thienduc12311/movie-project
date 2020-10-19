@@ -8,7 +8,7 @@ import {
   getCinemaComplexOptions,
   getCinemaOptions,
   getDateOptions,
-  getTimeOptions,
+  getTimeOptions
 } from '../../../redux/actions/movieAction';
 
 import './styles.scss';
@@ -24,73 +24,77 @@ const initialValue = {
 
 const MovieSearchBox = () => {
   const [valueSelected, setValueSelected] = useState(initialValue);
-  const options = useSelector((state) => state.movieReducer.optionsForSearchBar);
+  const options = useSelector(state => state.movieReducer.optionsForSearchBar);
   const dispatch = useDispatch();
 
   const handleSelectMovie = (idMovie) => {
     if (idMovie !== valueSelected.movie) {
-      dispatch(getCinemaComplexOptions(idMovie));
+      dispatch(
+        getCinemaComplexOptions(idMovie)
+      );
       setValueSelected({
         ...initialValue,
-        movie: idMovie,
+        movie: idMovie
       });
     }
-  };
+  }
 
   const handleSelectCinemaComplex = (cinemaComplex) => {
     if (cinemaComplex !== valueSelected.cinemaComplex) {
-      dispatch(getCinemaOptions(options.cinemaComplexOptions, cinemaComplex));
+      dispatch(
+        getCinemaOptions(options.cinemaComplexOptions, cinemaComplex)
+      );
       setValueSelected({
         ...valueSelected,
         cinemaComplex,
         cinema: null,
         date: null,
-        time: null,
+        time: null
       });
     }
-  };
+  }
 
   const handleSelectCinema = (cinema) => {
     if (cinema !== valueSelected.cinema) {
-      dispatch(getDateOptions(options.cinemaOptions, cinema));
+      dispatch(
+        getDateOptions(options.cinemaOptions, cinema)
+      );
       setValueSelected({
         ...valueSelected,
         cinema,
         date: null,
-        time: null,
+        time: null
       });
     }
-  };
+  }
 
   const handleSelectDate = (date) => {
     if (date !== valueSelected.date) {
-      dispatch(getTimeOptions(options.cinemaOptions, valueSelected.cinema, date));
+      dispatch(
+        getTimeOptions(options.cinemaOptions, valueSelected.cinema, date)
+      );
       setValueSelected({
         ...valueSelected,
         date,
-        time: null,
+        time: null
       });
     }
-  };
+  }
 
   const handleSelectTime = (dateTime) => {
     setValueSelected({
       ...valueSelected,
-      time: dateTime,
+      time: dateTime
     });
-  };
+  }
 
   const handBookTicket = () => {
-    const dateTimeArray = options.cinemaOptions.find(
-      (item) => (item.maCumRap = valueSelected.cinema)
-    );
-    const showtimeInfo = dateTimeArray.lichChieuPhim.find(
-      (item) =>
-        moment(item.ngayChieuGioChieu).format('ll') === valueSelected.date &&
-        moment(item.ngayChieuGioChieu).format('LT') === valueSelected.time
+    const dateTimeArray = options.cinemaOptions.find(item => item.maCumRap = valueSelected.cinema);
+    const showtimeInfo = dateTimeArray.lichChieuPhim.find(item =>
+      moment(item.ngayChieuGioChieu).format('ll') === valueSelected.date && moment(item.ngayChieuGioChieu).format('LT') === valueSelected.time
     );
     console.log(showtimeInfo);
-  };
+  }
 
   return (
     <Fragment>
@@ -98,8 +102,8 @@ const MovieSearchBox = () => {
         placeholder="Movie"
         currentValue={valueSelected.movie}
         options={options.movieOptions}
-        valueKey="maPhim"
-        optionKey="tenPhim"
+        valueKey='maPhim'
+        optionKey='tenPhim'
         handleChange={handleSelectMovie}
         isLoading={!options.movieOptions}
       />
@@ -107,8 +111,8 @@ const MovieSearchBox = () => {
         placeholder="Cinema Complex"
         currentValue={valueSelected.cinemaComplex}
         options={options.cinemaComplexOptions}
-        valueKey="maHeThongRap"
-        optionKey="tenHeThongRap"
+        valueKey='maHeThongRap'
+        optionKey='tenHeThongRap'
         handleChange={handleSelectCinemaComplex}
         isDisabled={!valueSelected.movie}
         isLoading={valueSelected.movie && !options.cinemaComplexOptions}
@@ -117,8 +121,8 @@ const MovieSearchBox = () => {
         placeholder="Cinema"
         currentValue={valueSelected.cinema}
         options={options.cinemaOptions}
-        valueKey="maCumRap"
-        optionKey="tenCumRap"
+        valueKey='maCumRap'
+        optionKey='tenCumRap'
         handleChange={handleSelectCinema}
         isDisabled={!valueSelected.cinemaComplex}
         isLoading={valueSelected.cinemaComplex && !options.cinemaOptions}
@@ -147,9 +151,9 @@ const MovieSearchBox = () => {
         icon={<SendOutlined />}
       >
         Book
-      </Button>
+            </Button>
     </Fragment>
-  );
-};
+  )
+}
 
 export default MovieSearchBox;

@@ -1,8 +1,8 @@
-import React, {useState, Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import MovieSlider from '../../../components/MovieSlider';
 import ModalVideo from 'react-modal-video';
-import {RightOutlined, LeftOutlined} from '@ant-design/icons';
-import {Slide} from 'react-slideshow-image';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { Slide } from 'react-slideshow-image';
 
 import './styles.scss';
 import 'react-slideshow-image/dist/styles.css';
@@ -14,34 +14,35 @@ const properties = {
   transitionDuration: 500,
   infinite: true,
   prevArrow: <LeftOutlined />,
-  nextArrow: <RightOutlined />,
+  nextArrow: <RightOutlined />
 };
 
 const movieList = [
   {
-    hinhAnh:
-      'https://static.yeah1.com/uploads/editors/49/2019/12/04/cgs0cpkq2Q711AyCY3pHUDYsbXMyV4U3VLTpv3uK.jpeg',
+    hinhAnh: "https://static.yeah1.com/uploads/editors/49/2019/12/04/cgs0cpkq2Q711AyCY3pHUDYsbXMyV4U3VLTpv3uK.jpeg",
     maPhim: '2528',
-    trailer: 'ITlQ0oU7tDA',
+    trailer: "ITlQ0oU7tDA",
+    biDanh: 'mat-biec'
   },
   {
-    hinhAnh:
-      'https://www.desktopbackground.org/download/2560x1440/2011/09/07/261894_hd-backgrounds-new-angry-birds-2-game-poster-wallpapers_3840x2400_h.jpg',
-    maPhim: '1539',
-    trailer: 'RSKQ-lVsMdg',
+    hinhAnh: "https://www.desktopbackground.org/download/2560x1440/2011/09/07/261894_hd-backgrounds-new-angry-birds-2-game-poster-wallpapers_3840x2400_h.jpg",
+    maPhim: "1539",
+    trailer: "RSKQ-lVsMdg",
+    biDanh: 'angry-birds-2'
   },
   {
-    hinhAnh:
-      'https://www.desktopbackground.org/download/2560x1440/2014/06/08/775140_transformers-4-age-of-extinction-game-poster-wallpapers_2880x1800_h.jpg',
-    maPhim: '2684',
-    trailer: 'dYDGqmxMZFI',
+    hinhAnh: "https://www.desktopbackground.org/download/2560x1440/2014/06/08/775140_transformers-4-age-of-extinction-game-poster-wallpapers_2880x1800_h.jpg",
+    maPhim: "2864",
+    trailer: "dYDGqmxMZFI",
+    biDanh: 'transformers'
   },
   {
-    hinhAnh: 'https://images.hdqwalls.com/download/tenet-4k-ja-1920x1080.jpg',
-    maPhim: '3922',
-    trailer: 'LdOM0x0XDMo',
-  },
-];
+    hinhAnh: "https://images.hdqwalls.com/download/tenet-4k-ja-1920x1080.jpg",
+    maPhim: "3922",
+    trailer: "LdOM0x0XDMo",
+    biDanh: 'tenet'
+  }
+]
 
 const MovieCarousel = () => {
   const [isVideoOpened, setIsVideoOpened] = useState(false);
@@ -52,12 +53,12 @@ const MovieCarousel = () => {
     setIdOfCurrentVideo(id);
     setIsVideoOpened(true);
     document.body.setAttribute('style', 'overflow: hidden');
-  };
+  }
 
   const handleClose = () => {
     setIsVideoOpened(false);
     document.body.setAttribute('style', 'overflow: unset');
-  };
+  }
 
   return (
     <Fragment>
@@ -65,19 +66,24 @@ const MovieCarousel = () => {
         <Slide {...properties}>
           {movieList.map((movie, index) => (
             <div key={index} className="each-fade">
-              <MovieSlider film={movie} index={index} handleClick={handleOpen} />
+              <MovieSlider
+                film={movie}
+                index={index}
+                handleClick={handleOpen}
+              />
             </div>
           ))}
+
         </Slide>
       </div>
       <ModalVideo
-        channel="youtube"
+        channel='youtube'
         isOpen={isVideoOpened}
         videoId={idOfCurrentVideo}
         onClose={handleClose}
       />
     </Fragment>
-  );
-};
+  )
+}
 
 export default MovieCarousel;

@@ -1,31 +1,32 @@
 .cinema-complex-page {
-    margin: 60px auto;
-    width: 80%;
-    min-height: 100vh;
+  margin: 60px auto;
+  width: 80%;
+  min-height: 100vh;
+  animation: transform-when-loaded 1s;
 
-    .ant-menu-submenu {
-        .ant-menu-submenu-title {
-            height: 80px;
-            position: relative;
-            top: 0;
-            left: 0;
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      height: 80px;
+      position: relative;
+      top: 0;
+      left: 0;
 
-            span {
-                img {
-                    position: absolute;
-                    top: 15px;
-                    width: 50px;
-                    left: 0px;
-                }
-
-                span {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    left: 80px;
-                    font-weight: 500;
-                }
-            }
+      span {
+        img {
+          position: absolute;
+          top: 15px;
+          width: 50px;
+          left: 0px;
         }
+
+        span {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 80px;
+          font-weight: 500;
+        }
+      }
     }
+  }
 }
