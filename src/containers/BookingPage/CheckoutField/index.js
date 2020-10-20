@@ -48,12 +48,16 @@ const CheckoutField = ({ room, bookingList, setBookingList }) => {
   }
 
   useEffect(() => {
+    let t;
     if (timer)
-      setTimeout(() => setTimer(timer - 1), 1000);
-    // else
-    //   setIsDialogOpened(true);
+      t = setTimeout(() => setTimer(timer - 1), 1000);
+    else
+      setIsDialogOpened(true);
 
-    return () => document.body.setAttribute('style', 'overflow: unset');
+    return () => {
+      document.body.setAttribute('style', 'overflow: unset');
+      clearTimeout(t);
+    }
   }, [timer]);
 
   return (

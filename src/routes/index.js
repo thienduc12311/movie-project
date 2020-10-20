@@ -64,6 +64,7 @@ const customerRoutes = [
     component: SignUp
   },
   {
+    isProtected: true,
     path: '/checkout/:roomId',
     component: BookingPage
   },

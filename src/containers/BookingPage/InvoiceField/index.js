@@ -49,7 +49,7 @@ const InvoiceField = props => {
             <p>{room.thongTinPhim.ngayChieu} - {room.thongTinPhim.gioChieu} - {room.thongTinPhim.tenRap}</p>
           </div>
           <div className="seat-list">
-            {bookingList.length ? <p>Selected seat list:</p> : <p>No seat selected</p>}
+            {bookingList.length ? <p>Selected seats:</p> : <p>No seat selected</p>}
             {bookingList.map(item => <div key={item.stt} className="seat-item">{handleSeatNumber(item.stt)}</div>)}
           </div>
           <button disabled={!bookingList.length} onClick={handleBook} className={bookingList.length ? "btn-book" : "btn-disabled"}>
