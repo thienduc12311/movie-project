@@ -3,6 +3,10 @@ import MovieSlider from '../../../components/MovieSlider';
 import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Slide } from 'react-slideshow-image';
+import tiecTrangMau from '../../../assets/img/carousel/tiec-trang-mau.jpg';
+import cucNoHoaCucCung from '../../../assets/img/carousel/cuc-no-hoa-cuc-cung.jpg';
+import skyTour from '../../../assets/img/carousel/sky-tour.jpg';
+import ava from '../../../assets/img/carousel/ava.jpg';
 
 import './styles.scss';
 import 'react-slideshow-image/dist/styles.css';
@@ -19,24 +23,28 @@ const properties = {
 
 const movieList = [
   {
-    hinhAnh: "https://static.yeah1.com/uploads/editors/49/2019/12/04/cgs0cpkq2Q711AyCY3pHUDYsbXMyV4U3VLTpv3uK.jpeg",
-    maPhim: '2528',
-    trailer: "ITlQ0oU7tDA"
+    hinhAnh: tiecTrangMau,
+    maPhim: '4298',
+    trailer: "nh0BklwPN9Q",
+    biDanh: "tiec-trang-mau"
   },
   {
-    hinhAnh: "https://www.desktopbackground.org/download/2560x1440/2011/09/07/261894_hd-backgrounds-new-angry-birds-2-game-poster-wallpapers_3840x2400_h.jpg",
-    maPhim: "1539",
-    trailer: "RSKQ-lVsMdg"
+    hinhAnh: cucNoHoaCucCung,
+    maPhim: "4301",
+    trailer: "2zSzDlaN-9w",
+    biDanh: "cuc-no-hoa-cuc-cung"
   },
   {
-    hinhAnh: "https://www.desktopbackground.org/download/2560x1440/2014/06/08/775140_transformers-4-age-of-extinction-game-poster-wallpapers_2880x1800_h.jpg",
-    maPhim: "2684",
-    trailer: "dYDGqmxMZFI"
+    hinhAnh: skyTour,
+    maPhim: "4302",
+    trailer: "t7m1iqs_b-U",
+    biDanh: "sky-tour"
   },
   {
-    hinhAnh: "https://images.hdqwalls.com/download/tenet-4k-ja-1920x1080.jpg",
-    maPhim: "3922",
-    trailer: "LdOM0x0XDMo"
+    hinhAnh: ava,
+    maPhim: "4303",
+    trailer: "eLEwNo78f0k",
+    biDanh: "ava"
   }
 ]
 

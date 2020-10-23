@@ -23,8 +23,7 @@ const customerRoutes = [
     component: MoviePage
   },
   {
-    exact: false,
-    path: '/movie/id=:movieId',
+    path: '/movie/:movieId/:name?',
     component: MovieDetailPage
   },
   {

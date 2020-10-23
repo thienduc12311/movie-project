@@ -66,8 +66,8 @@ const MovieTab = props => {
     ))
   }
 
-  let settings;
   const renderTimeField = (dateTimeArray, date) => {
+    let settings;
     const timeArray = handleFilterTimeOptions(dateTimeArray, date);
     if (isBigScreen)
       settings = {
@@ -96,7 +96,7 @@ const MovieTab = props => {
     const showtimeInfo = dateTimeArray.find(item =>
       moment(item.ngayChieuGioChieu).format('ll') === date && moment(item.ngayChieuGioChieu).format('LT') === time
     );
-    dispatch(setCurrentPath(`/checkout/${showtimeInfo.maLichChieu}`))
+    dispatch(setCurrentPath(`/checkout/${showtimeInfo.maLichChieu}`));
     history.push(`/checkout/${showtimeInfo.maLichChieu}`);
   }
 
@@ -121,7 +121,7 @@ const MovieTab = props => {
               className={isBigScreen ? "movie-logo-container-bigscreen" : "movie-logo-container"}
             >
               {movie &&
-                <NavLink to={`/movie/id=${movie.maPhim}`}>
+                <NavLink to={`/movie/${movie.maPhim}`}>
                   <img className="movie-logo" src={movie.hinhAnh} />
                 </NavLink>}
               {cinema &&
