@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Row, Col } from 'antd';

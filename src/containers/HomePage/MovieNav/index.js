@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Tabs } from 'antd';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {Tabs} from 'antd';
 import CinemaField from './CinemaField';
-import { getCinemaComplexInfo } from '../../../redux/actions/movieAction';
+import {getCinemaComplexInfo} from '../../../redux/actions/movieAction';
 
 import './styles.scss';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 const MovieNav = () => {
   const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);

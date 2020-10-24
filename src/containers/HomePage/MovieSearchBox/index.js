@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from 'react';
+import React, {useState, Fragment} from 'react';
 import SearchBar from '../../../components/SearchBar';
 import moment from 'moment';
-import { Button } from 'antd';
-import { SendOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux';
+import {Button} from 'antd';
+import {SendOutlined} from '@ant-design/icons';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   getCinemaComplexOptions,
   getCinemaOptions,

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, {Fragment} from 'react';
+import {useSelector} from 'react-redux';
 import NewsItem from '../../components/NewsItem';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';

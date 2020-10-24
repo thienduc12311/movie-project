@@ -157,7 +157,7 @@ const MovieTab = props => {
           </TableRow>
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer >
   )
 }
 
