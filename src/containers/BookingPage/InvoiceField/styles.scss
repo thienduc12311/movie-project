@@ -71,10 +71,10 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      cursor: pointer;
     }
 
     .btn-book {
+      cursor: pointer;
       background-image: linear-gradient(223deg, #b4ec51 0, #429321 100%);
     }
 
@@ -88,13 +88,5 @@
 @media only screen and (max-width: 768px) {
   .invoice-field {
     margin-top: 50px;
-
-    .seat-list {
-      position: sticky !important;
-      bottom: 0 !important;
-      background-color: #d5d5d5 !important;
-      border-radius: 6px;
-      padding: 10px;
-    }
   }
 }

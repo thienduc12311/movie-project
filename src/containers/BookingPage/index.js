@@ -6,7 +6,6 @@ import { get } from '../../utils/ApiCaller';
 import { Row, Col } from 'antd';
 import CheckoutField from './CheckoutField';
 import InvoiceField from './InvoiceField';
-import NotificationDialog from '../../components/NotificationDialog';
 
 import './styles.scss';
 
@@ -14,12 +13,9 @@ const BookingPage = props => {
   const { roomId } = props.match.params;
   const [room, setRoom] = useState(null);
   const [bookingList, setBookingList] = useState([]);
-  const [isDialogOpened, setIsDialogOpened] = useState(false);
 
   if (room)
     document.title = `${room.thongTinPhim.tenPhim} - Movie Project`;
-
-  const isBookingListFull = () => bookingList && bookingList.length > 10;
 
   const renderBookingPage = () => {
     return (
@@ -59,13 +55,6 @@ const BookingPage = props => {
       <NavBar />
       {room ? renderBookingPage() : <LoadingPage />}
       <Footer />
-      <NotificationDialog
-        isOpened={isDialogOpened}
-        setIsOpened={setIsDialogOpened}
-        text="Time out"
-        content="You can only hold the chair for 5 minutes."
-        options={[{ label: 'OK', onClick: () => window.location.reload() }]}
-      />
     </Fragment>
   )
 }

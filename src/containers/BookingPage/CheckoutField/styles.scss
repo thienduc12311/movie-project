@@ -85,6 +85,36 @@
       position: relative;
     }
   }
+
+  .checkout-note {
+    margin-top: 50px;
+
+    .seat-note {
+      background-color: #2b3b45;
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      margin: 0 auto 5px;
+
+      &.chosen {
+        background-color: rgba(128, 128, 128, 0.197);
+      }
+
+      &.vip {
+        background-color: rgb(179, 251, 33);
+      }
+
+      &.choosing {
+        background-color: green;
+      }
+    }
+
+    p {
+      color: #9b9b9b;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -99,8 +129,15 @@
 
         p {
           font-size: 12px !important;
+          white-space: nowrap;
+          width: 180px;
+          text-overflow: ellipsis;
         }
       }
+    }
+
+    .timer {
+      font-size: 25px !important;
     }
   }
 

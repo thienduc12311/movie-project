@@ -45,9 +45,37 @@ const columns = [
     label: 'Ticket Code'
   }
 ];
-
 let text = "Are you sure to Sign Out";
 let options = [];
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+const InfoRow = ({ info }) => {
+  const pad = d => (d < 10) ? '0' + d.toString() : d.toString();
+
+  const handleSeatNumber = number => alphabet[Math.floor((number - 1) / 16)] + ((number % 16) ? pad(number % 16) : '16')
+  return (
+    <TableRow hover role="checkbox" tabIndex={-1}>
+      {columns.map(column => {
+        let value = info[column.id];
+        if (column.id === "tenHeThongRap" || column.id === "tenCumRap")
+          value = info.danhSachGhe[0][column.id];
+        if (column.id === "seat")
+          value = (
+            <Grid container>
+              {info.danhSachGhe.map(seat => (
+                <Grid item xs={12} key={seat.tenGhe}>{handleSeatNumber(seat.tenGhe)}</Grid>
+              ))}
+            </Grid>
+          );
+        return (
+          <TableCell key={column.id}>
+            {value}
+          </TableCell>
+        );
+      })}
+    </TableRow >
+  )
+}
 
 const UserPage = props => {
   const [account, setAccount] = useState(null);
@@ -57,6 +85,8 @@ const UserPage = props => {
   document.title = "Account Home - Movie Project";
 
   dispatch(setCurrentPath("/account"));
+
+
 
   if (isDialogOpened)
     document.body.setAttribute('style', 'overflow: hidden');
@@ -148,26 +178,7 @@ const UserPage = props => {
             </TableHead>
             <TableBody>
               {account.thongTinDatVe.map((info, index) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  {columns.map(column => {
-                    let value = info[column.id];
-                    if (column.id === "tenHeThongRap" || column.id === "tenCumRap")
-                      value = info.danhSachGhe[0][column.id];
-                    if (column.id === "seat")
-                      value = (
-                        <Grid container>
-                          {info.danhSachGhe.map(seat => (
-                            <Grid item xs={12} key={seat.tenGhe}>{seat.tenGhe}</Grid>
-                          ))}
-                        </Grid>
-                      );
-                    return (
-                      <TableCell key={column.id}>
-                        {value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
+                <InfoRow info={info} key={index} />
               ))}
             </TableBody>
           </Table>

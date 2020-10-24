@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './styles.scss';
 
@@ -20,5 +20,4 @@ const NotificationDialog = ({ isOpened, setIsOpened, text, content, options }) =
     </div>
   </div>
 )
-
 export default NotificationDialog;

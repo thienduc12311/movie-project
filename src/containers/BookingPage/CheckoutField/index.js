@@ -50,9 +50,9 @@ const CheckoutField = ({ room, bookingList, setBookingList }) => {
   useEffect(() => {
     let t;
     if (timer)
-      t = setTimeout(() => setTimer(timer - 1), 1000);
-    else
-      setIsDialogOpened(true);
+      t = setTimeout(() => setTimer(prevTimer => prevTimer - 1), 1000);
+    // else
+    //   setIsDialogOpened(true);
 
     return () => {
       document.body.setAttribute('style', 'overflow: unset');
@@ -82,7 +82,24 @@ const CheckoutField = ({ room, bookingList, setBookingList }) => {
             renderSeatRow(index * 16)
           ))}
           <div className="checkout-note">
-
+            <Row gutter={[15, 0]}>
+              <Col span={6}>
+                <div className="seat-note" />
+                <p>Ordinary seat</p>
+              </Col>
+              <Col span={6}>
+                <div className="seat-note choosing" />
+                <p>Choosing seat</p>
+              </Col>
+              <Col span={6}>
+                <div className="seat-note vip" />
+                <p>VIP seat</p>
+              </Col>
+              <Col span={6}>
+                <div className="seat-note chosen" />
+                <p>Chosen seat</p>
+              </Col>
+            </Row>
           </div>
         </div>
       </div>
@@ -90,7 +107,7 @@ const CheckoutField = ({ room, bookingList, setBookingList }) => {
         isOpened={isDialogOpened}
         setIsOpened={setIsDialogOpened}
         text="Time out"
-        content="You can only hold the chair for 5 minutes."
+        content="You can only hold the chairs for 5 minutes."
         options={[{ label: 'OK', onClick: () => window.location.reload() }]}
       />
     </Fragment>

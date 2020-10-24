@@ -1,44 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, Fragment } from 'react';
+import NotificationDialog from '../NotificationDialog';
 
 import './styles.scss';
 
+let seatType;
+
 const Seat = ({ seat, bookingList, setBookingList }) => {
   const [isChoosing, setIsChoosing] = useState(false);
-  const [seatType, setSeatType] = useState('normal');
+  const [isDialogOpened, setIsDialogOpened] = useState(false);
+
+  if (seat.loaiGhe === "Vip")
+    seatType = "vip";
+  if (seat.loaiGhe === "Thuong")
+    seatType = "normal";
+  if (seat.daDat)
+    seatType = "chosen";
 
   const handleSeatNumber = number => (number % 16) ? (number % 16) : '16'
 
-  const handleClick = () => {
-    if (!isChoosing)
-      setBookingList([...bookingList, seat]);
+  const isBookingListFull = () => bookingList.length === 10
+
+  const handleClick = async () => {
+    if (!isChoosing) {
+      if (isBookingListFull()) {
+        setIsDialogOpened(true);
+        return;
+      }
+      let list = [...bookingList, seat];
+      list.sort((a, b) => a.stt - b.stt);
+      await setBookingList([...list]);
+    }
     else {
       const index = bookingList.findIndex(item => item.stt === seat.stt);
       let list = bookingList;
       list.splice(index, 1);
-      setBookingList([...list]);
+      await setBookingList([...list]);
     }
     setIsChoosing(!isChoosing);
   }
 
-  useEffect(() => {
-    if (seat.daDat) {
-      setSeatType("chosen");
-      return;
-    }
-    if (seat.loaiGhe === "Vip")
-      setSeatType("vip");
-  }, [seat]);
-
   return (
-    <button
-      className={isChoosing ? `seat ${seatType} choosing` : `seat ${seatType}`}
-      onClick={handleClick}
-      disabled={seat.daDat}
-    >
-      <span>
-        {isChoosing && handleSeatNumber(seat.stt)}
-      </span>
-    </button>
+    <Fragment>
+      <button
+        className={isChoosing ? `seat ${seatType} choosing` : `seat ${seatType}`}
+        onClick={handleClick}
+        disabled={seat.daDat}
+      >
+        <span>
+          {isChoosing && handleSeatNumber(seat.stt)}
+        </span>
+      </button>
+      <NotificationDialog
+        isOpened={isDialogOpened}
+        setIsOpened={setIsDialogOpened}
+        text="Error!"
+        content="You can't choose more than 10 seats."
+        options={[{ label: 'OK' }]}
+      />
+    </Fragment>
   )
 }
 
