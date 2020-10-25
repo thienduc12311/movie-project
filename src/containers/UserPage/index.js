@@ -1,6 +1,6 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Row, Col } from 'antd';
@@ -188,7 +188,7 @@ const UserPage = props => {
       return (
         <div className="booking-info">
           <h1>Your Booking Information</h1>
-          {account.thongTinDatVe.length ? renderTable() : <p>no</p>}
+          {account.thongTinDatVe.length ? renderTable() : <p>No information</p>}
         </div>
       )
     }
