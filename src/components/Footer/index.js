@@ -44,12 +44,12 @@ const Footer = () => {
                 <Row gutter={[0, 20]}>MOBILE APP</Row>
                 <Row gutter={[0, 20]}>
                   <Col span={24} className="footer-icon">
-                    <a href="https://apps.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197">
+                    <a target="_blank" href="https://apps.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197">
                       <AppleOutlined />
                     </a>
                   </Col>
                   <Col span={24} className="footer-icon">
-                    <a href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
+                    <a target="_blank" href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
                       <AndroidOutlined />
                     </a>
                   </Col>
