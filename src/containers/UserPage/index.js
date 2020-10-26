@@ -45,7 +45,6 @@ const columns = [
     label: 'Ticket Code'
   }
 ];
-let text = "Are you sure to Sign Out";
 let options = [];
 const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
@@ -227,7 +226,8 @@ const UserPage = props => {
       <NotificationDialog
         isOpened={isDialogOpened}
         setIsOpened={setIsDialogOpened}
-        text={text}
+        text="Confirm"
+        content="Are you sure to Sign out?"
         options={options}
       />
     </Fragment>

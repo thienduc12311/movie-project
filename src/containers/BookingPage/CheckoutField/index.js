@@ -51,8 +51,8 @@ const CheckoutField = ({ room, bookingList, setBookingList }) => {
     let t;
     if (timer)
       t = setTimeout(() => setTimer(prevTimer => prevTimer - 1), 1000);
-    // else
-    //   setIsDialogOpened(true);
+    else
+      setIsDialogOpened(true);
 
     return () => {
       document.body.setAttribute('style', 'overflow: unset');

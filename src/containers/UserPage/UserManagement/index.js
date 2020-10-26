@@ -21,6 +21,7 @@ const infoField = [
 ];
 
 let text;
+let content;
 let options = [];
 
 const UserManagement = props => {
@@ -147,13 +148,12 @@ const UserManagement = props => {
           setIsSecurityEditing(false);
 
           text = "Update Successfully";
-          options = [{ label: 'OK' }];
-          setIsDialogOpened(true);
         } catch{
           text = "Update Failed";
-          options = [{ label: 'OK' }];
-          setIsDialogOpened(true);
         }
+        content = "";
+        options = [{ label: 'OK' }];
+        setIsDialogOpened(true);
       }
 
       const user = LocalStorageUtils.getItem('user');
@@ -172,10 +172,11 @@ const UserManagement = props => {
         auth.signOut(() => props.history.push('/'));
       }
 
-      text = "Are you sure to Sign Out";
+      text = "Confirm";
+      content = "Are you sure to Sign out?";
       options = [
         { label: "Cancel" },
-        { label: "OK", onClick: singOut, linkTo: '/' }
+        { label: "OK", onClick: singOut }
       ];
       setIsDialogOpened(true);
     }
@@ -293,6 +294,7 @@ const UserManagement = props => {
           isOpened={isDialogOpened}
           setIsOpened={setIsDialogOpened}
           text={text}
+          content={content}
           options={[{ label: 'OK' }]}
         />
       </div>
@@ -322,6 +324,7 @@ const UserManagement = props => {
         isOpened={isDialogOpened}
         setIsOpened={setIsDialogOpened}
         text={text}
+        content={content}
         options={options}
       />
     </Fragment>
