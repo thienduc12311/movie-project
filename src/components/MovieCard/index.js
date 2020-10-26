@@ -9,9 +9,7 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
   return (
     <div className="movie-card">
       <div className="card-media">
-        <NavLink to={`/movie/${card.maPhim}/${card.biDanh}`}>
-          <img className="card-image" src={card.hinhAnh} />
-        </NavLink>
+        <img className="card-image" src={card.hinhAnh} />
       </div>
       <div className="card-text">
         <div className="card-name">
@@ -28,14 +26,14 @@ const MovieCard = ({ card, handleOpenTrailer, index }) => {
         <h3>{card.danhGia}</h3>
         <Rating value={card.danhGia / 2} readOnly />
       </div>
-      <NavLink to={`/movie/${card.maPhim}/${card.biDanh}`}>
+      <NavLink to={`/movie/${card.maPhim}`}>
         <div className="card-overlay" />
       </NavLink>
       <div className="card-play-icon" onClick={() => handleOpenTrailer(index)}>
         <PlayArrowIcon />
       </div>
       <div className="card-button">
-        <NavLink to={`/movie/${card.maPhim}/${card.biDanh}`}>
+        <NavLink to={`/movie/${card.maPhim}`}>
           <div>BUY TICKET</div>
         </NavLink>
       </div>

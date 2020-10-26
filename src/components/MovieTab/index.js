@@ -9,11 +9,16 @@ import Collapse from '@material-ui/core/Collapse';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import { withRouter } from 'react-router-dom';
+import { setCurrentPath } from '../../redux/actions/movieAction';
+import { useDispatch } from 'react-redux';
 
 import './styles.scss';
 
-const MovieTab = ({ movie, cinema, isBigScreen }) => {
+const MovieTab = props => {
+  const { movie, cinema, isBigScreen, history } = props;
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
+  const dispatch = useDispatch();
 
   const handleFilterDateOptions = (dateTimeArray) => {
     let dateArray = [];
@@ -61,8 +66,8 @@ const MovieTab = ({ movie, cinema, isBigScreen }) => {
     ))
   }
 
-  let settings;
   const renderTimeField = (dateTimeArray, date) => {
+    let settings;
     const timeArray = handleFilterTimeOptions(dateTimeArray, date);
     if (isBigScreen)
       settings = {
@@ -91,7 +96,8 @@ const MovieTab = ({ movie, cinema, isBigScreen }) => {
     const showtimeInfo = dateTimeArray.find(item =>
       moment(item.ngayChieuGioChieu).format('ll') === date && moment(item.ngayChieuGioChieu).format('LT') === time
     );
-    console.log(showtimeInfo);
+    dispatch(setCurrentPath(`/checkout/${showtimeInfo.maLichChieu}`));
+    history.push(`/checkout/${showtimeInfo.maLichChieu}`);
   }
 
   const handleName = name => {
@@ -155,4 +161,4 @@ const MovieTab = ({ movie, cinema, isBigScreen }) => {
   )
 }
 
-export default MovieTab;
+export default withRouter(MovieTab);

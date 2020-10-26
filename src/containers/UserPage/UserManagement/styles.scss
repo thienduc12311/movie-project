@@ -86,10 +86,8 @@ $bg-image-apple: "../../../assets/img/apple.jpg";
       animation: transform-when-loaded 1s;
     }
   }
-}
 
-@media only screen and (max-width: 768px) {
-  .user-manage-header-container {
-    // display: none;
+  & ~ .dialog-container {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }

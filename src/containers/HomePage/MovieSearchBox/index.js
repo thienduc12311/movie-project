@@ -8,8 +8,10 @@ import {
   getCinemaComplexOptions,
   getCinemaOptions,
   getDateOptions,
-  getTimeOptions
+  getTimeOptions,
+  setCurrentPath
 } from '../../../redux/actions/movieAction';
+import { withRouter } from 'react-router-dom';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -22,7 +24,7 @@ const initialValue = {
   time: null,
 };
 
-const MovieSearchBox = () => {
+const MovieSearchBox = props => {
   const [valueSelected, setValueSelected] = useState(initialValue);
   const options = useSelector(state => state.movieReducer.optionsForSearchBar);
   const dispatch = useDispatch();
@@ -93,7 +95,8 @@ const MovieSearchBox = () => {
     const showtimeInfo = dateTimeArray.lichChieuPhim.find(item =>
       moment(item.ngayChieuGioChieu).format('ll') === valueSelected.date && moment(item.ngayChieuGioChieu).format('LT') === valueSelected.time
     );
-    console.log(showtimeInfo);
+    dispatch(setCurrentPath(`/checkout/${showtimeInfo.maLichChieu}`));
+    props.history.push(`/checkout/${showtimeInfo.maLichChieu}`);
   }
 
   return (
@@ -151,9 +154,9 @@ const MovieSearchBox = () => {
         icon={<SendOutlined />}
       >
         Book
-            </Button>
+      </Button>
     </Fragment>
   )
 }
 
-export default MovieSearchBox;
+export default withRouter(MovieSearchBox);

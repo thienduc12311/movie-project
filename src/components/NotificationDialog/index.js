@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './styles.scss';
 
-const NotificationDialog = ({ isOpened, setIsOpened, text, options }) => (
+const NotificationDialog = ({ isOpened, setIsOpened, text, content, options }) => (
   <div className={isOpened ? 'dialog-container' : 'dialog-container-none'}>
     <div className='dialog'>
       <div className="dialog-title">{text}</div>
+      <div className="dialog-content">{content}</div>
       <div className="dialog-action" onClick={() => setIsOpened(false)}>
         {options.map((option, index) => (
           <button
@@ -19,5 +20,4 @@ const NotificationDialog = ({ isOpened, setIsOpened, text, options }) => (
     </div>
   </div>
 )
-
 export default NotificationDialog;

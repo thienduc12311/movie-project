@@ -43,12 +43,12 @@ const Application = () => {
           <div className="app-content">
             <div className="app-text">
               Download Now
-                        </div>
+            </div>
             <div className="app-icon">
-              <a href="https://apps.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197">
+              <a target="_blank" href="https://apps.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197">
                 <AppleOutlined />
               </a>
-              <a href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
+              <a target="_blank" href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
                 <AndroidOutlined />
               </a>
             </div>

@@ -9,6 +9,8 @@ import CinemaComplexPage from '../containers/CinemaComplexPage';
 import CinemaPage from '../containers/CinemaPage';
 import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
+import BookingPage from '../containers/BookingPage';
+import PageNotFound from '../containers/PageNotFound';
 
 const customerRoutes = [
   {
@@ -21,11 +23,6 @@ const customerRoutes = [
     path: '/movie',
     component: MoviePage
   },
-  // {
-  //   exact: true,
-  //   path: '/movie/:movieId',
-  //   component: MovieDetailPage
-  // },
   {
     path: '/movie/:movieId/:name?',
     component: MovieDetailPage
@@ -66,6 +63,14 @@ const customerRoutes = [
     path: '/account/signup',
     component: SignUp
   },
+  {
+    isProtected: true,
+    path: '/checkout/:roomId',
+    component: BookingPage
+  },
+  {
+    component: PageNotFound
+  }
 ];
 
 export { customerRoutes };

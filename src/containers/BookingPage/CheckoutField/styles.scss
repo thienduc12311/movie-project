@@ -1,0 +1,149 @@
+.checkout-field {
+  max-width: 700px;
+  padding: 0 30px;
+  margin: 0 auto;
+
+  .checkout-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100px;
+
+    .checkout-info {
+      img {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        display: block;
+        border-radius: 6px;
+      }
+
+      .info {
+        position: absolute;
+        top: 50%;
+        left: 70px;
+        transform: translateY(-50%);
+
+        p:first-child {
+          font-weight: 500;
+          font-size: 14px;
+          color: #333;
+          margin-bottom: 5px;
+        }
+
+        p:last-child {
+          font-size: 14px;
+          color: #9b9b9b;
+          margin: 0;
+        }
+      }
+    }
+
+    .checkout-timer {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+
+      p {
+        font-size: 10px;
+        color: #9b9b9b;
+        margin: 0;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .timer {
+        font-size: 29px;
+        color: #fb4226;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .checkout-body {
+    height: 100%;
+    width: 100%;
+
+    .checkout-screen {
+      width: 100%;
+      display: block;
+    }
+
+    .checkout-heading {
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .checkout-seat {
+      width: 6.25%;
+      padding-top: 6.25%;
+      display: inline-block;
+      position: relative;
+    }
+  }
+
+  .checkout-note {
+    margin-top: 50px;
+
+    .seat-note {
+      background-color: #2b3b45;
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      margin: 0 auto 5px;
+
+      &.chosen {
+        background-color: rgba(128, 128, 128, 0.197);
+      }
+
+      &.vip {
+        background-color: rgb(179, 251, 33);
+      }
+
+      &.choosing {
+        background-color: green;
+      }
+    }
+
+    p {
+      color: #9b9b9b;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .checkout-header {
+    .checkout-info {
+      img {
+        display: none !important;
+      }
+
+      .info {
+        left: 0 !important;
+
+        p {
+          font-size: 12px !important;
+          white-space: nowrap;
+          width: 180px;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .timer {
+      font-size: 25px !important;
+    }
+  }
+
+  .checkout-body {
+    .checkout-heading {
+      font-size: 8px !important;
+    }
+  }
+}
