@@ -45,7 +45,7 @@ const SignUp = props => {
       validator: register({
         required: "Enter name",
         pattern: {
-          value: /^[A-Za-z]+$/,
+          value: /^[A-Za-z\s]+$/,
           message: "Use normal characters only"
         }
       }),
