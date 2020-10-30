@@ -3,4 +3,18 @@
   margin: 60px auto;
   width: 80%;
   min-height: 100vh;
+
+  h1 {
+    margin: 100px 0 30px;
+    font-size: 48px;
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .news-page {
+    h1 {
+      font-size: 32px;
+    }
+  }
 }

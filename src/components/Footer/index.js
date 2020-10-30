@@ -10,7 +10,7 @@ const Footer = () => {
   const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(getCinemaComplexInfo()), [])
+  useEffect(() => dispatch(getCinemaComplexInfo()), []);
 
   return (
     <footer>
