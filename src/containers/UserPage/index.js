@@ -85,8 +85,6 @@ const UserPage = props => {
 
   dispatch(setCurrentPath("/account"));
 
-
-
   if (isDialogOpened)
     document.body.setAttribute('style', 'overflow: hidden');
   else
