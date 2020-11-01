@@ -36,7 +36,7 @@ const movieList = [
   },
   {
     hinhAnh: skyTour,
-    maPhim: "4302",
+    maPhim: "4428",
     trailer: "t7m1iqs_b-U",
     biDanh: "sky-tour"
   },
