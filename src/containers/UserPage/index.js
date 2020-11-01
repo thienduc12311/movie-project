@@ -25,58 +25,57 @@ const columns = [
   {
     id: 'tenPhim',
     label: 'Movie',
-    minWidth: 200
+    minWidth: 200,
   },
   {
     id: 'tenHeThongRap',
     label: 'Cinema',
-    minWidth: 250
+    minWidth: 250,
   },
   {
     id: 'seat',
-    label: 'Seats'
+    label: 'Seats',
   },
   {
     id: 'tenCumRap',
-    label: 'Room'
+    label: 'Room',
   },
   {
     id: 'maVe',
-    label: 'Ticket Code'
-  }
+    label: 'Ticket Code',
+  },
 ];
 let options = [];
 const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 const InfoRow = ({ info }) => {
-  const pad = d => (d < 10) ? '0' + d.toString() : d.toString();
+  const pad = (d) => (d < 10 ? '0' + d.toString() : d.toString());
 
-  const handleSeatNumber = number => alphabet[Math.floor((number - 1) / 16)] + ((number % 16) ? pad(number % 16) : '16')
+  const handleSeatNumber = (number) =>
+    alphabet[Math.floor((number - 1) / 16)] + (number % 16 ? pad(number % 16) : '16');
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
-      {columns.map(column => {
+      {columns.map((column) => {
         let value = info[column.id];
-        if (column.id === "tenHeThongRap" || column.id === "tenCumRap")
+        if (column.id === 'tenHeThongRap' || column.id === 'tenCumRap')
           value = info.danhSachGhe[0][column.id];
-        if (column.id === "seat")
+        if (column.id === 'seat')
           value = (
             <Grid container>
-              {info.danhSachGhe.map(seat => (
-                <Grid item xs={12} key={seat.tenGhe}>{handleSeatNumber(seat.tenGhe)}</Grid>
+              {info.danhSachGhe.map((seat) => (
+                <Grid item xs={12} key={seat.tenGhe}>
+                  {handleSeatNumber(seat.tenGhe)}
+                </Grid>
               ))}
             </Grid>
           );
-        return (
-          <TableCell key={column.id}>
-            {value}
-          </TableCell>
-        );
+        return <TableCell key={column.id}>{value}</TableCell>;
       })}
-    </TableRow >
-  )
-}
+    </TableRow>
+  );
+};
 
-const UserPage = props => {
+const UserPage = (props) => {
   const [account, setAccount] = useState(null);
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const dispatch = useDispatch();
@@ -98,21 +97,17 @@ const UserPage = props => {
             <Avatar size={100} icon={<UserOutlined />} />
           </div>
           <div className="options-button">
-            <NavLink to='/account/signin'>
-              <div className="options-btn options-signin">
-                Sign In
-              </div>
+            <NavLink to="/account/signin">
+              <div className="options-btn options-signin">Sign In</div>
             </NavLink>
-            <NavLink to='/account/signup'>
-              <div className="options-btn options-signup">
-                Sign Up
-              </div>
+            <NavLink to="/account/signup">
+              <div className="options-btn options-signup">Sign Up</div>
             </NavLink>
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const renderUserPage = () => {
     const handleSignOut = () => {
@@ -120,14 +115,11 @@ const UserPage = props => {
         LocalStorageUtils.removeItem('user');
         LocalStorageUtils.removeItem('token');
         auth.signOut(() => props.history.push('/'));
-      }
+      };
 
-      options = [
-        { label: "Cancel" },
-        { label: "OK", onClick: singOut }
-      ];
+      options = [{ label: 'Cancel' }, { label: 'OK', onClick: singOut }];
       setIsDialogOpened(true);
-    }
+    };
 
     const renderHeader = () => (
       <div className="user-page-header">
@@ -148,14 +140,14 @@ const UserPage = props => {
               <h1>Hi, {account.hoTen}.</h1>
             </Col>
             <Col xs={24} md={5}>
-              <NavLink to='/account/manage'>
+              <NavLink to="/account/manage">
                 <p>Account management ></p>
               </NavLink>
             </Col>
           </Row>
         </div>
       </div>
-    )
+    );
 
     const renderBookingInfo = () => {
       const renderTable = () => (
@@ -166,7 +158,11 @@ const UserPage = props => {
                 {columns.map((column, index) => (
                   <TableCell
                     key={index}
-                    style={{ backgroundColor: 'black', color: 'white', minWidth: column.minWidth }}
+                    style={{
+                      backgroundColor: 'black',
+                      color: 'white',
+                      minWidth: column.minWidth,
+                    }}
                   >
                     {column.label}
                   </TableCell>
@@ -180,15 +176,15 @@ const UserPage = props => {
             </TableBody>
           </Table>
         </TableContainer>
-      )
+      );
 
       return (
         <div className="booking-info">
           <h1>Your Booking Information</h1>
           {account.thongTinDatVe.length ? renderTable() : <p>No information</p>}
         </div>
-      )
-    }
+      );
+    };
 
     if (account)
       return (
@@ -196,23 +192,22 @@ const UserPage = props => {
           {renderHeader()}
           {renderBookingInfo()}
         </Fragment>
-      )
-    return <LoadingPage />
-  }
+      );
+    return <LoadingPage />;
+  };
 
   useEffect(() => {
-    const fetData = async user => {
+    const fetData = async (user) => {
       try {
         const res = await post('/api/QuanLyNguoiDung/ThongTinTaiKhoan', user);
         setAccount(res.data);
-      } catch{ }
-    }
+      } catch { }
+    };
 
     const user = LocalStorageUtils.getItem('user');
-    if (user)
-      fetData(user);
+    if (user) fetData(user);
     return () => document.body.setAttribute('style', 'overflow: unset');
-  }, [])
+  }, []);
 
   return (
     <Fragment>
@@ -229,7 +224,7 @@ const UserPage = props => {
         options={options}
       />
     </Fragment>
-  )
-}
+  );
+};
 
 export default UserPage;

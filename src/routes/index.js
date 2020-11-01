@@ -11,66 +11,83 @@ import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
 import BookingPage from '../containers/BookingPage';
 import PageNotFound from '../containers/PageNotFound';
-
+import Customer from '../containers/Admin/Customer';
+import DashboardLayout from '../containers/Admin/DashboardLayout';
+import DashboardMovie from '../containers/Admin/MoviesDashboard';
 const customerRoutes = [
   {
     exact: true,
     path: '/',
-    component: HomePage
+    component: HomePage,
   },
   {
     exact: true,
     path: '/movie',
-    component: MoviePage
+    component: MoviePage,
   },
   {
     path: '/movie/:movieId/:name?',
-    component: MovieDetailPage
+    component: MovieDetailPage,
   },
   {
     exact: true,
     path: '/news',
-    component: NewsPage
+    component: NewsPage,
   },
   {
     path: '/news/id=:newsId',
-    component: NewsDetailPage
+    component: NewsDetailPage,
   },
   {
     exact: true,
     path: '/cinema-complex',
-    component: CinemaComplexPage
+    component: CinemaComplexPage,
   },
   {
     path: '/cinema-complex/:cinemaId',
-    component: CinemaPage
+    component: CinemaPage,
   },
   {
     exact: true,
     path: '/account',
-    component: UserPage
+    component: UserPage,
   },
   {
     isProtected: true,
     path: '/account/manage',
-    component: UserManagement
+    component: UserManagement,
   },
   {
     path: '/account/signin',
-    component: SignIn
+    component: SignIn,
   },
   {
     path: '/account/signup',
-    component: SignUp
+    component: SignUp,
+  },
+  {
+    isProtected: true,
+    path: '/admin',
+    component: DashboardLayout,
+  },
+  {
+    isProtected: true,
+    path: '/admin/customers',
+    component: Customer,
+  },
+  {
+    isProtected: true,
+    path: '/admin/movies',
+    component: DashboardMovie,
   },
   {
     isProtected: true,
     path: '/checkout/:roomId',
-    component: BookingPage
+    component: BookingPage,
   },
   {
-    component: PageNotFound
-  }
+    component: PageNotFound,
+  },
 ];
 
 export { customerRoutes };

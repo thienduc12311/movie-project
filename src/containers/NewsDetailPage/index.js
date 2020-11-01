@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, {Fragment} from 'react';
+import {useSelector} from 'react-redux';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LoadingPage from '../LoadingPage';
@@ -7,8 +7,8 @@ import LoadingPage from '../LoadingPage';
 import './styles.scss';
 
 const NewsDetailPage = (props) => {
-  const { newsId } = props.match.params;
-  const news = useSelector(state => state.movieReducer.newsArray[newsId]);
+  const {newsId} = props.match.params;
+  const news = useSelector((state) => state.movieReducer.newsArray[newsId]);
 
   document.title = `${news.title} - Movie Project`;
 
@@ -18,7 +18,7 @@ const NewsDetailPage = (props) => {
       <img src={news.image} />
       <p>{news.details}</p>
     </div>
-  )
+  );
 
   return (
     <Fragment>
@@ -26,7 +26,7 @@ const NewsDetailPage = (props) => {
       {news ? renderNewDetailPage() : <LoadingPage />}
       <Footer />
     </Fragment>
-  )
+  );
 };
 
 export default NewsDetailPage;
