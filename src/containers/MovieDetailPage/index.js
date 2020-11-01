@@ -9,6 +9,7 @@ import ModalVideo from 'react-modal-video';
 import MovieField from '../HomePage/MovieNav/MovieField';
 import LoadingPage from '../LoadingPage';
 import NotificationDialog from '../../components/NotificationDialog';
+import moment from 'moment';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -80,7 +81,8 @@ const MovieDetailPage = props => {
               </Col>
               <Col span={12}>
                 <div className="movie-details">
-                  <p className="movie-release">12 Dec 2020</p>
+                  {/* <p className="movie-release">12 Dec 2020</p> */}
+                  <p className="movie-release">{moment(movie.ngayKhoiChieu).format('ll')}</p>
                   <p className="movie-name">
                     <span>C16</span>
                     {movie.tenPhim}

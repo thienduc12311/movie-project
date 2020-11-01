@@ -4,7 +4,7 @@ import ModalVideo from 'react-modal-video';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Slide } from 'react-slideshow-image';
 import tiecTrangMau from '../../../assets/img/carousel/tiec-trang-mau.jpg';
-import cucNoHoaCucCung from '../../../assets/img/carousel/cuc-no-hoa-cuc-cung.jpg';
+import chiMuoiBa from '../../../assets/img/carousel/chi-muoi-ba.jpg';
 import skyTour from '../../../assets/img/carousel/sky-tour.jpg';
 import ava from '../../../assets/img/carousel/ava.jpg';
 
@@ -24,15 +24,15 @@ const properties = {
 const movieList = [
   {
     hinhAnh: tiecTrangMau,
-    maPhim: '4298',
+    maPhim: '4429',
     trailer: "nh0BklwPN9Q",
     biDanh: "tiec-trang-mau"
   },
   {
-    hinhAnh: cucNoHoaCucCung,
-    maPhim: "4301",
-    trailer: "2zSzDlaN-9w",
-    biDanh: "cuc-no-hoa-cuc-cung"
+    hinhAnh: chiMuoiBa,
+    maPhim: "4430",
+    trailer: "zxvHV58lp6s",
+    biDanh: "chi-muoi-ba"
   },
   {
     hinhAnh: skyTour,
