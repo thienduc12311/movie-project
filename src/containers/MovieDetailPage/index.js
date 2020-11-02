@@ -81,7 +81,6 @@ const MovieDetailPage = props => {
               </Col>
               <Col span={12}>
                 <div className="movie-details">
-                  {/* <p className="movie-release">12 Dec 2020</p> */}
                   <p className="movie-release">{moment(movie.ngayKhoiChieu).format('ll')}</p>
                   <p className="movie-name">
                     <span>C16</span>

@@ -5,6 +5,12 @@
   top: 0;
   left: 0;
 
+  .loading-logo {
+    animation: fly 1s infinite linear;
+    width: 150px;
+    height: auto;
+  }
+
   .spin {
     position: absolute;
     top: 50%;
@@ -16,5 +22,17 @@
     svg {
       color: #ff2200;
     }
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(-10%);
   }
 }

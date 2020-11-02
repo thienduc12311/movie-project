@@ -10,8 +10,7 @@
 
   .dialog {
     background-color: white;
-    min-width: 200px;
-    max-width: 280px;
+    width: 300px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -19,53 +18,67 @@
     border-radius: 10px;
     box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14),
       0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    padding: 20px;
 
     .dialog-title {
-      padding: 17px 24px 1px;
+      padding: 17px 0 5px;
       text-align: center;
-      font-size: 1.05rem;
       font-weight: 500;
+      color: #595959;
+      font-size: 25px;
     }
 
     .dialog-content {
-      padding: 2px 24px 17px;
+      padding: 2px 0 17px;
       text-align: center;
-      font-size: 1.05rem;
-      border-bottom: 2px solid rgb(220, 215, 215);
+      font-size: 18px;
+      color: #545454;
     }
 
     .dialog-action {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 40px;
+      width: 100%;
+
       .btn-dialog {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 1rem;
         padding: 5px 0;
-        width: 50%;
+        width: 40%;
+        color: white;
         text-align: center;
         border: none;
         background-color: white;
         font-weight: 500;
         cursor: pointer;
         &:first-child {
-          border-right: 1px solid rgb(220, 215, 215);
-          border-radius: 0 0 0 10px;
-          color: red;
+          border-radius: 5px;
+          background-color: rgba(255, 0, 0, 0.8);
+          left: 8%;
+          &:hover {
+            background-color: red;
+          }
         }
         &:last-child {
-          border-left: 1px solid rgb(220, 215, 215);
-          border-radius: 0 0 10px 0;
-          color: blue;
+          border-radius: 5px;
+          background-color: rgba(0, 0, 255, 0.8);
+          right: 8%;
+          &:hover {
+            background-color: blue;
+          }
         }
         &:focus {
           outline: none;
         }
-        &:hover {
-          background-color: rgba(220, 215, 215, 0.5);
-        }
       }
       .btn-dialog-one-option {
-        width: 100%;
-        border: none !important;
-        border-radius: 0 0 10px 10px !important;
-        color: blue !important;
+        width: 80%;
+        left: 50% !important;
+        transform: translate(-50%, -50%);
       }
     }
   }

@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
-import {UnorderedListOutlined, CloseOutlined, UserOutlined} from '@ant-design/icons';
-import {Avatar} from 'antd';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { UnorderedListOutlined, CloseOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import logo from '../../assets/img/logo.jpg';
 
 import './styles.scss';
 
@@ -43,7 +44,7 @@ const Navbar = () => {
       <div className="navbar">
         <NavLink to="/">
           <div className="logo">
-            <img src="" />
+            <img src={logo} />
           </div>
         </NavLink>
         <div className="nav-header">
@@ -74,7 +75,7 @@ const Navbar = () => {
           className={isDropdownOpened ? 'nav-overlay' : 'nav-overlay-hidden'}
           onClick={handleClose}
         ></div>
-        <div className="overlay-menu" style={{...settings}}>
+        <div className="overlay-menu" style={{ ...settings }}>
           <CloseOutlined className="icon close-icon" onClick={handleClose} />
           <div className="overlay-content">
             <div className="overlay-header">

@@ -1,19 +1,14 @@
 import React from 'react';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import logo from '../../assets/img/logo.jpg';
 
 import './styles.scss';
 
-const LoadingPage = () => {
-  const antIcon = <LoadingOutlined style={{ fontSize: 40 }} spin />;
-
-  return (
-    <div className="loading-page">
-      <div className="spin">
-        <Spin indicator={antIcon} />
-      </div>
+const LoadingPage = () => (
+  <div className="loading-page">
+    <div className="spin">
+      <img className="loading-logo" src={logo} />
     </div>
-  )
-}
+  </div>
+)
 
 export default LoadingPage;

@@ -66,7 +66,7 @@ const DashboardMovie = () => {
     Axios({
       method: 'GET',
       url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01',
+        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09',
     })
       .then((rs) => {
         setState((prevState) => {
@@ -81,7 +81,7 @@ const DashboardMovie = () => {
     Axios({
       method: 'GET',
       url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01',
+        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09',
     })
       .then((rs) => {
         // console.log(rs.data);
@@ -104,7 +104,7 @@ const DashboardMovie = () => {
     let danhGia = parseInt(film.danhGia, 10);
     let filmAdd = {
       ...film,
-      maNhom: 'GP01',
+      maNhom: 'GP09',
       maPhim: maPhim,
       danhGia: danhGia,
       ngayKhoiChieu: ngayKhoiChieu,
@@ -132,12 +132,12 @@ const DashboardMovie = () => {
   };
   let handleEditMovie = (film) => {
     var form_data = new FormData();
-    const userAdmin = JSON.parse(localStorage.getItem('user'));
+    const userAdmin = JSON.parse(localStorage.getItem('userAdmin'));
     let maPhim = parseInt(film.maPhim, 10);
     let danhGia = parseInt(film.danhGia, 10);
     let filmEdit = {
       ...film,
-      maNhom: 'GP01',
+      maNhom: 'GP09',
       maPhim: maPhim,
       danhGia: danhGia,
     };
