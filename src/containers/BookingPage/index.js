@@ -1,16 +1,16 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LoadingPage from '../LoadingPage';
-import {get} from '../../utils/ApiCaller';
-import {Row, Col} from 'antd';
+import { get } from '../../utils/ApiCaller';
+import { Row, Col } from 'antd';
 import CheckoutField from './CheckoutField';
 import InvoiceField from './InvoiceField';
 
 import './styles.scss';
 
 const BookingPage = (props) => {
-  const {roomId} = props.match.params;
+  const { roomId } = props.match.params;
   const [room, setRoom] = useState(null);
   const [bookingList, setBookingList] = useState([]);
 
@@ -42,7 +42,7 @@ const BookingPage = (props) => {
           `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${roomId}`
         );
         setRoom(res.data);
-      } catch {}
+      } catch { }
     };
 
     fetData();
