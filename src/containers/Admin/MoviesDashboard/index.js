@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Axios from 'axios';
-import Grid from '@material-ui/core/Grid';
+let moment = require('moment');
 import DateFnsUtils from '@date-io/date-fns';
 import {Box, Container, makeStyles} from '@material-ui/core';
 import Swal from 'sweetalert2';
@@ -14,9 +14,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const DashboardMovie = () => {
-  const [change, setChange] = React.useState(false);
+  const [change, setChange] = useState(false);
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const listMovie = useSelector((state) => state.movieReducer.listMovie);
+  const [state, setState] = useState({
     columns: [
       {title: 'Movie ID', field: 'maPhim', type: 'numeric'},
       {title: 'Movie name', field: 'tenPhim'},
@@ -25,13 +26,20 @@ const DashboardMovie = () => {
       {
         title: 'Poster',
         editComponent: (props) => (
-          <input type="file" onChange={(e) => props.onChange(e.target.files[0])} />
+          <input
+            type="file"
+            onChange={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              return props.onChange(e.target.files[0]);
+            }}
+          />
         ),
         field: 'hinhAnh',
         render: (hinhAnh) => (
           <img src={hinhAnh.hinhAnh} style={{width: 100, height: 100}} />
         ),
-        type: 'image',
+        type: 'string',
       },
       {title: 'Description', field: 'moTa'},
       {
@@ -69,21 +77,6 @@ const DashboardMovie = () => {
         'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09',
     })
       .then((rs) => {
-        setState((prevState) => {
-          return {...prevState, data: rs.data};
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [change]);
-  useEffect(() => {
-    Axios({
-      method: 'GET',
-      url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09',
-    })
-      .then((rs) => {
         // console.log(rs.data);
         setState((prevState) => {
           return {...prevState, data: rs.data};
@@ -94,12 +87,12 @@ const DashboardMovie = () => {
       });
   }, []);
   let handleAddMovie = (film) => {
+    film.preventDefault();
+    film.stopPropagation();
     let moment = require('moment');
-    console.log(film);
-
     var form_data = new FormData();
     let ngayKhoiChieu = moment(film.ngayKhoiChieu).format('DD/MM/YYYY');
-    const userAdmin = JSON.parse(localStorage.getItem('userAdmin'));
+    const userAdmin = JSON.parse(localStorage.getItem('user'));
     let maPhim = parseInt(film.maPhim, 10);
     let danhGia = parseInt(film.danhGia, 10);
     let filmAdd = {
@@ -110,13 +103,11 @@ const DashboardMovie = () => {
       ngayKhoiChieu: ngayKhoiChieu,
     };
     for (const key in filmAdd) {
-      console.log(key, filmAdd[key]);
       form_data.append(key, filmAdd[key]);
     }
     Axios({
       method: 'POST',
       url: 'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh',
-      // "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
       data: form_data,
       headers: {
         Authorization: `Bearer ${userAdmin.accessToken}`,
@@ -124,15 +115,17 @@ const DashboardMovie = () => {
     })
       .then((rs) => {
         setChange(!change);
-        Swal.fire('Thêm phim thành công !', 'Nhấn OK để thoát!', 'success');
+        Swal.fire('Success !', 'Press OK!', 'success');
       })
       .catch((error) => {
-        Swal.fire('Thêm phim thành công !', error.response.data, 'error');
+        Swal.fire('Fail !', error.response.data, 'error');
       });
   };
-  let handleEditMovie = (film) => {
+  let handleEditMovie = (film, oldData) => {
+    console.log(oldData);
     var form_data = new FormData();
-    const userAdmin = JSON.parse(localStorage.getItem('userAdmin'));
+    const userAdmin = JSON.parse(localStorage.getItem('user'));
+    let ngayKhoiChieu = moment(film.ngayKhoiChieu).format('DD/MM/YYYY');
     let maPhim = parseInt(film.maPhim, 10);
     let danhGia = parseInt(film.danhGia, 10);
     let filmEdit = {
@@ -140,9 +133,9 @@ const DashboardMovie = () => {
       maNhom: 'GP09',
       maPhim: maPhim,
       danhGia: danhGia,
+      ngayKhoiChieu: ngayKhoiChieu,
     };
     for (const key in filmEdit) {
-      console.log(key, filmEdit[key]);
       form_data.append(key, filmEdit[key]);
     }
     Axios({
@@ -154,16 +147,19 @@ const DashboardMovie = () => {
       },
     })
       .then((rs) => {
+        console.log(rs.data);
+
         setChange(!change);
-        Swal.fire('Sửa phim thành công !', 'Nhấn OK để thoát!', 'success');
+        Swal.fire('Edit Success !', 'Press OK to exit!', 'success').then(
+          location.reload()
+        );
       })
       .catch((error) => {
-        Swal.fire('Sửa không phim thành công !', 'Nhấn OK để thoát', 'error');
+        Swal.fire('Fail !', 'Press OK to exit', 'error');
       });
   };
   let handleDeleteMovie = (film) => {
-    console.log(film);
-    const userAdmin = JSON.parse(localStorage.getItem('userAdmin'));
+    const userAdmin = JSON.parse(localStorage.getItem('user'));
     Axios({
       method: 'DELETE',
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`,
@@ -173,20 +169,17 @@ const DashboardMovie = () => {
       },
     })
       .then((rs) => {
-        Swal.fire('Xoá phim thành công !', 'Nhấn OK để thoát!', 'success');
+        setState((prevState) => {
+          const data = [...prevState.data];
+          data.splice(data.indexOf(film), 1);
+          return {...prevState, data};
+        });
+        Swal.fire('Success !', 'Nhấn OK để thoát!', 'success');
       })
       .catch((error) => {
-        Swal.fire('Xoá không phim thành công !', error.response.data, 'error');
+        Swal.fire('Fail !', error.response.data, 'error');
       });
   };
-  // <div>
-  //   <Grid container spacing={3}>
-  //     <NavbarAdmin />
-  //     <Grid className={classes.rightTable} item xs={12} sm={10}>
-  //       {renderTableUser()}
-  //     </Grid>
-  //   </Grid>
-  // </div>;
   return (
     <Page className={classes.root} title="Movies">
       <Container maxWidth={false}>
@@ -204,7 +197,7 @@ const DashboardMovie = () => {
                 />
               );
             }}
-            title="Editable Example"
+            title="Movies"
             columns={state.columns}
             data={state.data}
             options={{
@@ -222,36 +215,25 @@ const DashboardMovie = () => {
                     setState((prevState) => {
                       const data = [...prevState.data];
                       data.push(newData);
-
                       return {...prevState, data};
                     });
-                  }, 600);
+                  }, 300);
                 }),
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
                     resolve();
                     if (oldData) {
-                      handleEditMovie(newData);
-                      setState((prevState) => {
-                        const data = [...prevState.data];
-                        data[data.indexOf(oldData)] = newData;
-                        return {...prevState, data};
-                      });
+                      handleEditMovie(newData, oldData);
                     }
-                  }, 600);
+                  }, 300);
                 }),
               onRowDelete: (oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
                     resolve();
                     handleDeleteMovie(oldData);
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data.splice(data.indexOf(oldData), 1);
-                      return {...prevState, data};
-                    });
-                  }, 600);
+                  }, 300);
                 }),
             }}
           />
@@ -261,10 +243,4 @@ const DashboardMovie = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    listMovie: state.movieReducer.listMovie,
-  };
-};
-
-export default connect(mapStateToProps, null)(DashboardMovie);
+export default DashboardMovie;

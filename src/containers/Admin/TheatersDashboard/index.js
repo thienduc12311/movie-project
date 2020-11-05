@@ -1,23 +1,18 @@
 import React, {useEffect, Fragment} from 'react';
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {getCinemaComplexInfo} from '../../redux/actions/movieAction';
+import {getCinemaComplexInfo} from '../../../redux/actions/movieAction';
 import {Menu} from 'antd';
-import NavBar from '../../components/NavBar';
-import Footer from '../../components/Footer';
-import LoadingPage from '../LoadingPage';
-
+import './styles.scss';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
 const {SubMenu} = Menu;
-
-const CinemaComplexPage = () => {
+const TheatersDashboard = () => {
   const cinemaComplexInfo = useSelector((state) => state.movieReducer.cinemaComplexInfo);
   const dispatch = useDispatch();
-
-  document.title = 'Cinema Complex - Movie Project';
-
+  useEffect(() => dispatch(getCinemaComplexInfo()), []);
+  console.log(cinemaComplexInfo);
   const renderCinemaComplexMenu = () => {
     return cinemaComplexInfo?.map((cinemaComplex) => (
       <SubMenu
@@ -36,8 +31,14 @@ const CinemaComplexPage = () => {
 
   const renderCinemaMenu = (cinemaComplex) => {
     return cinemaComplex.lstCumRap.map((item) => (
-      <Menu.Item key={item.maCumRap}>
-        <NavLink to={`/cinema-complex/${item.maCumRap}`}>{item.tenCumRap}</NavLink>
+      <Menu.Item
+        key={item.maCumRap}
+        onClick={() => {
+          console.log('clicked');
+        }}
+      >
+        {/* <NavLink to={`/cinema-complex/${item.maCumRap}`}>{item.tenCumRap}</NavLink> */}
+        <span>{item.tenCumRap}</span>
       </Menu.Item>
     ));
   };
@@ -50,16 +51,7 @@ const CinemaComplexPage = () => {
       </Menu>
     </div>
   );
-
-  useEffect(() => dispatch(getCinemaComplexInfo()), []);
-
-  return (
-    <Fragment>
-      <NavBar />
-      {cinemaComplexInfo ? renderCinemaComplexPage() : <LoadingPage />}
-      <Footer />
-    </Fragment>
-  );
+  return <div>{renderCinemaComplexPage()}</div>;
 };
 
-export default CinemaComplexPage;
+export default TheatersDashboard;

@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import React, {useEffect, useState} from 'react';
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Customer() {
   const classes = useStyles();
-
+  const listUser = useSelector((state) => state.userReducer.listUser);
   const [state, setState] = useState({
     columns: [
       {title: 'Name', field: 'hoTen'},
@@ -43,17 +43,13 @@ function Customer() {
     },
   });
 
-  console.log(state.data);
-
   useEffect(() => {
     Axios({
       method: 'GET',
       url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01',
+        'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP04',
     })
       .then((rs) => {
-        console.log(rs.data);
-
         // dispatch(actGetListUser(rs.data))
         setState((prevState) => {
           return {...prevState, data: rs.data};
@@ -64,7 +60,6 @@ function Customer() {
       });
   }, []);
   const handleDeleteUser = (user) => {
-    console.log(user);
     const userAdmin = JSON.parse(localStorage.getItem('user'));
     Axios({
       method: 'DELETE',
@@ -108,12 +103,8 @@ function Customer() {
   };
   // add
   const handleAddUser = (user) => {
-    // console.log(user);
-
     const userAdmin = LocalStorageUtils.getItem('user');
     let userAdd = {...user, maNhom: 'GP04'};
-    console.log(userAdmin.accessToken);
-
     if (user.maLoaiNguoiDung !== 'KhachHang' && user.maLoaiNguoiDung !== 'QuanTri') {
       console.log('sai ma loai ng dùng');
     } else {
@@ -209,10 +200,4 @@ function Customer() {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    listUser: state.userReducer.listUser,
-  };
-};
-
-export default connect(mapStateToProps, null)(Customer);
+export default Customer;

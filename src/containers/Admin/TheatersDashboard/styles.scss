@@ -1,0 +1,50 @@
+.cinema-complex-page {
+  margin: 60px auto;
+  width: 80%;
+  min-height: 100vh;
+  animation: transform-when-loaded 1s;
+
+  h1 {
+    margin: 100px 0 30px;
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      height: 80px;
+      position: relative;
+      top: 0;
+      left: 0;
+
+      &:hover {
+        color: #fb4226;
+      }
+
+      span {
+        img {
+          position: absolute;
+          top: 15px;
+          width: 50px;
+          left: 0px;
+        }
+
+        span {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 80px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cinema-complex-page {
+    h1 {
+      font-size: 32px;
+    }
+  }
+}
