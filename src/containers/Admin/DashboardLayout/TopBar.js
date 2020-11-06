@@ -32,7 +32,7 @@ const TopBar = ({className, onMobileNavOpen, ...rest}) => {
   return (
     <AppBar className={clsx(classes.root, className)} elevation={0} {...rest}>
       <Toolbar>
-        <RouterLink to="/">{/* <Logo /> */}</RouterLink>
+        <RouterLink to="/"></RouterLink>
         <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton

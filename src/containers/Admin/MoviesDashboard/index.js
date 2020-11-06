@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import MaterialTable from 'material-table';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import { Box, Container, makeStyles } from '@material-ui/core';
+import {Box, Container, makeStyles} from '@material-ui/core';
 import Swal from 'sweetalert2';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import Page from '../../../components/Page';
 const useStyles = makeStyles((theme) => ({
   datePicker: {
@@ -18,10 +18,10 @@ const DashboardMovie = () => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Movie ID', field: 'maPhim', type: 'numeric' },
-      { title: 'Movie name', field: 'tenPhim' },
-      { title: 'Trailer', field: 'trailer' },
-      { title: 'Tag', field: 'biDanh' },
+      {title: 'Movie ID', field: 'maPhim', type: 'numeric'},
+      {title: 'Movie name', field: 'tenPhim'},
+      {title: 'Trailer', field: 'trailer'},
+      {title: 'Tag', field: 'biDanh'},
       {
         title: 'Poster',
         editComponent: (props) => (
@@ -29,11 +29,11 @@ const DashboardMovie = () => {
         ),
         field: 'hinhAnh',
         render: (hinhAnh) => (
-          <img src={hinhAnh.hinhAnh} style={{ width: 100, height: 100 }} />
+          <img src={hinhAnh.hinhAnh} style={{width: 100, height: 100}} />
         ),
         type: 'image',
       },
-      { title: 'Description', field: 'moTa' },
+      {title: 'Description', field: 'moTa'},
       {
         title: 'Release date',
         editComponent: (props) => (
@@ -58,7 +58,7 @@ const DashboardMovie = () => {
         ),
         field: 'ngayKhoiChieu',
       },
-      { title: 'Rate', field: 'danhGia', type: 'numeric' },
+      {title: 'Rate', field: 'danhGia', type: 'numeric'},
     ],
     data: [],
   });
@@ -70,7 +70,7 @@ const DashboardMovie = () => {
     })
       .then((rs) => {
         setState((prevState) => {
-          return { ...prevState, data: rs.data };
+          return {...prevState, data: rs.data};
         });
       })
       .catch((err) => {
@@ -86,7 +86,7 @@ const DashboardMovie = () => {
       .then((rs) => {
         // console.log(rs.data);
         setState((prevState) => {
-          return { ...prevState, data: rs.data };
+          return {...prevState, data: rs.data};
         });
       })
       .catch((err) => {
@@ -223,7 +223,7 @@ const DashboardMovie = () => {
                       const data = [...prevState.data];
                       data.push(newData);
 
-                      return { ...prevState, data };
+                      return {...prevState, data};
                     });
                   }, 600);
                 }),
@@ -236,7 +236,7 @@ const DashboardMovie = () => {
                       setState((prevState) => {
                         const data = [...prevState.data];
                         data[data.indexOf(oldData)] = newData;
-                        return { ...prevState, data };
+                        return {...prevState, data};
                       });
                     }
                   }, 600);
@@ -249,7 +249,7 @@ const DashboardMovie = () => {
                     setState((prevState) => {
                       const data = [...prevState.data];
                       data.splice(data.indexOf(oldData), 1);
-                      return { ...prevState, data };
+                      return {...prevState, data};
                     });
                   }, 600);
                 }),
