@@ -1,8 +1,8 @@
-import React, { useEffect, Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCinemaComplexInfo } from '../../redux/actions/movieAction';
-import { Menu } from 'antd';
+import React, {useEffect, Fragment} from 'react';
+import {NavLink} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {getCinemaComplexInfo} from '../../redux/actions/movieAction';
+import {Menu} from 'antd';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import LoadingPage from '../LoadingPage';
@@ -10,16 +10,16 @@ import LoadingPage from '../LoadingPage';
 import './styles.scss';
 import 'antd/dist/antd.css';
 
-const { SubMenu } = Menu;
+const {SubMenu} = Menu;
 
 const CinemaComplexPage = () => {
-  const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
+  const cinemaComplexInfo = useSelector((state) => state.movieReducer.cinemaComplexInfo);
   const dispatch = useDispatch();
 
   document.title = 'Cinema Complex - Movie Project';
 
   const renderCinemaComplexMenu = () => {
-    return cinemaComplexInfo?.map(cinemaComplex => (
+    return cinemaComplexInfo?.map((cinemaComplex) => (
       <SubMenu
         key={cinemaComplex.maHeThongRap}
         title={
@@ -31,32 +31,27 @@ const CinemaComplexPage = () => {
       >
         {renderCinemaMenu(cinemaComplex)}
       </SubMenu>
-    ))
-  }
+    ));
+  };
 
-  const renderCinemaMenu = cinemaComplex => {
-    return cinemaComplex.lstCumRap.map(item => (
+  const renderCinemaMenu = (cinemaComplex) => {
+    return cinemaComplex.lstCumRap.map((item) => (
       <Menu.Item key={item.maCumRap}>
-        <NavLink to={`/cinema-complex/${item.maCumRap}`}>
-          {item.tenCumRap}
-        </NavLink>
+        <NavLink to={`/cinema-complex/${item.maCumRap}`}>{item.tenCumRap}</NavLink>
       </Menu.Item>
-    ))
-  }
+    ));
+  };
 
   const renderCinemaComplexPage = () => (
     <div className="cinema-complex-page">
       <h1>Cinema Complex</h1>
-      <Menu
-        style={{ width: '100%' }}
-        mode="inline"
-      >
+      <Menu style={{width: '100%'}} mode="inline">
         {renderCinemaComplexMenu()}
       </Menu>
     </div>
-  )
+  );
 
-  useEffect(() => dispatch(getCinemaComplexInfo()), [])
+  useEffect(() => dispatch(getCinemaComplexInfo()), []);
 
   return (
     <Fragment>
@@ -64,7 +59,7 @@ const CinemaComplexPage = () => {
       {cinemaComplexInfo ? renderCinemaComplexPage() : <LoadingPage />}
       <Footer />
     </Fragment>
-  )
-}
+  );
+};
 
 export default CinemaComplexPage;

@@ -18,6 +18,7 @@ import {
   User as UserIcon,
   Users as UsersIcon,
 } from 'react-feather';
+import {Theaters} from '@material-ui/icons';
 import NavItem from './NavItem';
 import LocalStorageUtils from '../../../../utils/LocalStorageUtils';
 
@@ -32,7 +33,11 @@ const items = [
     icon: ShoppingBagIcon,
     title: 'Movies',
   },
-
+  {
+    href: '/admin/theaters',
+    icon: Theaters,
+    title: 'Theaters',
+  },
   {
     href: '/404',
     icon: AlertCircleIcon,
@@ -64,7 +69,6 @@ const NavBar = ({onMobileClose, openMobile}) => {
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const content = (
@@ -104,7 +108,7 @@ const NavBar = ({onMobileClose, openMobile}) => {
     <>
       <Hidden lgUp>
         <Drawer
-          anchor="left"
+          anchor="right"
           classes={{paper: classes.mobileDrawer}}
           onClose={onMobileClose}
           open={openMobile}

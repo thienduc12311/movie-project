@@ -1,13 +1,11 @@
-import {connect} from 'react-redux';
 import Axios from 'axios';
-import Grid from '@material-ui/core/Grid';
 import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
-import {Box, Container, makeStyles} from '@material-ui/core';
+import {Box, Container, makeStyles, TextField} from '@material-ui/core';
 import Page from '../../../components/Page';
 import Swal from 'sweetalert2';
 import LocalStorageUtils from '../../../utils/LocalStorageUtils';
-// import NavbarAdmin from './NavbarAdmin';
+import {get, put, remove} from '../../../utils/ApiCaller';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,42 +17,33 @@ const useStyles = makeStyles((theme) => ({
 
 function Customer() {
   const classes = useStyles();
-
+  const [group, setGroup] = useState('GP01');
+  const columns = [
+    {title: 'Name', field: 'hoTen'},
+    {title: 'Account', field: 'taiKhoan', disabled: true},
+    {title: 'Password', field: 'matKhau'},
+    {title: 'Email', field: 'email', type: 'string'},
+    {
+      title: 'Phone number',
+      field: 'soDt',
+      type: 'numeric',
+    },
+    {
+      title: 'Type',
+      field: 'maLoaiNguoiDung',
+      lookup: {KhachHang: 'Customer', QuanTri: 'Admin'},
+    },
+  ];
   const [state, setState] = useState({
-    columns: [
-      {title: 'Name', field: 'hoTen'},
-      {title: 'Account', field: 'taiKhoan', disabled: true},
-      {title: 'Password', field: 'matKhau'},
-      {title: 'Email', field: 'email', type: 'string'},
-      {
-        title: 'Phone number',
-        field: 'soDt',
-        type: 'numeric',
-      },
-      {
-        title: 'Type',
-        field: 'maLoaiNguoiDung',
-        lookup: {KhachHang: 'Customer', QuanTri: 'Admin'},
-      },
-    ],
     data: [],
     query: {
       pageSizeOptions: [10, 20],
     },
   });
 
-  console.log(state.data);
-
   useEffect(() => {
-    Axios({
-      method: 'GET',
-      url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01',
-    })
+    get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${group}`)
       .then((rs) => {
-        console.log(rs.data);
-
-        // dispatch(actGetListUser(rs.data))
         setState((prevState) => {
           return {...prevState, data: rs.data};
         });
@@ -62,16 +51,11 @@ function Customer() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [group]);
   const handleDeleteUser = (user) => {
-    console.log(user);
-    const userAdmin = JSON.parse(localStorage.getItem('user'));
-    Axios({
-      method: 'DELETE',
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`,
-      headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`,
-      },
+    const userAdmin = LocalStorageUtils.getItem('user');
+    remove(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user.taiKhoan}`, {
+      Authorization: `Bearer ${userAdmin.accessToken}`,
     })
       .then((rs) => {
         Swal.fire('Delete success', 'Press OK!', 'success');
@@ -83,37 +67,26 @@ function Customer() {
 
   const handleEditUser = (user) => {
     const userAdmin = JSON.parse(localStorage.getItem('user'));
-    let userEdit = {...user, maNhom: 'GP04'};
+    let userEdit = {...user, maNhom: group};
     if (user.maLoaiNguoiDung !== 'KhachHang' && user.maLoaiNguoiDung !== 'QuanTri') {
       console.log('sai ma loai ng dùng');
     } else {
-      Axios({
-        method: 'PUT',
-        url:
-          'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung',
-        data: userEdit,
-        headers: {
-          Authorization: `Bearer ${userAdmin.accessToken}`,
-        },
+      put('/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung', userEdit, {
+        Authorization: `Bearer ${userAdmin.accessToken}`,
       })
         .then((rs) => {
           Swal.fire('Edit success!', 'Nhấn OK để thoát!', 'success');
         })
         .catch((error) => {
           console.log({...error});
-
           Swal.fire('Edit failed !', error.response.data, 'error');
         });
     }
   };
   // add
   const handleAddUser = (user) => {
-    // console.log(user);
-
     const userAdmin = LocalStorageUtils.getItem('user');
-    let userAdd = {...user, maNhom: 'GP04'};
-    console.log(userAdmin.accessToken);
-
+    let userAdd = {...user, maNhom: group};
     if (user.maLoaiNguoiDung !== 'KhachHang' && user.maLoaiNguoiDung !== 'QuanTri') {
       console.log('sai ma loai ng dùng');
     } else {
@@ -146,7 +119,7 @@ function Customer() {
             emptyRowsWhenPaging: false,
           }}
           title="Dashboard"
-          columns={state.columns}
+          columns={columns}
           data={state.data}
           editable={{
             onRowAdd: (newData) =>
@@ -193,26 +166,37 @@ function Customer() {
     }
   };
   return (
-    // <div>
-    //   <Grid container spacing={3}>
-    //     {/* <NavbarAdmin /> */}
-    //     <Grid className={classes.rightTable} item xs={12} sm={10}>
-    //       {renderTableUser()}
-    //     </Grid>
-    //   </Grid>
-    // </div>
     <Page className={classes.root} title="Customers">
       <Container maxWidth={false}>
-        <Box mt={3}>{renderTableUser()}</Box>
+        <Box mt={3}>
+          <TextField
+            mt={3}
+            label="Group"
+            name="state"
+            onChange={(e) => {
+              setGroup(e.target.value);
+            }}
+            required
+            select
+            SelectProps={{native: true}}
+            value={group}
+            variant="outlined"
+          >
+            <option value="GP01">GP01</option>
+            <option value="GP02">GP02</option>
+            <option value="GP03">GP03</option>
+            <option value="GP04">GP04</option>
+            <option value="GP05">GP05</option>
+            <option value="GP06">GP06</option>
+            <option value="GP07">GP07</option>
+            <option value="GP08">GP08</option>
+            <option value="GP09">GP09</option>
+          </TextField>
+          {renderTableUser()}
+        </Box>
       </Container>
     </Page>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    listUser: state.userReducer.listUser,
-  };
-};
-
-export default connect(mapStateToProps, null)(Customer);
+export default React.memo(Customer);
