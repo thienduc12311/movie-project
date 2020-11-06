@@ -19,7 +19,7 @@ footer {
 
     .footer-logo {
       width: 30px;
-      height: 30px;
+      height: auto;
       display: block;
     }
 
@@ -28,6 +28,19 @@ footer {
         font-size: 25px;
         color: white;
       }
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      display: block;
+      border-radius: 8px;
+      margin: 0 auto;
+    }
+
+    p {
+      text-align: center;
+      margin: 0;
     }
   }
 }

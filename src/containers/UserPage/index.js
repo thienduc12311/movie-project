@@ -1,11 +1,11 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
-import {UserOutlined} from '@ant-design/icons';
-import {Avatar, Row, Col} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Row, Col } from 'antd';
 import Footer from '../../components/Footer';
-import {post} from '../../utils/ApiCaller';
+import { post } from '../../utils/ApiCaller';
 import LoadingPage from '../LoadingPage';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,8 +16,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import NotificationDialog from '../../components/NotificationDialog';
 import auth from '../../routes/auth';
-import {useDispatch} from 'react-redux';
-import {setCurrentPath} from '../../redux/actions/movieAction';
+import { useDispatch } from 'react-redux';
+import { setCurrentPath } from '../../redux/actions/movieAction';
 
 import './styles.scss';
 
@@ -48,7 +48,7 @@ const columns = [
 let options = [];
 const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
-const InfoRow = ({info}) => {
+const InfoRow = ({ info }) => {
   const pad = (d) => (d < 10 ? '0' + d.toString() : d.toString());
 
   const handleSeatNumber = (number) =>
@@ -80,12 +80,14 @@ const UserPage = (props) => {
   const [isDialogOpened, setIsDialogOpened] = useState(false);
   const dispatch = useDispatch();
 
-  document.title = 'Account Home - Movie Project';
+  document.title = "Account Home - Movie Project";
 
-  dispatch(setCurrentPath('/account'));
+  dispatch(setCurrentPath("/account"));
 
-  if (isDialogOpened) document.body.setAttribute('style', 'overflow: hidden');
-  else document.body.setAttribute('style', 'overflow: unset');
+  if (isDialogOpened)
+    document.body.setAttribute('style', 'overflow: hidden');
+  else
+    document.body.setAttribute('style', 'overflow: unset');
 
   const renderOptionsField = () => {
     return (
@@ -115,7 +117,7 @@ const UserPage = (props) => {
         auth.signOut(() => props.history.push('/'));
       };
 
-      options = [{label: 'Cancel'}, {label: 'OK', onClick: singOut}];
+      options = [{ label: 'Cancel' }, { label: 'OK', onClick: singOut }];
       setIsDialogOpened(true);
     };
 
@@ -149,7 +151,7 @@ const UserPage = (props) => {
 
     const renderBookingInfo = () => {
       const renderTable = () => (
-        <TableContainer style={{maxHeight: 500}}>
+        <TableContainer style={{ maxHeight: 500 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -199,7 +201,7 @@ const UserPage = (props) => {
       try {
         const res = await post('/api/QuanLyNguoiDung/ThongTinTaiKhoan', user);
         setAccount(res.data);
-      } catch {}
+      } catch { }
     };
 
     const user = LocalStorageUtils.getItem('user');

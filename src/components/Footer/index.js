@@ -3,14 +3,16 @@ import { Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { AndroidOutlined, AppleOutlined, FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
 import { getCinemaComplexInfo } from '../../redux/actions/movieAction';
+import logo from '../../assets/img/logo.jpg';
 
 import './styles.scss';
+import 'antd/dist/antd.css';
 
 const Footer = () => {
   const cinemaComplexInfo = useSelector(state => state.movieReducer.cinemaComplexInfo);
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(getCinemaComplexInfo()), [])
+  useEffect(() => dispatch(getCinemaComplexInfo()), []);
 
   return (
     <footer>
@@ -74,9 +76,13 @@ const Footer = () => {
           </Col>
         </Row>
         <hr />
-        <Row gutter={[20, 20]}>
-          <Col md={12}>Copyright © 2020. All rights reserved.</Col>
-          <Col md={12}>Copyright © 2020. All rights reserved.</Col>
+        <Row gutter={[20, 20]} align="middle">
+          <Col xs={24} md={12}>
+            <p>Copyright © 2020. All rights reserved.</p>
+          </Col>
+          <Col xs={24} md={12}>
+            <img className="footer-logo" src={logo} />
+          </Col>
         </Row>
       </div>
     </footer>

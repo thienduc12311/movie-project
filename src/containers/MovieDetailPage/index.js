@@ -8,6 +8,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ModalVideo from 'react-modal-video';
 import MovieField from '../HomePage/MovieNav/MovieField';
 import LoadingPage from '../LoadingPage';
+import NotificationDialog from '../../components/NotificationDialog';
+import moment from 'moment';
 
 import './styles.scss';
 import 'antd/dist/antd.css';
@@ -22,9 +24,15 @@ const MovieDetailPage = props => {
   const [windowWidthSize, setWindowWidthSize] = useState(null);
   const [movie, setMovie] = useState(null);
   const [showtime, setShowtime] = useState(null);
+  const [isDialogOpened, setIsDialogOpened] = useState(false);
 
   if (movie)
     document.title = `${movie.tenPhim} - Movie Project`;
+
+  if (isDialogOpened)
+    document.body.setAttribute('style', 'overflow: hidden');
+  else
+    document.body.setAttribute('style', 'overflow: unset');
 
   const handleOpen = () => {
     const id = movie.trailer[24] === 'w' ? movie.trailer.slice(32) : movie.trailer.slice(29);
@@ -73,7 +81,7 @@ const MovieDetailPage = props => {
               </Col>
               <Col span={12}>
                 <div className="movie-details">
-                  <p className="movie-release">12 Dec 2020</p>
+                  <p className="movie-release">{moment(movie.ngayKhoiChieu).format('ll')}</p>
                   <p className="movie-name">
                     <span>C16</span>
                     {movie.tenPhim}
@@ -172,7 +180,9 @@ const MovieDetailPage = props => {
       try {
         const res = await get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`);
         setMovie(res.data);
-      } catch{ }
+      } catch{
+        setIsDialogOpened(true);
+      }
     }
     const fetchCinemaComplexOptions = async () => {
       try {
@@ -188,6 +198,7 @@ const MovieDetailPage = props => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      document.body.setAttribute('style', 'overflow: unset');
     }
   }, [])
 
@@ -196,6 +207,13 @@ const MovieDetailPage = props => {
       <NavBar />
       {movie && showtime ? renderMovieDetailPage() : <LoadingPage />}
       <Footer />
+      <NotificationDialog
+        isOpened={isDialogOpened}
+        setIsOpened={setIsDialogOpened}
+        text="Error"
+        content="Some errors occurred when fetching data."
+        options={[{ label: 'OK', onClick: () => props.history.push('/') }]}
+      />
     </Fragment>
   )
 }

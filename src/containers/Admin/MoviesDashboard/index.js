@@ -6,7 +6,7 @@ let moment = require('moment');
 import DateFnsUtils from '@date-io/date-fns';
 import {Box, Container, makeStyles, TextField} from '@material-ui/core';
 import Swal from 'sweetalert2';
-import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Page from '../../../components/Page';
 import {get, post, remove} from '../../../utils/ApiCaller';
 const useStyles = makeStyles((theme) => ({
@@ -21,10 +21,10 @@ const DashboardMovie = () => {
   const listMovie = useSelector((state) => state.movieReducer.listMovie);
   const tableContent = {
     columns: [
-      {title: 'Movie ID', field: 'maPhim', type: 'numeric'},
-      {title: 'Movie name', field: 'tenPhim'},
-      {title: 'Trailer', field: 'trailer'},
-      {title: 'Tag', field: 'biDanh'},
+      { title: 'Movie ID', field: 'maPhim', type: 'numeric' },
+      { title: 'Movie name', field: 'tenPhim' },
+      { title: 'Trailer', field: 'trailer' },
+      { title: 'Tag', field: 'biDanh' },
       {
         title: 'Poster',
         editComponent: (props) => (
@@ -39,11 +39,11 @@ const DashboardMovie = () => {
         ),
         field: 'hinhAnh',
         render: (hinhAnh) => (
-          <img src={hinhAnh.hinhAnh} style={{width: 100, height: 100}} />
+          <img src={hinhAnh.hinhAnh} style={{ width: 100, height: 100 }} />
         ),
         type: 'string',
       },
-      {title: 'Description', field: 'moTa'},
+      { title: 'Description', field: 'moTa' },
       {
         title: 'Release date',
         editComponent: (props) => (
@@ -68,7 +68,7 @@ const DashboardMovie = () => {
         ),
         field: 'ngayKhoiChieu',
       },
-      {title: 'Rate', field: 'danhGia', type: 'numeric'},
+      { title: 'Rate', field: 'danhGia', type: 'numeric' },
     ],
   };
   const [state, setState] = useState({
@@ -78,13 +78,14 @@ const DashboardMovie = () => {
     get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${group}`)
       .then((rs) => {
         setState((prevState) => {
-          return {...prevState, data: rs.data};
+          return { ...prevState, data: rs.data };
         });
       })
       .catch((err) => {
         console.log(err);
       });
   }, [group]);
+
   let handleAddMovie = (film) => {
     let moment = require('moment');
     var form_data = new FormData();
@@ -240,6 +241,7 @@ const DashboardMovie = () => {
                     resolve();
                     handleDeleteMovie(oldData);
                   }, 300);
+
                 }),
             }}
           />
@@ -250,3 +252,4 @@ const DashboardMovie = () => {
 };
 
 export default React.memo(DashboardMovie);
+

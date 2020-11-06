@@ -90,4 +90,4 @@ const customerRoutes = [
   },
 ];
 
-export {customerRoutes};
+export { customerRoutes };

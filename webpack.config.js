@@ -66,7 +66,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      //   favicon: './src/assets/images/logoFcode.ico',
+      favicon: './src/assets/img/logo.jpg',
     }),
     new webpack.DefinePlugin({
       'process.env': {
