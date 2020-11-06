@@ -4,10 +4,11 @@ import {useSelector} from 'react-redux';
 import Axios from 'axios';
 let moment = require('moment');
 import DateFnsUtils from '@date-io/date-fns';
-import {Box, Container, makeStyles} from '@material-ui/core';
+import {Box, Container, makeStyles, TextField} from '@material-ui/core';
 import Swal from 'sweetalert2';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
 import Page from '../../../components/Page';
+import {get, post, remove} from '../../../utils/ApiCaller';
 const useStyles = makeStyles((theme) => ({
   datePicker: {
     width: 150,
@@ -15,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DashboardMovie = () => {
   const [change, setChange] = useState(false);
+  const [group, setGroup] = useState('GP01');
   const classes = useStyles();
   const listMovie = useSelector((state) => state.movieReducer.listMovie);
-  const [state, setState] = useState({
+  const tableContent = {
     columns: [
       {title: 'Movie ID', field: 'maPhim', type: 'numeric'},
       {title: 'Movie name', field: 'tenPhim'},
@@ -68,16 +70,13 @@ const DashboardMovie = () => {
       },
       {title: 'Rate', field: 'danhGia', type: 'numeric'},
     ],
+  };
+  const [state, setState] = useState({
     data: [],
   });
   useEffect(() => {
-    Axios({
-      method: 'GET',
-      url:
-        'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09',
-    })
+    get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${group}`)
       .then((rs) => {
-        // console.log(rs.data);
         setState((prevState) => {
           return {...prevState, data: rs.data};
         });
@@ -85,10 +84,8 @@ const DashboardMovie = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [group]);
   let handleAddMovie = (film) => {
-    film.preventDefault();
-    film.stopPropagation();
     let moment = require('moment');
     var form_data = new FormData();
     let ngayKhoiChieu = moment(film.ngayKhoiChieu).format('DD/MM/YYYY');
@@ -97,7 +94,7 @@ const DashboardMovie = () => {
     let danhGia = parseInt(film.danhGia, 10);
     let filmAdd = {
       ...film,
-      maNhom: 'GP09',
+      maNhom: group,
       maPhim: maPhim,
       danhGia: danhGia,
       ngayKhoiChieu: ngayKhoiChieu,
@@ -105,13 +102,8 @@ const DashboardMovie = () => {
     for (const key in filmAdd) {
       form_data.append(key, filmAdd[key]);
     }
-    Axios({
-      method: 'POST',
-      url: 'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh',
-      data: form_data,
-      headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`,
-      },
+    post('/api/QuanLyPhim/ThemPhimUploadHinh', form_data, {
+      Authorization: `Bearer ${userAdmin.accessToken}`,
     })
       .then((rs) => {
         setChange(!change);
@@ -122,7 +114,6 @@ const DashboardMovie = () => {
       });
   };
   let handleEditMovie = (film, oldData) => {
-    console.log(oldData);
     var form_data = new FormData();
     const userAdmin = JSON.parse(localStorage.getItem('user'));
     let ngayKhoiChieu = moment(film.ngayKhoiChieu).format('DD/MM/YYYY');
@@ -130,7 +121,7 @@ const DashboardMovie = () => {
     let danhGia = parseInt(film.danhGia, 10);
     let filmEdit = {
       ...film,
-      maNhom: 'GP09',
+      maNhom: group,
       maPhim: maPhim,
       danhGia: danhGia,
       ngayKhoiChieu: ngayKhoiChieu,
@@ -138,21 +129,18 @@ const DashboardMovie = () => {
     for (const key in filmEdit) {
       form_data.append(key, filmEdit[key]);
     }
-    Axios({
-      method: 'POST',
-      url: 'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload',
-      data: form_data,
-      headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`,
-      },
+    post('/api/QuanLyPhim/CapNhatPhimUpload', form_data, {
+      Authorization: `Bearer ${userAdmin.accessToken}`,
     })
       .then((rs) => {
-        console.log(rs.data);
-
-        setChange(!change);
-        Swal.fire('Edit Success !', 'Press OK to exit!', 'success').then(
-          location.reload()
-        );
+        get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${rs.data.maPhim}`).then((res) => {
+          setState((prevState) => {
+            const data = [...prevState.data];
+            data[data.indexOf(oldData)] = res.data;
+            return {...prevState, data};
+          });
+        });
+        Swal.fire('Edit Success !', 'Press OK to exit!', 'success');
       })
       .catch((error) => {
         Swal.fire('Fail !', 'Press OK to exit', 'error');
@@ -160,13 +148,8 @@ const DashboardMovie = () => {
   };
   let handleDeleteMovie = (film) => {
     const userAdmin = JSON.parse(localStorage.getItem('user'));
-    Axios({
-      method: 'DELETE',
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`,
-      data: film.maPhim,
-      headers: {
-        Authorization: `Bearer ${userAdmin.accessToken}`,
-      },
+    remove(`/api/QuanLyPhim/XoaPhim?MaPhim=${film.maPhim}`, film.maPhim, {
+      Authorization: `Bearer ${userAdmin.accessToken}`,
     })
       .then((rs) => {
         setState((prevState) => {
@@ -174,7 +157,7 @@ const DashboardMovie = () => {
           data.splice(data.indexOf(film), 1);
           return {...prevState, data};
         });
-        Swal.fire('Success !', 'Nhấn OK để thoát!', 'success');
+        Swal.fire('Success !', 'Press OK!', 'success');
       })
       .catch((error) => {
         Swal.fire('Fail !', error.response.data, 'error');
@@ -184,6 +167,29 @@ const DashboardMovie = () => {
     <Page className={classes.root} title="Movies">
       <Container maxWidth={false}>
         <Box mt={3}>
+          <TextField
+            mt={3}
+            label="Group"
+            name="state"
+            onChange={(e) => {
+              setGroup(e.target.value);
+            }}
+            required
+            select
+            SelectProps={{native: true}}
+            value={group}
+            variant="outlined"
+          >
+            <option value="GP01">GP01</option>
+            <option value="GP02">GP02</option>
+            <option value="GP03">GP03</option>
+            <option value="GP04">GP04</option>
+            <option value="GP05">GP05</option>
+            <option value="GP06">GP06</option>
+            <option value="GP07">GP07</option>
+            <option value="GP08">GP08</option>
+            <option value="GP09">GP09</option>
+          </TextField>
           <MaterialTable
             detailPanel={(rowData) => {
               return (
@@ -198,7 +204,7 @@ const DashboardMovie = () => {
               );
             }}
             title="Movies"
-            columns={state.columns}
+            columns={tableContent.columns}
             data={state.data}
             options={{
               headerStyle: {
@@ -243,4 +249,4 @@ const DashboardMovie = () => {
   );
 };
 
-export default DashboardMovie;
+export default React.memo(DashboardMovie);
