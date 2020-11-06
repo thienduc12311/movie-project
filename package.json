@@ -1,11 +1,14 @@
 {
-  "name": "webpack-react-tutorial",
+  "name": "movie-project",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack",
+  "start": "node server/server.js",
+    "build": "webpack -p",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
