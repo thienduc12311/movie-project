@@ -5,8 +5,7 @@ class Auth {
 
   signIn(callback) {
     this.authenticated = true;
-    if (callback)
-      callback();
+    if (callback) callback();
   }
 
   signOut(callback) {
@@ -19,4 +18,4 @@ class Auth {
   }
 }
 
-export default new Auth(); 
+export default new Auth();
