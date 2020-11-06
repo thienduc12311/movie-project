@@ -22,6 +22,11 @@ const customerRoutes = [
   },
   {
     exact: true,
+    path: '/home',
+    component: HomePage,
+  },
+  {
+    exact: true,
     path: '/movie',
     component: MoviePage,
   },
@@ -90,4 +95,4 @@ const customerRoutes = [
   },
 ];
 
-export { customerRoutes };
+export {customerRoutes};
