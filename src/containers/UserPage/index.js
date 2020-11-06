@@ -82,8 +82,6 @@ const UserPage = (props) => {
 
   document.title = "Account Home - Movie Project";
 
-  dispatch(setCurrentPath("/account"));
-
   if (isDialogOpened)
     document.body.setAttribute('style', 'overflow: hidden');
   else
