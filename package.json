@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-  "start": "node server/server.js",
+    "start": "node server/server.js",
     "build": "webpack --mode development",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix .",
@@ -55,6 +55,7 @@
     "antd": "^4.6.5",
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "history": "^5.0.0",
     "jwt-decode": "^3.0.0-beta.2",
