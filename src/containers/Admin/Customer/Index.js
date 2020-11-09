@@ -5,7 +5,7 @@ import {Box, Container, makeStyles, TextField} from '@material-ui/core';
 import Page from '../../../components/Page';
 import Swal from 'sweetalert2';
 import LocalStorageUtils from '../../../utils/LocalStorageUtils';
-import {get, put, remove} from '../../../utils/ApiCaller';
+import {get, post, put, remove} from '../../../utils/ApiCaller';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -90,13 +90,8 @@ const Customer = () => {
     if (user.maLoaiNguoiDung !== 'KhachHang' && user.maLoaiNguoiDung !== 'QuanTri') {
       console.log('sai ma loai ng dùng');
     } else {
-      Axios({
-        method: 'POST',
-        url: 'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung',
-        data: userAdd,
-        headers: {
-          Authorization: `Bearer ${userAdmin.accessToken}`,
-        },
+      post('/api/QuanLyNguoiDung/ThemNguoiDung', userAdd, {
+        Authorization: `Bearer ${userAdmin.accessToken}`,
       })
         .then((rs) => {
           Swal.fire('Success!', 'Nhấn OK để thoát!', 'success');
@@ -166,7 +161,7 @@ const Customer = () => {
     }
   };
   return (
-    <div>
+    <Page className={classes.root} title="Customers">
       <Container maxWidth={false}>
         <Box mt={3}>
           <TextField
@@ -195,7 +190,7 @@ const Customer = () => {
           {renderTableUser()}
         </Box>
       </Container>
-    </div>
+    </Page>
   );
 };
 

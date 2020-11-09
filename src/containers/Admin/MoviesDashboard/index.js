@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import {useSelector} from 'react-redux';
-import Axios from 'axios';
 let moment = require('moment');
 import DateFnsUtils from '@date-io/date-fns';
 import {Box, Container, makeStyles, TextField} from '@material-ui/core';
