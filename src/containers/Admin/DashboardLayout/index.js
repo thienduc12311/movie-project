@@ -3,9 +3,8 @@ import {Switch, Route} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
-import Customer from '../Customer';
+// import Customer from '../Customer';
 import MoviesDashboard from '../MoviesDashboard';
-import {Theaters} from '@material-ui/icons';
 import TheatersDashboard from '../TheatersDashboard';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +52,7 @@ const DashboardLayout = () => {
           <div className={classes.content}>
             {
               <Switch>
-                <Route path="/admin/customers" component={Customer} />
+                {/* <Route path="/admin/customers" component={Customer} /> */}
                 <Route path="/admin/movies" component={MoviesDashboard} />
                 <Route path="/admin/theaters" component={TheatersDashboard} />
               </Switch>

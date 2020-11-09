@@ -1,11 +1,7 @@
 import React from 'react';
-import Customer from './Customer';
+// import Customer from './Customer';
 const Admin = () => {
-  return (
-    <div>
-      <Customer />
-    </div>
-  );
+  return <div>{/* <Customer /> */}</div>;
 };
 
 export default Admin;
