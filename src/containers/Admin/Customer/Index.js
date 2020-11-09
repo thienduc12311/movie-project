@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import {Box, Container, makeStyles, TextField} from '@material-ui/core';
@@ -101,65 +100,65 @@ const Customer = () => {
         });
     }
   };
-  let renderTableUser = () => {
-    if (state.data.length > 0) {
-      return (
-        <MaterialTable
-          options={{
-            pageSize: 10,
-            pageSizeOptions: [10, 15, 20, 25],
-            headerStyle: {
-              backgroundColor: '#c7c9c8',
-            },
-            emptyRowsWhenPaging: false,
-          }}
-          title="Dashboard"
-          columns={columns}
-          data={state.data}
-          editable={{
-            onRowAdd: (newData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  handleAddUser(newData);
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.push(newData);
-                    return {...prevState, data};
-                  });
-                }, 600);
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  handleEditUser(newData);
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return {...prevState, data};
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  handleDeleteUser(oldData);
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return {...prevState, data};
-                  });
-                }, 600);
-              }),
-          }}
-        />
-      );
-    }
-  };
+  // let renderTableUser = () => {
+  //   if (state.data.length > 0) {
+  //     return (
+  //       <MaterialTable
+  //         options={{
+  //           pageSize: 10,
+  //           pageSizeOptions: [10, 15, 20, 25],
+  //           headerStyle: {
+  //             backgroundColor: '#c7c9c8',
+  //           },
+  //           emptyRowsWhenPaging: false,
+  //         }}
+  //         title="Dashboard"
+  //         columns={columns}
+  //         data={state.data}
+  //         editable={{
+  //           onRowAdd: (newData) =>
+  //             new Promise((resolve) => {
+  //               setTimeout(() => {
+  //                 handleAddUser(newData);
+  //                 resolve();
+  //                 setState((prevState) => {
+  //                   const data = [...prevState.data];
+  //                   data.push(newData);
+  //                   return {...prevState, data};
+  //                 });
+  //               }, 600);
+  //             }),
+  //           onRowUpdate: (newData, oldData) =>
+  //             new Promise((resolve) => {
+  //               setTimeout(() => {
+  //                 resolve();
+  //                 handleEditUser(newData);
+  //                 if (oldData) {
+  //                   setState((prevState) => {
+  //                     const data = [...prevState.data];
+  //                     data[data.indexOf(oldData)] = newData;
+  //                     return {...prevState, data};
+  //                   });
+  //                 }
+  //               }, 600);
+  //             }),
+  //           onRowDelete: (oldData) =>
+  //             new Promise((resolve) => {
+  //               setTimeout(() => {
+  //                 resolve();
+  //                 handleDeleteUser(oldData);
+  //                 setState((prevState) => {
+  //                   const data = [...prevState.data];
+  //                   data.splice(data.indexOf(oldData), 1);
+  //                   return {...prevState, data};
+  //                 });
+  //               }, 600);
+  //             }),
+  //         }}
+  //       />
+  //     );
+  //   }
+  // };
   return (
     <Page className={classes.root} title="Customers">
       <Container maxWidth={false}>
@@ -187,7 +186,7 @@ const Customer = () => {
             <option value="GP08">GP08</option>
             <option value="GP09">GP09</option>
           </TextField>
-          {renderTableUser()}
+          {/* {renderTableUser()} */}
         </Box>
       </Container>
     </Page>
