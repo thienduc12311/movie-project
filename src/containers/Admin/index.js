@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
-import Customer from './Customer';
+import Customers from './Customers';
 import MoviesDashboard from './MoviesDashboard';
 import TheatersDashboard from './TheatersDashboard';
 
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
           <div className={classes.content}>
             {
               <Switch>
-                <Route path="/admin/customers" component={Customer} />
+                <Route path="/admin/customers" component={Customers} />
                 <Route path="/admin/movies" component={MoviesDashboard} />
                 <Route path="/admin/theaters" component={TheatersDashboard} />
               </Switch>

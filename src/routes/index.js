@@ -11,9 +11,10 @@ import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
 import BookingPage from '../containers/BookingPage';
 import PageNotFound from '../containers/PageNotFound';
-import Customer from '../containers/Admin/Customer';
+
 import DashboardLayout from '../containers/Admin';
 import DashboardMovie from '../containers/Admin/MoviesDashboard';
+import Customers from '../containers/Admin/Customers';
 const customerRoutes = [
   {
     exact: true,
@@ -78,7 +79,7 @@ const customerRoutes = [
   {
     isProtected: true,
     path: '/admin/customers',
-    component: Customer,
+    component: Customers,
   },
   {
     isProtected: true,
