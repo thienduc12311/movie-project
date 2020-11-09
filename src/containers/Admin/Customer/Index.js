@@ -199,4 +199,4 @@ function Customer() {
   );
 }
 
-export default React.memo(Customer);
+export default Customer;
