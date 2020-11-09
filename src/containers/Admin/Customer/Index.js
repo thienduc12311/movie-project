@@ -166,7 +166,7 @@ const Customer = () => {
     }
   };
   return (
-    <Page className={classes.root} title="Customers">
+    <div>
       <Container maxWidth={false}>
         <Box mt={3}>
           <TextField
@@ -195,7 +195,7 @@ const Customer = () => {
           {renderTableUser()}
         </Box>
       </Container>
-    </Page>
+    </div>
   );
 };
 
