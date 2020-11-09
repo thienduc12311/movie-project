@@ -22,7 +22,7 @@ import {
 import {Theaters} from '@material-ui/icons';
 import HomeIcon from '@material-ui/icons/Home';
 import NavItem from './NavItem';
-import LocalStorageUtils from '../../../../utils/LocalStorageUtils';
+import LocalStorageUtils from '../../../utils/LocalStorageUtils';
 
 const items = [
   {

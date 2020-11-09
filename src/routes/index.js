@@ -11,8 +11,8 @@ import UserPage from '../containers/UserPage';
 import UserManagement from '../containers/UserPage/UserManagement';
 import BookingPage from '../containers/BookingPage';
 import PageNotFound from '../containers/PageNotFound';
-// import Customer from '../containers/Admin/Customer';
-import DashboardLayout from '../containers/Admin/DashboardLayout';
+import Customer from '../containers/Admin/Customer';
+import DashboardLayout from '../containers/Admin';
 import DashboardMovie from '../containers/Admin/MoviesDashboard';
 const customerRoutes = [
   {
@@ -75,11 +75,11 @@ const customerRoutes = [
     path: '/admin',
     component: DashboardLayout,
   },
-  // {
-  //   isProtected: true,
-  //   path: '/admin/customers',
-  //   component: Customer,
-  // },
+  {
+    isProtected: true,
+    path: '/admin/customers',
+    component: Customer,
+  },
   {
     isProtected: true,
     path: '/admin/movies',

@@ -6,11 +6,7 @@ import ProtectedRoute from '../../routes/ProtectedRoute';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import {post} from '../../utils/ApiCaller';
 import auth from '../../routes/auth';
-import Admin from '../Admin';
-import DashboardLayout from '../Admin/DashboardLayout';
-import {useRoutes} from 'react-router-dom';
-import {Dashboard} from '@material-ui/icons';
-import MoviesDashboard from '../Admin/MoviesDashboard';
+
 export const App = () => {
   moment.locale('en-gb');
 
