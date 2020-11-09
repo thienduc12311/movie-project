@@ -1,6 +1,7 @@
 import React, {useEffect, Fragment, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getCinemaComplexInfo} from '../../../redux/actions/movieAction';
+import Page from '../../../components/Page';
 import {Menu} from 'antd';
 import './styles.scss';
 import Button from '@material-ui/core/Button';
@@ -252,11 +253,10 @@ const TheatersDashboard = () => {
     </div>
   );
   return (
-    <div>
+    <Page title="Theaters">
       {renderDialog()}
-
       {renderCinemaComplexPage()}
-    </div>
+    </Page>
   );
 };
 
