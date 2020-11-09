@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Customer() {
+const Customer = () => {
   const classes = useStyles();
   const [group, setGroup] = useState('GP01');
   const columns = [
@@ -197,6 +197,6 @@ function Customer() {
       </Container>
     </Page>
   );
-}
+};
 
-export default Customer;
+export default React.memo(Customer);
