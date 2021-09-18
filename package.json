@@ -1,10 +1,7 @@
 {
   "name": "movie-project",
   "version": "1.0.0",
-  "description": "",
-  "engines": {
-    "node": "14.x"
-  },
+  "description": "This is our first project",
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
